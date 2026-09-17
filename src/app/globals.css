@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/effect-fade";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+@import "swiper/css/autoplay";
+
+@layer base {
+  :root {
+    --font-poppins: 'Poppins', sans-serif;
+    --primary-color:#166534;
+    --secondary-color:#f37924;
+  }
+}
+
+.font-sans {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+}
+
+/* Custom Arch mask/shape */
+.hero-arch-container {
+  border-top-left-radius: 260px;
+  border-top-right-radius: 260px;
+  overflow: hidden;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Marquee infinite loop */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Custom Swiper Bullet Styling */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.6) ;
+  opacity: 1 ;
+  width: 8px ;
+  height: 8px ;
+  transition: all 0.3s ease ;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--primary-color) ;
+  width: 24px ;
+  border-radius: 4px ;
+}
+
+@keyframes dotBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.heading {
+  line-height: 70px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    line-height: 50px;
+  }
+}
+
+.get-in-touch-btn {
+  background-color: var(--primary-color) ;
+  color: #ffffff ;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.25);
+  text-transform: uppercase;
+  transition: all 200ms ease;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.get-in-touch-btn:hover {
+  background-color: #115e2e ;
+  box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.4);
+  transform: scale(1.02);
+}
+
+.sale-btn {
+  background-color: #ffffff;
+  border: 1px solid rgba(4, 120, 87, 0.3);
+  color: #0F2D24;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms ease;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.sale-btn:hover {
+  background-color: rgba(236, 253, 245, 0.5);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Medium & larger screens */
+@media (min-width: 640px) {
+  .get-in-touch-btn, .sale-btn {
+    padding: 14px 24px;
+    font-size: 12px;
+    gap: 10px;
+    letter-spacing: 1.6px;
+  }
+}
