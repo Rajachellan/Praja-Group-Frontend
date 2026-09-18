@@ -23,23 +23,23 @@ export default function Navbar() {
   const [activeTab, setActiveTab] = useState('Home');
 
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '#' },
-    { name: 'About Us', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about-us' },
     {
       name: 'Services',
       href: '#services',
       hasDropdown: true,
       subLinks: [
-        { name: 'Constructions', href: '#constructions' },
-        { name: 'Developers', href: '#developers' },
-        { name: 'Property Management', href: '#property-management' },
+        { name: 'Constructions', href: '/constructions' },
+        { name: 'Developers', href: '/developers' },
+        { name: 'Property Management', href: '/property-management' },
       ],
     },
     { name: 'Joint Venture', href: '#' },
-    { name: 'Investors', href: '#' },
+    { name: 'Investors', href: '/investors' },
     { name: 'Associate', href: '#' },
     { name: 'Blogs', href: '#' },
-    { name: 'Contact Us', href: '#' },
+    { name: 'Contact Us', href: '/contact-us' },
   ];
 
   return (

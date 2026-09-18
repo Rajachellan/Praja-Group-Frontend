@@ -7,129 +7,143 @@ import {
   MessageSquare,
   ArrowRight,
   CheckCircle2,
+  ShieldCheck,
   Building2,
+  PhoneCall
 } from 'lucide-react';
 import Link from 'next/link';
 
-export interface FaqItem {
+export interface PropertyFaqItem {
   id: string;
-  category: 'Legal & Approvals' | 'Pricing & BOQ' | 'Services' | 'Joint Venture' | 'Quality & Timelines';
+  category: 'Tenant Management' | 'Maintenance & Repairs' | 'Financials & Rent' | 'Legal & Leases' | 'NRI Property Care';
   question: string;
   answer: string;
   highlights?: string[];
 }
 
-const DEVELOPER_FAQS_DATA: FaqItem[] = [
+const PROPERTY_MANAGEMENT_FAQS_DATA: PropertyFaqItem[] = [
   {
-    id: 'legal-approvals-1',
-    category: 'Legal & Approvals',
-    question: 'Does Prajha Group handle CMDA / DTCP plan sanctions and government clearances?',
+    id: 'tenant-1',
+    category: 'Tenant Management',
+    question: 'How does Prajha Group screen and verify prospective tenants for residential & luxury properties?',
     answer:
-      'Yes, we manage 100% end-to-end plan approvals, layout sanctions (CMDA & DTCP), RERA registrations, environmental clearances, and Patta transfer services through our specialized legal panel to ensure your project stays fully compliant without regulatory delays.',
+      'We conduct thorough background checks including official police verification, government ID validation (Aadhaar & PAN card), employment status & income verification, and previous landlord references before executing any tenancy agreement.',
     highlights: [
-      'Complete CMDA & DTCP plan sanction processing',
-      'RERA project registration and documentation',
-      'In-house legal advocate panel for Patta transfer & title scrutiny',
+      '100% Police background verification process',
+      'Government ID & salary slip validation',
+      'Previous landlord reference & rental track check',
     ],
   },
   {
-    id: 'pricing-boq-1',
-    category: 'Pricing & BOQ',
-    question: 'How does Prajha Group guarantee budget control and zero hidden costs?',
+    id: 'financials-1',
+    category: 'Financials & Rent',
+    question: 'When and how do property owners receive their monthly rent remittances?',
     answer:
-      'Before project kickoff, we prepare an itemized Bill of Quantities (BOQ) with fixed contractual civil rates. This locked pricing model ensures total transparency with no unexpected price escalations or hidden charges throughout the development lifecycle.',
+      'Rent collected from tenants is directly remitted into the owner’s designated bank account on or before the 5th of every month, accompanied by an itemized digital monthly financial statement detailing all utility payments and maintenance logs.',
     highlights: [
-      'Itemized Bill of Quantities (BOQ) locked upfront',
-      'Contractual civil rates with no escalation surprises',
-      'Transparent milestone payment schedules',
+      'Guaranteed rent remittance by the 5th of every month',
+      'Direct NEFT/RTGS bank transfer to owner account',
+      'Itemized digital monthly accounting ledger',
     ],
   },
   {
-    id: 'services-1',
-    category: 'Services',
-    question: 'What types of real estate development projects do you handle in Chennai?',
+    id: 'maintenance-1',
+    category: 'Maintenance & Repairs',
+    question: 'How do you handle routine maintenance requests and 24/7 emergency repairs?',
     answer:
-      'Prajha Group specializes in a wide spectrum of property development across Chennai, including luxury residential flats, independent villas, secure gated communities, prime residential plots, farm lands, and modern community living apartments.',
+      'We operate a dedicated technical repair desk. For routine repairs (plumbing, electrical, painting), we inspect the issue, provide a transparent cost estimate to the owner, and coordinate verified technicians. Emergency repair calls are dispatched immediately 24/7.',
     highlights: [
-      'Turnkey residential flats & luxury villas',
-      'Gated community infrastructure & master planning',
-      'CMDA/DTCP approved residential plot layouts',
+      '24/7 Technical emergency repair response desk',
+      'Pre-approved transparent owner cost estimates',
+      'Licensed electrical, plumbing & civil technicians',
     ],
   },
   {
-    id: 'joint-venture-1',
-    category: 'Joint Venture',
-    question: 'Can land owners collaborate with Prajha Group for Joint Venture (JV) developments?',
+    id: 'nri-1',
+    category: 'NRI Property Care',
+    question: 'How do you support Non-Resident Indians (NRIs) managing vacant plots, villas, or flats in Chennai?',
     answer:
-      'Yes! We offer highly attractive Joint Venture (JV) partnerships for landowners looking to monetize prime property. We handle 100% of the planning, design, civil construction, government sanctions, and sales marketing while providing transparent revenue/space sharing ratios.',
+      'We provide 100% remote caretaking for NRIs including anti-encroachment guarding for vacant plots, periodic key management, deep cleaning before owner visits, utility bill filings, and live virtual HD video walkthroughs of your real estate.',
     highlights: [
-      'Competitive profit or built-up area sharing ratios',
-      'Zero financial stress for land owners',
-      'Complete project funding, construction, and marketing support',
+      '100% Remote hands-off caretaking for NRI property owners',
+      'Live HD video walkthroughs & bi-monthly photo updates',
+      'Vacant land anti-encroachment guarding & boundary care',
     ],
   },
   {
-    id: 'quality-timelines-1',
-    category: 'Quality & Timelines',
-    question: 'What materials and quality control standards do you enforce on site?',
+    id: 'legal-1',
+    category: 'Legal & Leases',
+    question: 'What legal assistance does Prajha Group provide for lease drafting and agreements?',
     answer:
-      'We strictly procure Tier-1 branded materials including Tata Tiscon / JSW TMT steel, Ultratech / ACC cement, standard red brick or AAC block masonry, and branded sanitaryware. Every project undergoes multi-stage structural audits by qualified civil engineers.',
+      'Our legal team drafts legally binding 11-month or multi-year rental agreements, manages official stamp duty registration, oversees security deposit escrow terms, and conducts formal move-in and exit inventory handover audits.',
     highlights: [
-      'Tier-1 materials: Tata Tiscon, JSW Steel & Ultratech Cement',
-      'Strict multi-tier civil structural engineering audits',
-      '10-Year structural guarantee on all civil developments',
+      'Advocate-drafted legal lease agreements',
+      'Official stamp duty & sub-registrar registration assistance',
+      'Documented move-in & exit inventory audits',
     ],
   },
   {
-    id: 'quality-timelines-2',
-    category: 'Quality & Timelines',
-    question: 'What is the typical completion timeframe for a real estate development project?',
+    id: 'maintenance-2',
+    category: 'Maintenance & Repairs',
+    question: 'How often are physical property inspections conducted and documented?',
     answer:
-      'Completion timelines depend on project scale and approval requirements. Residential developments typically range between 12 to 18 months from ground break. We follow strict milestone-driven schedules supported by daily progress monitoring.',
+      'We conduct scheduled bi-monthly or monthly physical inspections. Owners receive detailed digital photo and video audit reports covering structural condition, cleanliness, plumbing sanity, and utility system functionality.',
     highlights: [
-      'Milestone-driven project delivery schedules',
-      'Regular HD photo and digital video progress reports',
-      'Contractual penalty-backed delivery commitments',
+      'Bi-monthly physical site visits & audits',
+      'HD photo & video digital inspection reports',
+      'Immediate damage or wear-and-tear alerts',
     ],
   },
   {
-    id: 'services-2',
-    category: 'Services',
-    question: 'How do you support Non-Resident Indians (NRIs) investing or developing in Chennai?',
+    id: 'financials-2',
+    category: 'Financials & Rent',
+    question: 'Do you handle municipal property tax filings and utility bill payments for owners?',
     answer:
-      'We offer dedicated NRI remote management services including digital document execution, legal title verification, power of attorney guidance, live video site inspections, and hassle-free rental or resale management once the project is handed over.',
+      'Yes! We manage complete utility bill tracking and payments including Greater Chennai Corporation property tax, TNEB electricity bills, CMWSSB water tax, and gated society maintenance charges.',
     highlights: [
-      'Dedicated remote video inspection updates',
-      'Complete legal title scrutiny & Patta assistance',
-      'Post-completion property & rental management support',
+      'Greater Chennai Corporation property tax filing & payment',
+      'TNEB electricity & water bill tracking',
+      'Digital receipt archival for annual tax records',
+    ],
+  },
+  {
+    id: 'tenant-2',
+    category: 'Tenant Management',
+    question: 'What happens if a tenant delays rent payment or breaches lease terms?',
+    answer:
+      'We enforce strict lease guidelines with automated payment reminders, follow-ups, and formal legal notices if needed. We handle complete tenant communication and legal dispute resolution so property owners never face stress.',
+    highlights: [
+      'Automated rent reminder notifications',
+      'Professional legal notice escalation workflow',
+      'Complete hands-off owner dispute management',
     ],
   },
 ];
 
 export default function Faqs() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [openId, setOpenId] = useState<string | null>(DEVELOPER_FAQS_DATA[0].id);
+  const [openId, setOpenId] = useState<string | null>(PROPERTY_MANAGEMENT_FAQS_DATA[0].id);
 
   const categories = useMemo(() => {
-    return ['All', 'Legal & Approvals', 'Pricing & BOQ', 'Services', 'Joint Venture', 'Quality & Timelines'];
+    return ['All', 'Tenant Management', 'Maintenance & Repairs', 'Financials & Rent', 'Legal & Leases', 'NRI Property Care'];
   }, []);
 
   const filteredFaqs = useMemo(() => {
-    if (selectedCategory === 'All') return DEVELOPER_FAQS_DATA;
-    return DEVELOPER_FAQS_DATA.filter((f) => f.category === selectedCategory);
+    if (selectedCategory === 'All') return PROPERTY_MANAGEMENT_FAQS_DATA;
+    return PROPERTY_MANAGEMENT_FAQS_DATA.filter((f) => f.category === selectedCategory);
   }, [selectedCategory]);
 
   const getCategoryBadgeClass = (cat: string) => {
     switch (cat) {
-      case 'Legal & Approvals':
-        return 'bg-amber-100/80 text-amber-900 border-amber-200';
-      case 'Pricing & BOQ':
-        return 'bg-purple-100/80 text-purple-900 border-purple-200';
-      case 'Services':
+      case 'Tenant Management':
         return 'bg-emerald-100/80 text-[#166534] border-emerald-200';
-      case 'Joint Venture':
-        return 'bg-blue-100/80 text-blue-900 border-blue-200';
-      case 'Quality & Timelines':
+      case 'Maintenance & Repairs':
+        return 'bg-[#F0FDF4] text-[#166534] border-emerald-300';
+      case 'Financials & Rent':
+        return 'bg-purple-100/80 text-purple-900 border-purple-200';
+      case 'Legal & Leases':
+        return 'bg-amber-100/80 text-amber-900 border-amber-200';
+      case 'NRI Property Care':
         return 'bg-orange-100/80 text-[#F37924] border-orange-200';
       default:
         return 'bg-[#F0FDF4] text-[#166534] border-emerald-200';
@@ -137,7 +151,7 @@ export default function Faqs() {
   };
 
   return (
-    <section id="developer-faqs" className="py-24 bg-gradient-to-b from-slate-50 via-white to-[#F0FDF4]/30 relative overflow-hidden border-t border-slate-200">
+    <section id="property-faqs" className="py-24 bg-gradient-to-b from-slate-50 via-white to-[#F0FDF4]/30 relative overflow-hidden border-t border-slate-200">
       
       {/* Background Decorative Accents */}
       <div className="absolute top-10 right-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -160,7 +174,7 @@ export default function Faqs() {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
             </span>
             <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.15em] text-[#0F2D24]">
-              DEVELOPER KNOWLEDGE BASE
+              PROPERTY MANAGEMENT KNOWLEDGE BASE
             </span>
           </div>
 
@@ -169,7 +183,7 @@ export default function Faqs() {
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-            Get comprehensive answers regarding plan sanctions, BOQ pricing transparency, material standards, Joint Venture options, and property development timelines with Prajha Group.
+            Get comprehensive answers regarding tenant background screening, automated rent remittance, 24/7 property maintenance, legal leases, and NRI property caretaking with Prajha Group.
           </p>
         </div>
 
@@ -229,7 +243,7 @@ export default function Faqs() {
                     <div className="space-y-1.5">
                       {/* Category Pill Tag */}
                       <span
-                        className={`inline-block px-2.5 py-0.5 rounded-full text-[10px]  uppercase tracking-wider border ${getCategoryBadgeClass(
+                        className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider border ${getCategoryBadgeClass(
                           faq.category
                         )}`}
                       >
@@ -273,7 +287,7 @@ export default function Faqs() {
                       {faq.highlights && faq.highlights.length > 0 && (
                         <div className="space-y-2 pt-1">
                           <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600">
-                            Key Project Assurance Highlights:
+                            Key Service Assurance Highlights:
                           </p>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {faq.highlights.map((h, hIdx) => (
@@ -296,27 +310,24 @@ export default function Faqs() {
 
         {/* Bottom Callout Banner - Light Theme */}
         <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#F0FDF4] via-white to-[#F0FDF4] border border-emerald-200 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* <div className="absolute right-0 bottom-0 opacity-[0.06] pointer-events-none">
-            <Building2 className="w-72 h-72 text-[#166534]" />
-          </div> */}
-
           <div className="flex flex-col gap-5 text-center md:text-left relative z-10 max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#166534]/10 text-[#166534] text-[11px] font-bold uppercase tracking-wider border border-[#166534]/20" style={{alignSelf:"flex-start"}}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#166534]/10 text-[#166534] text-[11px] font-bold uppercase tracking-wider border border-[#166534]/20" style={{ alignSelf: "flex-start" }}>
               <MessageSquare className="w-3.5 h-3.5 text-[#F37924]" />
-              <span>Have a Specific Development Query?</span>
+              <span>Have a Specific Property Management Query?</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-[#0F2D24]">
-              Speak Directly With Our Real Estate Project Experts
+              Speak Directly With Our Estate Care Specialists
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 font-medium">
-              Schedule a free consultation to review land potential, CMDA layout approvals, estimate BOQ costs, or explore Joint Venture terms.
+              Schedule a free consultation to review tenant placement, maintenance schedules, legal leases, or NRI caretaking packages in Chennai.
             </p>
           </div>
 
-          <div className="relative z-10 shrink-0">
+          <div className="relative z-10 shrink-0 flex flex-col sm:flex-row gap-3">
             <Link
-              href="#enquiry-form"
-              className="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase hover:scale-105" style={{letterSpacing:"1px"}}
+              href="#contact"
+              className="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase hover:scale-105"
+              style={{ letterSpacing: "1px" }}
             >
               <span>Schedule Free Consultation</span>
               <ArrowRight className="w-4 h-4 text-[#F37924]" />
