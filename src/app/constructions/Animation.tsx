@@ -453,8 +453,8 @@ export default function ConstructionAnimation({
       const stationary=pausedRef.current || reducedMotion;
       if(stationary && staticDrawn) {last=0;return;}
       staticDrawn=stationary;
-      if(last && !stationary && now-last<32) return;
-      if(last && !pausedRef.current && !reducedMotion) elapsed+=Math.min((now-last)/1000,.06);
+      if(last && !stationary && now-last<15) return;
+      if(last && !pausedRef.current && !reducedMotion) elapsed+=Math.min((now-last)/1000,.06)*1.35;
       last=now;
       const t=reducedMotion?46:elapsed%52;
       const phaseIndex=t<8?0:t<16?1:t<35?2:t<43?3:4;

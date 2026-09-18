@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Top CTA Bar inside Footer */}
-        <div className="bg-gradient-to-r from-[#166534] via-[#1b7a3f] to-[#0F2D24] rounded-3xl p-8 sm:p-10 mb-16 border border-white/15 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6">
+        {/* <div className="bg-gradient-to-r from-[#166534] via-[#1b7a3f] to-[#0F2D24] rounded-3xl p-8 sm:p-10 mb-16 border border-white/15 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-wider text-[#F37924] mb-2">
               <ShieldCheck className="w-4 h-4" />
@@ -46,7 +46,7 @@ export default function Footer() {
             <span>Call +91 94999 33461</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
+        </div> */}
 
         {/* Main Footer Links Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-white/10">

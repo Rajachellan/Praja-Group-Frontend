@@ -101,20 +101,6 @@ export default function ConstructionsPage() {
     return () => observer.disconnect();
   }, []);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    projectType: 'Turnkey Villa Construction',
-    location: '',
-    builtUpArea: '1800 sq.ft',
-    message: '',
-  });
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-  };
 
   const packageSpecs = {
     essential: {
@@ -201,7 +187,7 @@ export default function ConstructionsPage() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#F37924] selection:text-white font-sans overflow-x-hidden">
-      <Navbar />
+
 
       {/* Hero Section - Attractive Bright White Aesthetic */}
       <section className="relative pt-32 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
@@ -497,14 +483,6 @@ export default function ConstructionsPage() {
       {/* Why Choose Prajha Group? (5 Core Pillars) Component Section */}
       <WhyChooseUs />
       
-      {/* Grand Advanced FAQ Section */}
-      <AdvancedFaqSection
-        title="FAQ"
-        subtitle="Answers to common queries regarding Prajha Group's construction services, quality checks, plan approvals, and project initiation."
-        faqs={constructionsFaqs}
-      />
-
-      <Footer />
     </div>
   );
 }

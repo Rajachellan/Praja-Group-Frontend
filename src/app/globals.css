@@ -164,3 +164,18 @@
     letter-spacing: 1.6px;
   }
 }
+.line-height{
+  line-height: 60px;
+  letter-spacing: 1px;
+}
+.line-height-para{
+  line-height: 35px;
+}
+@media (max-width:768px) {
+  .line-height{
+  line-height: 45px;
+}
+.line-height-para{
+  line-height: 30px;
+}
+}
