@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, ChevronDown, ArrowRight, Menu, X, Clock, Phone, Mail } from 'lucide-react';
+import { Search, ChevronDown, ArrowRight, Menu, X, Clock, Phone, Mail, Sparkles, MapPin, Building2 } from 'lucide-react';
 
 interface SubLink {
   name: string;
@@ -19,8 +19,12 @@ interface NavLink {
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('Home');
+
+  const toggleMobileDropdown = (name: string) => {
+    setOpenMobileDropdown((prev) => (prev === name ? null : name));
+  };
 
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/' },
@@ -35,42 +39,79 @@ export default function Navbar() {
         { name: 'Property Management', href: '/property-management' },
       ],
     },
-    { name: 'Joint Venture', href: '#' },
-    { name: 'Investors', href: '/investors' },
-    { name: 'Associate', href: '#' },
+    {
+      name: 'Joint Ventures',
+      href: '#joint-ventures',
+      hasDropdown: true,
+      subLinks: [
+        { name: 'Land Owners', href: '/land-owners' },
+        { name: 'Associate Directors', href: '/associate-directors' },
+        { name: 'Investors', href: '/investors' },
+      ],
+    },
+    { name: 'Careers', href: '#' },
     { name: 'Blogs', href: '#' },
     { name: 'Contact Us', href: '/contact-us' },
   ];
 
   return (
     <header className="w-full sticky top-0 z-50 shadow-xs">
-      {/* Top Header Bar (Fixed & Centered) */}
-      <div className="w-full bg-[#F37924] text-white text-[12px] font-bold py-2 select-none border-b border-black/5">
-        <div className="max-w-[1440px] mx-auto px-4 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-          <div className="flex items-center gap-2">
-            <Clock className="w-3.5 h-3.5 text-white/95 shrink-0" />
-            <span className="tracking-wider">10.00 AM - 06.00 PM</span>
+      {/* Top Header Bar */}
+      <div className="w-full bg-gradient-to-r from-[#E6600B] via-[#F37924] to-[#FA8C38] text-white text-[12px] font-medium py-2 select-none border-b border-white/10 shadow-xs">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4">
+          
+          {/* Left Side: Welcome Badge, Location & Slogan */}
+          <div className="flex items-center gap-3">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 hover:bg-white/20 text-white text-[11px] font-bold tracking-wide border border-white/25 shadow-xs backdrop-blur-md transition-all group cursor-default">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white text-[#F37924] shadow-2xs group-hover:scale-105 transition-transform shrink-0">
+                <Building2 className="w-3 h-3 text-[#F37924]" />
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-white/95 font-medium">Welcome to</span>
+                <span className="text-[#166534] font-extrabold tracking-wider">Prajha Group</span>
+              </span>
+            </div> */}
+            
+            <div className="hidden sm:flex items-center gap-1.5 text-white/95 font-medium">
+              <MapPin className="w-3.5 h-3.5 text-white/90 shrink-0" />
+              <span className="tracking-wide">Chennai, TN</span>
+            </div>
+
+            <span className="hidden md:inline text-white/40 font-light">•</span>
+
+            <span className="hidden md:inline text-white/90 tracking-wide font-normal">
+              Building Trust & Excellence
+            </span>
           </div>
 
-          <span className="hidden sm:inline text-white/40 font-light">•</span>
+          {/* Right Side: Working Hours & Direct Contact Links */}
+          <div className="flex items-center flex-wrap justify-center gap-3 sm:gap-6 font-bold">
+            <div className="flex items-center gap-1.5 text-white/95">
+              <Clock className="w-3.5 h-3.5 text-white/90 shrink-0" />
+              <span className="tracking-wider">10:00 AM - 06:00 PM</span>
+            </div>
 
-          <a
-            href="tel:+919499933461"
-            className="flex items-center gap-2 hover:text-white/80 transition-all cursor-pointer"
-          >
-            <Phone className="w-3.5 h-3.5 text-white/95 shrink-0" />
-            <span className="tracking-wider">+91 94999 33461</span>
-          </a>
+            <span className="hidden sm:inline text-white/40 font-light">•</span>
 
-          <span className="hidden sm:inline text-white/40 font-light">•</span>
+            <a
+              href="tel:+919499933461"
+              className="flex items-center gap-1.5 text-white hover:text-amber-100 transition-all cursor-pointer group"
+            >
+              <Phone className="w-3.5 h-3.5 text-white/95 shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="tracking-wider">+91 94999 33461</span>
+            </a>
 
-          <a
-            href="mailto:prajhaconnect@gmail.com"
-            className="flex items-center gap-2 hover:text-white/80 transition-all cursor-pointer"
-          >
-            <Mail className="w-3.5 h-3.5 text-white/95 shrink-0" />
-            <span className="tracking-wider">prajhaconnect@gmail.com</span>
-          </a>
+            <span className="hidden md:inline text-white/40 font-light">•</span>
+
+            <a
+              href="mailto:prajhaconnect@gmail.com"
+              className="flex items-center gap-1.5 text-white hover:text-amber-100 transition-all cursor-pointer group"
+            >
+              <Mail className="w-3.5 h-3.5 text-white/95 shrink-0 group-hover:scale-110 transition-transform" />
+              <span className="tracking-wider">prajhaconnect@gmail.com</span>
+            </a>
+          </div>
+
         </div>
       </div>
 
@@ -179,12 +220,12 @@ export default function Navbar() {
                 </Link>
                 {link.hasDropdown && (
                   <button
-                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    onClick={() => toggleMobileDropdown(link.name)}
                     className="p-1 text-gray-400 hover:text-[#166534]"
                   >
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        mobileServicesOpen ? 'rotate-180 text-[#166534]' : ''
+                        openMobileDropdown === link.name ? 'rotate-180 text-[#166534]' : ''
                       }`}
                     />
                   </button>
@@ -192,7 +233,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Sublinks */}
-              {link.hasDropdown && link.subLinks && mobileServicesOpen && (
+              {link.hasDropdown && link.subLinks && openMobileDropdown === link.name && (
                 <div className="pl-3 pt-1 flex flex-col gap-2">
                   {link.subLinks.map((subItem) => (
                     <Link

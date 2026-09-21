@@ -7,18 +7,30 @@
 
 @layer base {
   :root {
-    --font-poppins: 'Poppins', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-hand: 'Caveat', cursive;
     --primary-color:#166534;
     --secondary-color:#f37924;
   }
+
+  h1, h2 {
+    font-family: var(--font-heading), 'Playfair Display', serif;
+  }
 }
 
-.font-sans {
-  font-family: var(--font-poppins), 'Poppins', sans-serif;
+.font-heading {
+  font-family: var(--font-heading), 'Playfair Display', serif;
 }
 
+.font-body,
+.font-sans,
 .font-poppins {
-  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-family: var(--font-body), 'Inter', sans-serif;
+}
+
+.font-hand {
+  font-family: var(--font-hand), 'Caveat', cursive;
 }
 
 /* Custom Arch mask/shape */
@@ -39,6 +51,24 @@
 
 .animate-float-slow {
   animation: floatSlow 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Marquee infinite loop */
@@ -96,11 +126,11 @@
 }
 
 .get-in-touch-btn {
-  background-color: var(--primary-color) ;
-  color: #ffffff ;
-  padding: 10px 12px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 12px 16px;
   border-radius: 12px;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -112,15 +142,13 @@
   transition: all 200ms ease;
   cursor: pointer;
   width: 100%;
-  height: 100%;
-  min-height: 44px;
+  min-height: 48px;
   letter-spacing: 0.5px;
   line-height: 1.2;
-  white-space: nowrap;
 }
 
 .get-in-touch-btn:hover {
-  background-color: #115e2e ;
+  background-color: var(--primary-color);
   box-shadow: 0 10px 15px -3px rgba(6, 78, 59, 0.4);
   transform: scale(1.02);
 }
@@ -128,10 +156,10 @@
 .sale-btn {
   background-color: #ffffff;
   border: 1px solid rgba(4, 120, 87, 0.3);
-  color: #0F2D24;
-  padding: 10px 12px;
+  color: var(--primary-color);
+  padding: 12px 16px;
   border-radius: 12px;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -143,8 +171,7 @@
   cursor: pointer;
   transition: all 200ms ease;
   width: 100%;
-  height: 100%;
-  min-height: 44px;
+  min-height: 48px;
   letter-spacing: 0.5px;
   line-height: 1.2;
 }

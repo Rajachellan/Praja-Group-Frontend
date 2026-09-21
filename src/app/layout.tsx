@@ -1,12 +1,28 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Playfair_Display, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import EnquiryModal from "./components/EnquiryModal";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const headingFont = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  weight: ['700', '800'],
+  display: 'swap',
+});
+
+const bodyFont = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const handFont = Caveat({
+  subsets: ['latin'],
+  variable: '--font-hand',
+  weight: ['600', '700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -22,10 +38,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} font-sans h-full antialiased`}
+      className={`${headingFont.variable} ${bodyFont.variable} ${handFont.variable} font-body h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#FBFBFB] text-[#1D2939]">
+      <body className="min-h-full flex flex-col font-body bg-[#FBFBFB] text-[#1D2939]">
         <Navbar/>
+        <EnquiryModal />
         {children}
       </body>
     </html>

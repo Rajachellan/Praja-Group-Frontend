@@ -87,7 +87,7 @@ export default function InvestorsPage() {
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Section & Breadcrumb */}
-      <section className="relative pt-10 lg:pt-32 lg:pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
+      <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
         {/* Ambient Glow Meshes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 left-0 -ml-20 w-[450px] h-[450px] rounded-full bg-[#F37924]/5 blur-[100px] pointer-events-none" />
@@ -180,21 +180,21 @@ export default function InvestorsPage() {
               </div>
 
               {/* Action CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 w-full">
                 <Link
                   href="#investor-enquiry"
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider text-center w-full sm:w-auto shrink-0"
                   style={{ letterSpacing: '1px' }}
                 >
                   <span>Discuss Investment Proposal</span>
-                  <ArrowRight className="w-4 h-4 text-[#F37924]" />
+                  <ArrowRight className="w-4 h-4 text-[#F37924] shrink-0" />
                 </Link>
 
                 <a
                   href="tel:+919499933461"
-                  className="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm text-center w-full sm:w-auto shrink-0"
                 >
-                  <PhoneCall className="w-4 h-4 text-[#166534]" />
+                  <PhoneCall className="w-4 h-4 text-[#166534] shrink-0" />
                   <span>Call Investor Desk</span>
                 </a>
               </div>

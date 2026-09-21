@@ -48,16 +48,22 @@ export default function ServicesSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em] text-[#166534] bg-[#F0FDF4] border border-[#166534]/20 px-4 py-1.5 rounded-full mb-3 shadow-2xs">
-            Core Expertise
-          </span>
+        <div className="flex flex-col gap-5 items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce" />
+            </span>
+            <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.15em] text-[#0F2D24]">
+             Core Expertise
+            </span>
+          </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold  uppercase tracking-wider mb-4 leading-tight">
-            OUR SERVICES
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold  uppercase" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
+            OUR <span className='text-[#166534]'>SERVICES</span>
           </h2>
 
-          <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed font-medium">
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             We specialize in a wide range of construction and real estate services, ensuring high-quality standards in every project we undertake.
           </p>
         </div>
@@ -95,11 +101,11 @@ export default function ServicesSection() {
 
                   {/* Content Area */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="text-xl sm:text-2xl font-black text-[#0F2D24] uppercase tracking-wider group-hover:text-[#166534] transition-colors mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold  uppercase tracking-wider group-hover:text-[#166534] transition-colors mb-2">
                       {division.title}
                     </h3>
 
-                    <p className="text-xs font-bold text-[#F37924] mb-3 leading-snug">
+                    <p className="text-xs font-bold text-[#F37924] mb-3" style={{letterSpacing:"1px"}}>
                       {division.subtitle}
                     </p>
 

@@ -23,7 +23,7 @@ function page(){
     
     <section className="min-h-screen bg-white text-slate-900 selection:bg-[#F37924] selection:text-white font-sans overflow-x-hidden">
     
-    <section className="relative pt-32 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
+    <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
         {/* Decorative Ambient Soft Meshes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 left-0 -ml-20 w-[450px] h-[450px] rounded-full bg-[#F37924]/5 blur-[100px] pointer-events-none" />
@@ -79,38 +79,39 @@ function page(){
               </p>
 
               {/* Quick Key Highlights Grid */}
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center mb-2">
-                    <ShieldCheck className="w-5 h-5" />
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2">
+                <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center mb-1.5 sm:mb-2">
+                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <p className="text-xs text-slate-500 font-medium">Warranty</p>
-                  <p className="text-sm font-bold text-[#166534]">10-Yr Structural</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Warranty</p>
+                  <p className="text-xs sm:text-sm font-bold text-[#166534]">10-Yr Structural</p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-amber-300 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-[#B45309] flex items-center justify-center mb-2">
-                    <Award className="w-5 h-5" />
+                <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-amber-300 transition-all">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-50 text-[#B45309] flex items-center justify-center mb-1.5 sm:mb-2">
+                    <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <p className="text-xs text-slate-500 font-medium">Experience</p>
-                  <p className="text-sm font-bold text-slate-900">15+ Years</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Experience</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">15+ Years</p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center mb-2">
-                    <FileCheck className="w-5 h-5" />
+                <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center mb-1.5 sm:mb-2">
+                    <FileCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <p className="text-xs text-slate-500 font-medium">Approvals</p>
-                  <p className="text-sm font-bold text-slate-900">CMDA & DTCP</p>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Approvals</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">CMDA & DTCP</p>
                 </div>
               </div>
 
-              {/* CTA Action Buttons */}
+          
+               {/* CTA Action Buttons */}
               <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
                 <Link
                   href="#projects"
                   className="get-in-touch-btn group">
-                  <span>Book a Free Consultation</span>
+                  <span>Book a Free Counsultation</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 

@@ -116,13 +116,13 @@ export default function TrustExpertsSection() {
 </div>
 
             {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F2D24] leading-[1.18]  mb-4" style={{letterSpacing:"2px"}}>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold  leading-[1.18]  mb-4" style={{letterSpacing:"2px"}}>
               Trust Us – <span className="text-[#166534] relative inline-block">We’re Experts</span>
             </h2>
 
             {/* Subtitle Paragraph */}
             <p className="text-gray-600 text-[16px] leading-relaxed mb-8">
-              At <strong className="text-[#0F2D24] font-bold">Prajha Group</strong>, we don’t just build structures – we create landmarks. Our expertise spans across:
+              At <strong className="text-[#166534] font-bold">Prajha Group</strong>, we don’t just build structures – we create landmarks. Our expertise spans across:
             </p>
 
             {/* 3 Core Expertise Cards */}
