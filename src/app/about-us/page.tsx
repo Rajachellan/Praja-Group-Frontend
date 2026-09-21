@@ -210,9 +210,6 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* 6. Site Footer */}
-      <Footer />
-
     </div>
   );
 }

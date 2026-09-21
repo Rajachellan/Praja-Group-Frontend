@@ -588,9 +588,6 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* 6. Site Footer */}
-      <Footer />
-
     </div>
   );
 }

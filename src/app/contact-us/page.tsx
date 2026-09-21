@@ -22,6 +22,45 @@ import {
   Check,
   MessageSquare
 } from 'lucide-react';
+import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
+
+const contactFaqs: FaqItem[] = [
+  {
+    id: 'faq-1',
+    category: 'Response Time',
+    question: 'How quickly will Prajha Group respond to my inquiry?',
+    answer:
+      'Our customer assistance team reviews all submissions continuously. You will receive a direct phone call or detailed email within 2 to 4 business hours.',
+  },
+  {
+    id: 'faq-2',
+    category: 'Site Visits',
+    question: 'Can I schedule an in-person site visit for construction or plots?',
+    answer:
+      'Yes! We arrange complimentary site visits across Chennai with dedicated civil engineers to inspect plot boundaries, structural work, or project layouts.',
+  },
+  {
+    id: 'faq-3',
+    category: 'BOQ Estimates',
+    question: 'Do you provide itemized BOQ quotes before project kickoff?',
+    answer:
+      'Absolutely. We prepare a transparent, locked Bill of Quantities (BOQ) detailing structural materials, civil costs, and delivery timelines upfront.',
+  },
+  {
+    id: 'faq-4',
+    category: 'NRI Services',
+    question: 'How do you assist Non-Resident Indians (NRIs)?',
+    answer:
+      'We handle 100% remote consultations for NRIs, including virtual video site inspections, legal document scrutiny, and dedicated caretaking services.',
+  },
+  {
+    id: 'faq-5',
+    category: 'Approvals',
+    question: 'Does Prajha Group assist with CMDA and DTCP plan sanction processing?',
+    answer:
+      'Yes, we manage complete government documentation, architect floor plan submissions, and bank loan approvals (SBI, HDFC, ICICI).',
+  },
+];
 
 export default function ContactUsPage() {
   const [selectedService, setSelectedService] = useState<string>('Constructions');
@@ -104,30 +143,6 @@ export default function ContactUsPage() {
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
               Have a query regarding real estate development, civil construction, property management, or joint venture land opportunities in Chennai? Our senior civil engineers and project advisors are ready to help.
             </p>
-
-            {/* Quick Contact Badges Row */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <a
-                href="tel:+919499933461"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 text-slate-800 text-xs font-bold transition-all hover:scale-105"
-              >
-                <Phone className="w-4 h-4 text-[#F37924]" />
-                <span>+91 94999 33461</span>
-              </a>
-
-              <a
-                href="mailto:prajhaconnect@gmail.com"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 text-slate-800 text-xs font-bold transition-all hover:scale-105"
-              >
-                <Mail className="w-4 h-4 text-[#166534]" />
-                <span>prajhaconnect@gmail.com</span>
-              </a>
-
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-50 text-[#166534] border border-emerald-200 text-xs font-bold">
-                <Clock className="w-4 h-4 text-[#166534]" />
-                <span>Mon - Sat: 10:00 AM - 6:00 PM</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -496,62 +511,12 @@ export default function ContactUsPage() {
         </div>
       </section>
 
-      {/* 4. Quick FAQ Help Grid */}
-      <section className="py-20 bg-white border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#F37924]">
-              QUICK ASSISTANCE
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              Frequently Asked Contact Questions
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <h3 className="text-base font-bold text-[#0F2D24] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#166534]" />
-                How quickly will Prajha Group respond to my inquiry?
-              </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed pl-6">
-                Our customer assistance team reviews all submissions continuously. You will receive a direct phone call or detailed email within 2 to 4 business hours.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <h3 className="text-base font-bold text-[#0F2D24] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#166534]" />
-                Can I schedule an in-person site visit for construction or plots?
-              </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed pl-6">
-                Yes! We arrange complimentary site visits across Chennai with dedicated civil engineers to inspect plot boundaries, structural work, or project layouts.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <h3 className="text-base font-bold text-[#0F2D24] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#166534]" />
-                Do you provide itemized BOQ quotes before project kickoff?
-              </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed pl-6">
-                Absolutely. We prepare a transparent, locked Bill of Quantities (BOQ) detailing structural materials, civil costs, and delivery timelines upfront.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-              <h3 className="text-base font-bold text-[#0F2D24] flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#166534]" />
-                How do you assist Non-Resident Indians (NRIs)?
-              </h3>
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed pl-6">
-                We handle 100% remote consultations for NRIs, including virtual video site inspections, legal document scrutiny, and dedicated caretaking services.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* 4. Interactive Advanced FAQ Section */}
+      <AdvancedFaqSection
+        title="Frequently Asked Contact Questions"
+        subtitle="Everything you need to know about reaching Prajha Group, site visits, BOQ estimates, and project consultations."
+        faqs={contactFaqs}
+      />
     </div>
   );
 }
