@@ -59,8 +59,8 @@ export default function ServicesSection() {
             </span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold  uppercase" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
-            OUR <span className='text-[#166534]'>SERVICES</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
+            Our <span className='text-[#166534]'>Services</span>
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">

@@ -44,7 +44,7 @@ export default function VisionMissionSection() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight sm:leading-snug" style={{ letterSpacing: '1px' }}>
             Dedicated to Quality, <span className="text-[#166534]">Commitment to Satisfaction</span>
           </h2>
 

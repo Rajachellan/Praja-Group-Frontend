@@ -57,7 +57,7 @@ export default function Navbar() {
   return (
     <header className="w-full sticky top-0 z-50 shadow-xs">
       {/* Top Header Bar */}
-      <div className="w-full bg-gradient-to-r from-[#E6600B] via-[#F37924] to-[#FA8C38] text-white text-[12px] font-medium py-2 select-none border-b border-white/10 shadow-xs">
+      <div className="w-full  text-white text-[12px] font-medium py-2 select-none border-b border-white/10 shadow-xs bg-[#166534]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4">
           
           {/* Left Side: Welcome Badge, Location & Slogan */}
@@ -74,18 +74,18 @@ export default function Navbar() {
             
             <div className="hidden sm:flex items-center gap-1.5 text-white/95 font-medium">
               <MapPin className="w-3.5 h-3.5 text-white/90 shrink-0" />
-              <span className="tracking-wide">Chennai, TN</span>
+              <span className="tracking-wide font-playfair">Chennai, TN</span>
             </div>
 
             <span className="hidden md:inline text-white/40 font-light">•</span>
 
-            <span className="hidden md:inline text-white/90 tracking-wide font-normal">
+            <span className="hidden md:inline text-white/90 tracking-wide font-playfair">
               Building Trust & Excellence
             </span>
           </div>
 
           {/* Right Side: Working Hours & Direct Contact Links */}
-          <div className="flex items-center flex-wrap justify-center gap-3 sm:gap-6 font-bold">
+          <div className="flex items-center flex-wrap justify-center gap-3 sm:gap-6 font-bold ">
             <div className="flex items-center gap-1.5 text-white/95">
               <Clock className="w-3.5 h-3.5 text-white/90 shrink-0" />
               <span className="tracking-wider">10:00 AM - 06:00 PM</span>

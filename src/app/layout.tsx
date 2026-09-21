@@ -8,7 +8,7 @@ import EnquiryModal from "./components/EnquiryModal";
 const headingFont = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-heading',
-  weight: ['700', '800'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   display: 'swap',
 });
 

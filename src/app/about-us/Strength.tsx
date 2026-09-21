@@ -25,7 +25,7 @@ function Strength(){
              unmatched capabilities
             </span>
           </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight sm:leading-snug" style={{ letterSpacing: '1px' }}>
               PRAJHA's Core <span className="text-[#166534]">Strengths</span>
             </h2>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">

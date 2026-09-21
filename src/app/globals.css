@@ -5,22 +5,29 @@
 @import "swiper/css/navigation";
 @import "swiper/css/autoplay";
 
+@theme {
+  --font-heading: var(--font-heading), 'Playfair Display', Georgia, serif;
+  --font-playfair: var(--font-heading), 'Playfair Display', Georgia, serif;
+  --font-serif: var(--font-heading), 'Playfair Display', Georgia, serif;
+  --font-body: var(--font-body), 'Inter', sans-serif;
+  --font-hand: var(--font-hand), 'Caveat', cursive;
+}
+
 @layer base {
   :root {
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-    --font-hand: 'Caveat', cursive;
-    --primary-color:#166534;
-    --secondary-color:#f37924;
+    --primary-color: #166534;
+    --secondary-color: #f37924;
   }
 
-  h1, h2 {
-    font-family: var(--font-heading), 'Playfair Display', serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), 'Playfair Display', Georgia, serif;
   }
 }
 
-.font-heading {
-  font-family: var(--font-heading), 'Playfair Display', serif;
+.font-heading,
+.font-playfair,
+.font-serif {
+  font-family: var(--font-heading), 'Playfair Display', Georgia, serif !important;
 }
 
 .font-body,

@@ -14,7 +14,9 @@ import {
 import Footer from '../components/Footer';
 import Strength from './Strength';
 import StatsSection from './StatsSection';
-import VisionMissionSection from './MissionandVission'
+import VisionMissionSection from './MissionandVission';
+import Values from '../components/Values';
+import Clients from '../components/Clients';
 
 export default function AboutUsPage() {
   return (
@@ -51,26 +53,26 @@ export default function AboutUsPage() {
             <div className="lg:col-span-7 space-y-6 text-left">
               
               {/* Badge Tagline */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
-                <span className="relative flex h-2.5 w-2.5">
+              <div className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm max-w-full">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
                 </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0F2D24]">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#0F2D24] truncate sm:whitespace-normal">
                   ENGINEERING & CONSTRUCTION EXCELLENCE SINCE 2010
                 </span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-[1.12]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-tight sm:leading-[1.12]">
                 Prajha Group of <br className="hidden sm:inline" />
                 <span className="text-[#166534]">Company</span>
               </h1>
 
               {/* Sub-headline Pill */}
-              <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
-                <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
-                <h2 className="text-[15px] sm:text-[16px] font-bold text-slate-800 italic">
+              <div className="flex items-start sm:items-center gap-3 px-3.5 sm:px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm max-w-full">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#F37924] shrink-0 mt-0.5 sm:mt-0" />
+                <h2 className="text-xs sm:text-[15px] md:text-[16px] font-bold text-slate-800 italic leading-snug">
                   EPC Contracting • Infrastructure & Building • Skill Academies & Social Trust
                 </h2>
               </div>
@@ -81,17 +83,24 @@ export default function AboutUsPage() {
               </p>
 
               {/* Founder Spotlight Card */}
-              <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-white via-[#F0FDF4]/50 to-white border border-emerald-200/80 shadow-md relative overflow-hidden">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#166534] text-white flex items-center justify-center shrink-0 font-bold text-lg shadow-md">
-                    <Briefcase className="w-6 h-6 text-[#F37924]" />
+              <div className="p-4 sm:p-6 rounded-3xl bg-gradient-to-r from-white via-[#F0FDF4]/50 to-white border border-emerald-200/80 shadow-md relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                  {/* Top Bar for Mobile: Icon & Degree Badge */}
+                  <div className="flex items-center justify-between w-full sm:w-auto gap-3">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#166534] text-white flex items-center justify-center shrink-0 font-bold text-lg shadow-md">
+                      <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-[#F37924]" />
+                    </div>
+                    <span className="sm:hidden px-2.5 py-1 rounded-full bg-emerald-100 text-[#166534] text-[10px] font-bold uppercase tracking-wider border border-emerald-200 shrink-0">
+                      B.E., M.B.A.
+                    </span>
                   </div>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-base sm:text-lg font-bold text-slate-900">
+
+                  <div className="space-y-2 flex-1 w-full">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
                         Founded in 2010 by Mr. P.R. Babu Prabakaran
                       </h3>
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-[#166534] text-[10px] font-bold uppercase">
+                      <span className="hidden sm:inline-block px-2.5 py-1 rounded-full bg-emerald-100 text-[#166534] text-[10px] font-bold uppercase tracking-wider border border-emerald-200 shrink-0">
                         B.E., M.B.A.
                       </span>
                     </div>
@@ -103,10 +112,10 @@ export default function AboutUsPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-2 w-full">
                 <Link
                   href="/contact-us"
-                  className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider w-full sm:w-auto"
                 >
                   <span>Connect With Our Leadership</span>
                   <ArrowRight className="w-4 h-4 text-[#F37924]" />
@@ -114,7 +123,7 @@ export default function AboutUsPage() {
 
                 <a
                   href="tel:+919499933461"
-                  className="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm w-full sm:w-auto"
                 >
                   <PhoneCall className="w-4 h-4 text-[#166534]" />
                   <span>+91 94999 33461</span>
@@ -137,17 +146,17 @@ export default function AboutUsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D24] via-[#0F2D24]/30 to-transparent opacity-90" />
                 
                 {/* Floating Overlay Badge */}
-                <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 shadow-xl space-y-2">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 shadow-xl space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[#166534]">
+                    <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#166534]">
                       PRAJHA PROPERTIES & PROJECTS
                     </span>
                     <span className="w-2.5 h-2.5 rounded-full bg-[#F37924] animate-ping" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-900">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900">
                     Integrated EPC & Infrastructure Contracting
                   </h3>
-                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-slate-600 font-medium leading-relaxed">
                     Delivering high-precision building construction, civil maintenance, skill academies, and social empowerment across Tamil Nadu.
                   </p>
                 </div>
@@ -161,11 +170,17 @@ export default function AboutUsPage() {
       {/* 2. Proud of Our Numbers (Stats Counter Bar) */}
       <StatsSection/>
 
-      {/* 3. PRAJHA's 4 Core Strengths */}
+      {/* 3. Core Values Section */}
+      <Values />
+
+      {/* 4. PRAJHA's 4 Core Strengths */}
       <Strength/>
 
-      {/* 4. Vision & Mission Cards Section */}
+      {/* 5. Vision & Mission Cards Section */}
       <VisionMissionSection/>
+
+      {/* 6. Clients Marquee Showcase */}
+      <Clients />
 
       {/* 5. Enquiry Now & Luxury Residential Life CTA Card */}
       <section id="contact-us" className="py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden border-t border-slate-200">
