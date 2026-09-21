@@ -94,15 +94,15 @@ export default function EnquiryModal() {
 
             <div className="relative z-10 space-y-6">
               {/* Brand Logo */}
-              <div className="inline-block">
+              {/* <div className="inline-flex items-center px-3.5 py-2 rounded-2xl bg-white shadow-md border border-white/20">
                 <Image
                   src="/praja-logo.webp"
                   alt="Prajha Group Logo"
                   width={160}
                   height={50}
-                  className="h-12 w-auto object-contain brightness-0 invert"
+                  className="h-10 sm:h-12 w-auto object-contain"
                 />
-              </div>
+              </div> */}
 
               {/* Tagline Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-wider text-amber-300 backdrop-blur-xs">

@@ -40,13 +40,15 @@ export default function Footer() {
           <div className="lg:col-span-4 flex flex-col justify-between gap-6">
             <div>
               <Link href="/" className="inline-block mb-4 group">
-                <Image
-                  src="/praja-logo.webp"
-                  alt="Prajha Group Logo"
-                  width={200}
-                  height={65}
-                  className="h-16 w-auto object-contain brightness-0 invert transform group-hover:scale-105 transition-transform duration-300"
-                />
+                <div className="inline-flex items-center px-4 py-2.5 rounded-2xl bg-white shadow-lg border border-white/20 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                  <Image
+                    src="/praja-logo.webp"
+                    alt="Prajha Group Logo"
+                    width={180}
+                    height={60}
+                    className="h-12 sm:h-14 w-auto object-contain"
+                  />
+                </div>
               </Link>
               <p className="text-white/75 text-xs sm:text-sm leading-relaxed max-w-sm font-normal">
                 Prajha Group is Chennai’s trusted leader in residential, commercial construction, joint ventures, and property management with 15+ years of architectural excellence.
