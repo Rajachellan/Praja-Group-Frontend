@@ -62,6 +62,14 @@ const contactFaqs: FaqItem[] = [
   },
 ];
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function ContactUsPage() {
   const [selectedService, setSelectedService] = useState<string>('Constructions');
   const [formData, setFormData] = useState({
@@ -73,6 +81,44 @@ export default function ContactUsPage() {
   });
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.fromTo(
+        '.contact-badge',
+        { opacity: 0, y: -15 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      )
+        .fromTo(
+          '.contact-title',
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          '-=0.3'
+        )
+        .fromTo(
+          '.contact-card',
+          { opacity: 0, y: 35, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.75,
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: '.contact-grid',
+              start: 'top 82%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+    },
+    { scope: containerRef }
+  );
 
   const servicesList = [
     'Constructions',
@@ -93,7 +139,7 @@ export default function ContactUsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Header Section */}
       <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 border-b border-slate-200/80 overflow-hidden">
@@ -121,7 +167,7 @@ export default function ContactUsPage() {
 
           <div className="text-center max-w-3xl mx-auto space-y-5">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
+            <div className="contact-badge inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />

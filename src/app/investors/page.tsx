@@ -79,12 +79,64 @@ const INVESTMENT_MODELS: InvestmentModel[] = [
   },
 ];
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function InvestorsPage() {
   const [activeModel, setActiveModel] = useState<string>(INVESTMENT_MODELS[0].id);
   const selectedModelData = INVESTMENT_MODELS.find((m) => m.id === activeModel) || INVESTMENT_MODELS[0];
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.fromTo(
+        '.inv-badge',
+        { opacity: 0, y: -15 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      )
+        .fromTo(
+          '.inv-title',
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          '-=0.3'
+        )
+        .fromTo(
+          '.inv-sub',
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6 },
+          '-=0.4'
+        )
+        .fromTo(
+          '.inv-card',
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.75,
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: '.inv-grid',
+              start: 'top 82%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
+    <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Section & Breadcrumb */}
       <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
@@ -117,7 +169,7 @@ export default function InvestorsPage() {
             <div className="lg:col-span-7 space-y-8 text-left">
               
               {/* Badge Tagline */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
+              <div className="inv-badge inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
@@ -128,13 +180,13 @@ export default function InvestorsPage() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-black leading-[1.25]">
+              <h1 className="inv-title text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-black leading-[1.25]">
                 Invest with Us: <br className="hidden sm:inline" />
                 <span className="text-[#166534]">Unlock Lucrative Opportunities</span> in Property Development
               </h1>
 
               {/* Sub-headline Pill */}
-              <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
+              <div className="inv-sub inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
                 <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
                 <h2 className="text-[14px] sm:text-[15px] font-bold text-slate-800 italic">
                   Angel Investors • Project Funding • Joint Ventures • High ROI

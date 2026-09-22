@@ -1,7 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { LucideIcon, Award, Building2, Clock, Users } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface StatItem {
   icon?: LucideIcon;
@@ -21,39 +28,31 @@ const DEFAULT_STATS: StatItem[] = [
   { icon: Users, num: 500, suffix: '+', label: 'Happy Customers' },
 ];
 
-function easeOutExpo(t: number) {
-  return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-}
-
-function AnimatedCounter({ target, suffix, isVisible }: { target: number; suffix: string; isVisible: boolean }) {
+function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
-  const rafRef = useRef<number | undefined>(undefined);
+  const numRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
-    if (!isVisible) return;
+  useGSAP(() => {
+    if (!numRef.current) return;
 
-    const duration = 1700;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = easeOutExpo(progress);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-      } else {
-        setCount(target);
-      }
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [isVisible, target]);
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: numRef.current,
+        start: 'top 90%',
+        toggleActions: 'play none none none',
+      },
+      onUpdate: () => {
+        setCount(Math.floor(obj.val));
+      },
+    });
+  }, { scope: numRef, dependencies: [target] });
 
   return (
-    <span>
+    <span ref={numRef}>
       {count}
       {suffix}
     </span>
@@ -63,20 +62,31 @@ function AnimatedCounter({ target, suffix, isVisible }: { target: number; suffix
 export default function StatsSection({
   stats = DEFAULT_STATS,
 }: StatsSectionProps) {
-  const [inView, setInView] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.25 }
-    );
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
 
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+      gsap.fromTo(
+        '.stat-card',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
 
   const statsList = stats && stats.length > 0 ? stats : DEFAULT_STATS;
 
@@ -85,8 +95,6 @@ export default function StatsSection({
       ref={containerRef}
       className="relative w-full my-8 sm:my-10 rounded-[28px] sm:rounded-[36px] overflow-hidden bg-gradient-to-br from-[#0F2D24] to-[#166534] shadow-[0_30px_60px_-24px_rgba(5,26,17,0.45)]"
     >
-      {/* Faint ambient ring — same motif as the hero, static here so the page's
-          one orchestrated spin stays unique to the hero */}
       <svg
         className="hidden sm:block absolute -right-16 -top-24 w-72 h-72 text-white/5 pointer-events-none"
         viewBox="0 0 100 100"
@@ -102,19 +110,19 @@ export default function StatsSection({
           return (
             <div
               key={idx}
-              className={`flex items-start gap-3 ${
+              className={`stat-card flex items-start gap-3 ${
                 idx % 2 !== 0 ? 'justify-self-end sm:justify-self-auto' : ''
               } ${idx !== 0 ? 'sm:pl-5 lg:pl-6 sm:border-l sm:border-white/15' : ''}`}
             >
               <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-white/85 shrink-0 mt-0.5" strokeWidth={1.5} />
               <div className="flex flex-col">
                 <span className="text-2xl sm:text-3xl lg:text-[1.45rem] font-bold text-white leading-none tracking-tight">
-                  <AnimatedCounter target={stat.num} suffix={stat.suffix} isVisible={inView} />
+                  <AnimatedCounter target={stat.num} suffix={stat.suffix} />
                 </span>
                 <span className="text-[12px] sm:text-[13px] font-medium text-white/60 mt-2 leading-snug">
                   {stat.label}
                 </span>
-                </div>
+              </div>
             </div>
           );
         })}

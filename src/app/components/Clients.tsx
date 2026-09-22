@@ -4,7 +4,56 @@ import React from 'react';
 import Image from 'next/image';
 import { Building2, Sparkles, Award } from 'lucide-react';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Clients() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      gsap.fromTo(
+        '.clients-header',
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.clients-marquee',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: '.clients-marquee',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   const clientLogos = [
     { name: 'CSIR-SERC', src: '/clients/CSIR-SERClogo-2048x738.webp' },
     { name: 'CGHS', src: '/clients/cghs_logo-1.webp' },
@@ -25,7 +74,7 @@ export default function Clients() {
   const marqueeRow2 = [...clientLogos].reverse().concat([...clientLogos].reverse());
 
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 overflow-hidden border-b border-slate-200/80">
+    <section ref={containerRef} className="relative py-20 sm:py-28 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 overflow-hidden border-b border-slate-200/80">
       {/* Ambient background glows */}
       <div className="absolute top-1/2 left-0 -ml-24 w-96 h-96 bg-[#166534]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 -mr-24 w-96 h-96 bg-[#F37924]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -33,7 +82,7 @@ export default function Clients() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
+        <div className="clients-header text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-xs">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
@@ -47,7 +96,7 @@ export default function Clients() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight font-heading">
             Our Clients - <span className="text-[#166534]">Trusted by Over 100+ Global Brands</span>
           </h2>
- 
+
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium max-w-2xl mx-auto">
             Delivering high-precision civil engineering, infrastructure development, and EPC contracting for government institutions, tech leaders, and corporate enterprises.
           </p>
@@ -56,7 +105,7 @@ export default function Clients() {
       </div>
 
       {/* Infinite Marquee Container */}
-      <div className="relative w-full overflow-hidden space-y-6">
+      <div className="clients-marquee relative w-full overflow-hidden space-y-6">
         
         {/* Left Edge Dissolve Gradient Mask */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#F4F8F6] via-[#F4F8F6]/80 to-transparent z-20 pointer-events-none" />

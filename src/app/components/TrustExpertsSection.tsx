@@ -14,7 +14,56 @@ import {
   Award,
 } from 'lucide-react';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function TrustExpertsSection() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      tl.fromTo(
+        '.experts-visual',
+        { opacity: 0, x: -60, scale: 0.95 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power3.out' }
+      )
+        .fromTo(
+          '.experts-header',
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+          '-=0.5'
+        )
+        .fromTo(
+          '.expertise-card',
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' },
+          '-=0.3'
+        )
+        .fromTo(
+          '.experts-cta',
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.4)' },
+          '-=0.2'
+        );
+    },
+    { scope: containerRef }
+  );
+
   const expertiseItems = [
     {
       title: 'Residential Developments',
@@ -40,7 +89,7 @@ export default function TrustExpertsSection() {
   ];
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-16 sm:py-20 lg:py-24 overflow-hidden">
       {/* Ambient background blur elements */}
       <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-[#F37924]/5 rounded-full blur-3xl pointer-events-none" />
@@ -49,7 +98,7 @@ export default function TrustExpertsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* ================= LEFT COLUMN: Visual Graphic ================= */}
-          <div className="lg:col-span-6 relative flex justify-center order-2 lg:order-1">
+          <div className="experts-visual lg:col-span-6 relative flex justify-center order-2 lg:order-1">
             <div className="relative w-full max-w-[580px] group">
               {/* Outer Decorative Glow Ring */}
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#166534]/15 via-emerald-200/20 to-[#F37924]/10 blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -101,29 +150,31 @@ export default function TrustExpertsSection() {
           {/* ================= RIGHT COLUMN: Content & Expertise List ================= */}
           <div className="lg:col-span-6 flex flex-col justify-center order-1 lg:order-2">
             
-            {/* Tagline Pill */}
-      <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm" style={{alignSelf:"flex-start"}}>
-  {/* Animated Dot */}
-  <span className="relative flex h-2.5 w-2.5">
-    <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-60 animate-ping"></span>
-    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce"></span>
-  </span>
+            <div className="experts-header">
+              {/* Tagline Pill */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm" style={{alignSelf:"flex-start"}}>
+                {/* Animated Dot */}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-60 animate-ping"></span>
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce"></span>
+                </span>
 
-  {/* Badge Text */}
-  <span className="text-[11px] sm:text-[12px] font-extrabold uppercase tracking-[0.15em] text-[#0F2D24]">
-    Trusted Industry Leadership
-  </span>
-</div>
+                {/* Badge Text */}
+                <span className="text-[11px] sm:text-[12px] font-extrabold uppercase tracking-[0.15em] text-[#0F2D24]">
+                  Trusted Industry Leadership
+                </span>
+              </div>
 
-            {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold  leading-[1.18]  mb-4" style={{letterSpacing:"2px"}}>
-              Trust Us – <span className="text-[#166534] relative inline-block">We’re Experts</span>
-            </h2>
+              {/* Main Heading */}
+              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-[1.18] mb-4" style={{letterSpacing:"2px"}}>
+                Trust Us – <span className="text-[#166534] relative inline-block">We’re Experts</span>
+              </h2>
 
-            {/* Subtitle Paragraph */}
-            <p className="text-gray-600 text-[16px] leading-relaxed mb-8">
-              At <strong className="text-[#166534] font-bold">Prajha Group</strong>, we don’t just build structures – we create landmarks. Our expertise spans across:
-            </p>
+              {/* Subtitle Paragraph */}
+              <p className="text-gray-600 text-[16px] leading-relaxed mb-8">
+                At <strong className="text-[#166534] font-bold">Prajha Group</strong>, we don’t just build structures – we create landmarks. Our expertise spans across:
+              </p>
+            </div>
 
             {/* 3 Core Expertise Cards */}
             <div className="flex flex-col gap-4 mb-9">
@@ -132,7 +183,7 @@ export default function TrustExpertsSection() {
                 return (
                   <div
                     key={idx}
-                    className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm hover:shadow-md hover:border-[#166534]/30 transition-all duration-300 flex items-start gap-4 sm:gap-5"
+                    className="expertise-card group relative bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm hover:shadow-md hover:border-[#166534]/30 transition-all duration-300 flex items-start gap-4 sm:gap-5"
                   >
                     {/* Icon Badge */}
                     <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 mt-0.5">
@@ -167,9 +218,9 @@ export default function TrustExpertsSection() {
             </div>
 
             {/* CTA Button */}
-            <div>
+            <div className="experts-cta">
               <Link
-                href="#about"
+                href="/about-us"
                 className="inline-flex items-center justify-center gap-3 bg-[#166534] hover:bg-[#115e2e] text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/35 hover:scale-[1.02] active:scale-[0.98] transition-all group cursor-pointer"
               >
                 <span>Know More About Prajha Group</span>

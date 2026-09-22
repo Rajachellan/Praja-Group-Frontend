@@ -5,7 +5,58 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, HardHat, Building2, Settings } from 'lucide-react';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function ServicesSection() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      gsap.fromTo(
+        '.services-header',
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.service-card',
+        { opacity: 0, y: 45, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.18,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.services-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   const divisions = [
     {
       title: 'CONSTRUCTION',
@@ -40,7 +91,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="relative w-full bg-[#FBFBFB] py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section ref={containerRef} id="services" className="relative w-full bg-[#FBFBFB] py-16 sm:py-20 lg:py-24 overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#166534]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#F37924]/5 rounded-full blur-3xl pointer-events-none" />
@@ -48,7 +99,7 @@ export default function ServicesSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col gap-5 items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="services-header flex flex-col gap-5 items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
@@ -69,14 +120,14 @@ export default function ServicesSection() {
         </div>
 
         {/* 3 Core Divisions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
+        <div className="services-grid grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
           {divisions.map((division, idx) => {
             const Icon = division.icon;
             return (
               <Link
                 key={idx}
                 href={division.href}
-                className="group relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-500 flex flex-col justify-between transform hover:-translate-y-2 cursor-pointer"
+                className="service-card group relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-500 flex flex-col justify-between transform hover:-translate-y-2 cursor-pointer"
               >
                 <div>
                   {/* Image Frame with Hover Zoom */}
@@ -101,7 +152,7 @@ export default function ServicesSection() {
 
                   {/* Content Area */}
                   <div className="p-6 sm:p-8">
-                    <h3 className="text-xl sm:text-2xl font-bold  uppercase tracking-wider group-hover:text-[#166534] transition-colors mb-2">
+                    <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wider group-hover:text-[#166534] transition-colors mb-2">
                       {division.title}
                     </h3>
 

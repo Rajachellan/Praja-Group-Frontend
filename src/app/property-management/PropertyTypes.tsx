@@ -14,14 +14,22 @@ import {
   ChevronRight,
   PhoneCall,
   Clock,
-  Check,
-  Maximize2,
-  X,
   BadgeCheck,
   Sparkles,
   Sprout,
   Users,
+  Check,
+  Maximize2,
+  X,
 } from 'lucide-react';
+
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface PropertyTypeDetail {
   id: string;

@@ -32,6 +32,14 @@ import {
   Sparkle
 } from 'lucide-react';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 interface ServiceDetail {
   id: string;
   title: string;
@@ -229,11 +237,35 @@ const SERVICES_DATA: ServiceDetail[] = [
 function Services() {
   const [activeTab, setActiveTab] = useState<string>('residential');
   const [selectedServiceModal, setSelectedServiceModal] = useState<ServiceDetail | null>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const activeService = SERVICES_DATA.find((s) => s.id === activeTab) || SERVICES_DATA[0];
 
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      gsap.fromTo(
+        '.cn-services-header',
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section id="services" className="py-24 bg-gradient-to-b from-white via-slate-50/80 to-white relative overflow-hidden border-b border-slate-200">
+    <section ref={containerRef} id="services" className="py-24 bg-gradient-to-b from-white via-slate-50/80 to-white relative overflow-hidden border-b border-slate-200">
       {/* Background Decorative Blur Orbs */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 blur-[120px] pointer-events-none" />
       <div

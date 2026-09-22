@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   description: "With 15+ years of experience and 106+ completed projects, Prajha Group delivers exceptional residential, commercial, industrial and infrastructure developments.",
 };
 
+import GsapProvider from "./components/GsapProvider";
+
 export default function RootLayout({
   children,
 }: {
@@ -42,10 +44,12 @@ export default function RootLayout({
       className={`${headingFont.variable} ${bodyFont.variable} ${handFont.variable} font-body h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body bg-[#FBFBFB] text-[#1D2939]">
-        <Navbar/>
-        <EnquiryModal />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <GsapProvider>
+          <Navbar/>
+          <EnquiryModal />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </GsapProvider>
       </body>
     </html>
   );

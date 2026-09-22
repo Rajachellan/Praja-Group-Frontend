@@ -1,4 +1,10 @@
-import React from "react"
+'use client';
+
+import React from "react";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import {
   MapPinned,
   DraftingCompass,
@@ -6,15 +12,62 @@ import {
   ClipboardCheck,
   CheckCircle2,
 } from "lucide-react";
-function Solutions(){
-    return(
-        <>
-        
-         <section className="py-24 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+function Solutions() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      gsap.fromTo(
+        '.dev-solutions-header',
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.dev-solution-card',
+        { opacity: 0, y: 40, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          stagger: 0.16,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.dev-solutions-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <>
+      <section ref={containerRef} className="py-24 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:gap-12 gap-5">
 
           {/* Header Block */}
-          <div className="text-center max-w-3xl mx-auto flex flex-col lg:gap-7 gap-5">
+          <div className="dev-solutions-header text-center max-w-3xl mx-auto flex flex-col lg:gap-7 gap-5">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto" style={{alignSelf:"flex-start"}}>
               <span className="relative flex h-2.5 w-2.5">
@@ -38,10 +91,10 @@ function Solutions(){
 
           {/* 4 Core Covered Areas - Non-Image Interactive Bento Grid */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="dev-solutions-grid grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                    
 {/* Card 1 */}
-<div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
+<div className="dev-solution-card p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
   <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-[#166534]/10 transition-colors" />
 
   <div className="flex items-center justify-between mb-6">

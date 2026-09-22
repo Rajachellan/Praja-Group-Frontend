@@ -57,8 +57,15 @@ const STATS_DATA: StatItem[] = [
   },
 ];
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function StatsSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [counts, setCounts] = useState<{ [key: string]: number }>({
     exp: 0,
     completed: 0,
@@ -68,61 +75,53 @@ export default function StatsSection() {
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.25 }
-    );
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
-  // Count Up Animation Effect when scrolled into view
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const duration = 2000; // 2 seconds animation duration
-    const steps = 60;
-    const intervalTime = duration / steps;
-
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      // Easing function (easeOutQuad)
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-      setCounts({
-        exp: Math.min(15, Math.floor(easeProgress * 15)),
-        completed: Math.min(106, Math.floor(easeProgress * 106)),
-        ongoing: Math.min(4, Math.floor(easeProgress * 4)),
-        workforce: Math.min(97, Math.floor(easeProgress * 97)),
+      const obj = { exp: 0, completed: 0, ongoing: 0, workforce: 0 };
+      gsap.to(obj, {
+        exp: 15,
+        completed: 106,
+        ongoing: 4,
+        workforce: 97,
+        duration: 2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 82%',
+          toggleActions: 'play none none none',
+        },
+        onUpdate: () => {
+          setCounts({
+            exp: Math.floor(obj.exp),
+            completed: Math.floor(obj.completed),
+            ongoing: Math.floor(obj.ongoing),
+            workforce: Math.floor(obj.workforce),
+          });
+        },
       });
 
-      if (step >= steps) {
-        clearInterval(timer);
-        setCounts({
-          exp: 15,
-          completed: 106,
-          ongoing: 4,
-          workforce: 97,
-        });
-      }
-    }, intervalTime);
-
-    return () => clearInterval(timer);
-  }, [isVisible]);
+      gsap.fromTo(
+        '.about-stat-card',
+        { opacity: 0, y: 35, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.75,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
@@ -143,11 +142,7 @@ export default function StatsSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <div
-          className={`text-center max-w-3xl mx-auto mb-16 space-y-4 transition-all duration-700 transform ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
@@ -177,11 +172,8 @@ export default function StatsSection() {
             return (
               <div
                 key={stat.id}
-                style={{ transitionDelay: `${index * 150}ms` }}
-                className={`p-8 rounded-3xl bg-white border border-slate-200/90 ${stat.borderColor}
-                transition-all duration-700 ease-out transform group hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden flex flex-col justify-between ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
+                className={`about-stat-card p-8 rounded-3xl bg-white border border-slate-200/90 ${stat.borderColor}
+                transition-all duration-700 ease-out transform group hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden flex flex-col justify-between`}
               >
                 {/* Subtle Top Accent Gradient Line */}
                 <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${stat.accentGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />

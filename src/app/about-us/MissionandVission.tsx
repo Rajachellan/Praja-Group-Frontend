@@ -14,9 +14,60 @@ import {
   Building,
 } from 'lucide-react';
 
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function VisionMissionSection() {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      gsap.fromTo(
+        '.vm-header',
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.vm-card',
+        { opacity: 0, y: 40, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.vm-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="py-24 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-t border-slate-200">
+    <section ref={containerRef} className="py-24 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-t border-slate-200">
       
       {/* Background Decorative Accents */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
@@ -33,7 +84,7 @@ export default function VisionMissionSection() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="vm-header text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
@@ -54,10 +105,10 @@ export default function VisionMissionSection() {
         </div>
 
         {/* Vision & Mission Cards Grid with Relevant Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mb-12">
+        <div className="vm-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mb-12">
           
           {/* 1. Vision Card */}
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534]/40 transition-all duration-500 overflow-hidden flex flex-col group">
+          <div className="vm-card bg-white rounded-3xl border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534]/40 transition-all duration-500 overflow-hidden flex flex-col group">
             
             {/* Vision Image Frame */}
             <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
