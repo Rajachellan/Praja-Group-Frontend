@@ -32,33 +32,33 @@ export default function TrustExpertsSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 80%',
+          start: 'top 88%',
           toggleActions: 'play none none none',
         },
       });
 
       tl.fromTo(
         '.experts-visual',
-        { opacity: 0, x: -60, scale: 0.95 },
-        { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power3.out' }
+        { opacity: 0, x: -30, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.35, ease: 'power2.out' }
       )
         .fromTo(
           '.experts-header',
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
-          '-=0.5'
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
+          '-=0.2'
         )
         .fromTo(
           '.expertise-card',
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power2.out' },
-          '-=0.3'
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: 'power2.out' },
+          '-=0.15'
         )
         .fromTo(
           '.experts-cta',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(1.4)' },
-          '-=0.2'
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' },
+          '-=0.15'
         );
     },
     { scope: containerRef }

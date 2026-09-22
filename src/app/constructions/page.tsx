@@ -190,7 +190,7 @@ export default function ConstructionsPage() {
 
 
       {/* Hero Section - Attractive Bright White Aesthetic */}
-      <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
+      <section className="relative py-10 lg:py-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
         {/* Decorative Ambient Soft Meshes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 left-0 -ml-20 w-[450px] h-[450px] rounded-full bg-[#F37924]/5 blur-[100px] pointer-events-none" />
@@ -305,7 +305,7 @@ export default function ConstructionsPage() {
       </section>
 
       {/* Building Your Vision: Trusted Construction Services (Non-Image Bento & Showcase Grid) */}
-      <section className="py-24 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
+      <section className="py-10 lg:py-20 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:gap-12 gap-5">
 
           {/* Header Block */}

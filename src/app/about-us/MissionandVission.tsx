@@ -31,15 +31,15 @@ export default function VisionMissionSection() {
 
       gsap.fromTo(
         '.vm-header',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -47,17 +47,17 @@ export default function VisionMissionSection() {
 
       gsap.fromTo(
         '.vm-card',
-        { opacity: 0, y: 40, scale: 0.96 },
+        { opacity: 0, y: 20, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.08,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: '.vm-grid',
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -67,7 +67,7 @@ export default function VisionMissionSection() {
   );
 
   return (
-    <section ref={containerRef} className="py-24 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-t border-slate-200">
+    <section ref={containerRef} className="py-10 lg:py-20 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-t border-slate-200">
       
       {/* Background Decorative Accents */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />

@@ -38,11 +38,11 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
     const obj = { val: 0 };
     gsap.to(obj, {
       val: target,
-      duration: 2,
+      duration: 0.7,
       ease: 'power2.out',
       scrollTrigger: {
         trigger: numRef.current,
-        start: 'top 90%',
+        start: 'top 95%',
         toggleActions: 'play none none none',
       },
       onUpdate: () => {
@@ -70,16 +70,16 @@ export default function StatsSection({
 
       gsap.fromTo(
         '.stat-card',
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 15 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.05,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 85%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }

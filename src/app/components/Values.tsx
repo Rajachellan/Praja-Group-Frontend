@@ -20,15 +20,15 @@ export default function Values() {
 
       gsap.fromTo(
         '.values-header',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -36,17 +36,17 @@ export default function Values() {
 
       gsap.fromTo(
         '.value-card',
-        { opacity: 0, y: 40, scale: 0.95 },
+        { opacity: 0, y: 20, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.75,
-          stagger: 0.16,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.06,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: '.values-grid',
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }

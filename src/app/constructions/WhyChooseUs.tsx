@@ -142,7 +142,7 @@ export default function WhyChooseUs() {
   const selectedItem = PILLARS_DATA.find((p) => p.id === activePillar) || PILLARS_DATA[0];
 
   return (
-    <section id="why-choose-us" className="py-24 bg-gradient-to-b from-white via-[#F0FDF4]/40 to-slate-50 relative overflow-hidden border-b border-slate-200">
+    <section id="why-choose-us" className="py-10 lg:py-20 bg-gradient-to-b from-white via-[#F0FDF4]/40 to-slate-50 relative overflow-hidden border-b border-slate-200">
       
       {/* Decorative Soft Background Meshes */}
       <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />

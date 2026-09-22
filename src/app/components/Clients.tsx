@@ -21,15 +21,15 @@ export default function Clients() {
 
       gsap.fromTo(
         '.clients-header',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -37,15 +37,15 @@ export default function Clients() {
 
       gsap.fromTo(
         '.clients-marquee',
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.35,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.clients-marquee',
-            start: 'top 85%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }

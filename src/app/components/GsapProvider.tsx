@@ -15,25 +15,22 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Small delay to allow DOM render on route change
     const timer = setTimeout(() => {
-      // 1. Refresh ScrollTrigger to ensure position accuracy
       ScrollTrigger.refresh();
 
-      // 2. Animate elements with data-gsap attributes automatically
       const fadeUpEls = document.querySelectorAll('[data-gsap="fade-up"]');
       fadeUpEls.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, y: 45 },
+          { opacity: 0, y: 25 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.85,
-            ease: 'power3.out',
+            duration: 0.35,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 88%',
+              start: 'top 92%',
               toggleActions: 'play none none none',
             },
           }
@@ -47,11 +44,11 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
           { opacity: 0 },
           {
             opacity: 1,
-            duration: 0.8,
+            duration: 0.35,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 90%',
+              start: 'top 92%',
               toggleActions: 'play none none none',
             },
           }
@@ -62,15 +59,15 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
       scaleInEls.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, scale: 0.92 },
+          { opacity: 0, scale: 0.95 },
           {
             opacity: 1,
             scale: 1,
-            duration: 0.8,
-            ease: 'back.out(1.4)',
+            duration: 0.35,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 88%',
+              start: 'top 92%',
               toggleActions: 'play none none none',
             },
           }
@@ -81,15 +78,15 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
       slideLeftEls.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: -50 },
+          { opacity: 0, x: -30 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.85,
-            ease: 'power3.out',
+            duration: 0.35,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 88%',
+              start: 'top 92%',
               toggleActions: 'play none none none',
             },
           }
@@ -100,15 +97,15 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
       slideRightEls.forEach((el) => {
         gsap.fromTo(
           el,
-          { opacity: 0, x: 50 },
+          { opacity: 0, x: 30 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.85,
-            ease: 'power3.out',
+            duration: 0.35,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 88%',
+              start: 'top 92%',
               toggleActions: 'play none none none',
             },
           }
@@ -121,23 +118,23 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
         if (children.length > 0) {
           gsap.fromTo(
             children,
-            { opacity: 0, y: 35 },
+            { opacity: 0, y: 20 },
             {
               opacity: 1,
               y: 0,
-              duration: 0.7,
-              stagger: 0.12,
-              ease: 'power3.out',
+              duration: 0.35,
+              stagger: 0.05,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: container,
-                start: 'top 85%',
+                start: 'top 90%',
                 toggleActions: 'play none none none',
               },
             }
           );
         }
       });
-    }, 100);
+    }, 20);
 
     return () => {
       clearTimeout(timer);

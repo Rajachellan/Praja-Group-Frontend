@@ -183,7 +183,7 @@ export default function AboutUsPage() {
       <Clients />
 
       {/* 5. Enquiry Now & Luxury Residential Life CTA Card */}
-      <section id="contact-us" className="py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden border-t border-slate-200">
+      <section id="contact-us" className="py-10 lg:py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden border-t border-slate-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#F0FDF4] via-white to-[#F0FDF4] border border-emerald-200 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">

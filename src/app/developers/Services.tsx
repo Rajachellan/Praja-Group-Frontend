@@ -386,7 +386,7 @@ export default function Services() {
   const activeService = SERVICES_DATA.find((s) => s.id === activeTab) || SERVICES_DATA[0];
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-b from-white via-slate-50/80 to-white relative overflow-hidden border-b border-slate-200">
+    <section id="services" className="py-10 lg:py-20 bg-gradient-to-b from-white via-slate-50/80 to-white relative overflow-hidden border-b border-slate-200">
       {/* Background Decorative Blur Orbs */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-emerald-500/5 via-amber-500/5 to-emerald-500/5 blur-[120px] pointer-events-none" />
       <div

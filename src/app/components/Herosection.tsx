@@ -43,35 +43,35 @@ export default function Herosection() {
   useGSAP(
     () => {
       if (!containerRef.current) return;
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
       tl.fromTo(
         '.hero-badge',
-        { opacity: 0, y: -20, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6 }
+        { opacity: 0, y: -10, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.3 }
       )
         .fromTo(
           '.hero-title',
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          '-=0.3'
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.35 },
+          '-=0.15'
         )
         .fromTo(
           '.hero-sub',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          '-=0.4'
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3 },
+          '-=0.2'
         )
         .fromTo(
           '.hero-desc',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          '-=0.4'
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3 },
+          '-=0.2'
         )
         .fromTo(
           '.hero-cta',
-          { opacity: 0, y: 20, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15 },
-          '-=0.4'
+          { opacity: 0, y: 10, scale: 0.97 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.3, stagger: 0.05 },
+          '-=0.2'
         );
     },
     { scope: containerRef }
@@ -85,7 +85,7 @@ export default function Herosection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[#FBFBFB] pt-4 sm:pt-6 lg:pt-8 pb-12 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-[#FBFBFB] py-10 lg:py-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch min-h-[640px]">
           {/* LEFT SIDE */}
@@ -136,7 +136,7 @@ export default function Herosection() {
               </div>
 
               <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
-                <Link href="#projects" className="hero-cta get-in-touch-btn group">
+                <Link href="/contact-us" className="hero-cta get-in-touch-btn group">
                   <span>Get in Touch With Us</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>

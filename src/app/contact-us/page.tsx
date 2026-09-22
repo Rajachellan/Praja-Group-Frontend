@@ -87,31 +87,31 @@ export default function ContactUsPage() {
     () => {
       if (!containerRef.current) return;
 
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
       tl.fromTo(
         '.contact-badge',
-        { opacity: 0, y: -15 },
-        { opacity: 1, y: 0, duration: 0.6 }
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, duration: 0.3 }
       )
         .fromTo(
           '.contact-title',
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          '-=0.3'
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.35 },
+          '-=0.15'
         )
         .fromTo(
           '.contact-card',
-          { opacity: 0, y: 35, scale: 0.96 },
+          { opacity: 0, y: 20, scale: 0.97 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.75,
-            stagger: 0.15,
+            duration: 0.35,
+            stagger: 0.05,
             scrollTrigger: {
               trigger: '.contact-grid',
-              start: 'top 82%',
+              start: 'top 90%',
               toggleActions: 'play none none none',
             },
           }

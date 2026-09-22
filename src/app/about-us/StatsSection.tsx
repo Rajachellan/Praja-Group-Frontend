@@ -85,11 +85,11 @@ export default function StatsSection() {
         completed: 106,
         ongoing: 4,
         workforce: 97,
-        duration: 2,
+        duration: 0.7,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 82%',
+          start: 'top 90%',
           toggleActions: 'play none none none',
         },
         onUpdate: () => {
@@ -104,17 +104,17 @@ export default function StatsSection() {
 
       gsap.fromTo(
         '.about-stat-card',
-        { opacity: 0, y: 35, scale: 0.95 },
+        { opacity: 0, y: 20, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.75,
-          stagger: 0.15,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.05,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -126,7 +126,7 @@ export default function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 overflow-hidden border-y border-emerald-100"
+      className="py-10 lg:py-20 overflow-hidden border-y border-emerald-100"
     >
       {/* Background Soft Glow Meshes */}
       <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />

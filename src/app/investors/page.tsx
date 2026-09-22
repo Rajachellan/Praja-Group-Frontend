@@ -96,37 +96,37 @@ export default function InvestorsPage() {
     () => {
       if (!containerRef.current) return;
 
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
       tl.fromTo(
         '.inv-badge',
-        { opacity: 0, y: -15 },
-        { opacity: 1, y: 0, duration: 0.6 }
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, duration: 0.3 }
       )
         .fromTo(
           '.inv-title',
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          '-=0.3'
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.35 },
+          '-=0.15'
         )
         .fromTo(
           '.inv-sub',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          '-=0.4'
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.3 },
+          '-=0.15'
         )
         .fromTo(
           '.inv-card',
-          { opacity: 0, y: 40, scale: 0.95 },
+          { opacity: 0, y: 20, scale: 0.97 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.75,
-            stagger: 0.15,
+            duration: 0.35,
+            stagger: 0.05,
             scrollTrigger: {
               trigger: '.inv-grid',
-              start: 'top 82%',
+              start: 'top 90%',
               toggleActions: 'play none none none',
             },
           }
@@ -139,7 +139,7 @@ export default function InvestorsPage() {
     <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Section & Breadcrumb */}
-      <section className="relative pt-40 sm:pt-44 lg:pt-48 pb-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
+      <section className="relative py-10 lg:py-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
         {/* Ambient Glow Meshes */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 left-0 -ml-20 w-[450px] h-[450px] rounded-full bg-[#F37924]/5 blur-[100px] pointer-events-none" />
@@ -380,7 +380,7 @@ export default function InvestorsPage() {
       </section>
 
       {/* 3. Why Invest with Us? (4 Core Pillars) */}
-      <section className="py-10 lg:py-24 bg-gradient-to-b from-white via-[#F0FDF4]/40 to-slate-50 relative overflow-hidden border-b border-slate-200">
+      <section className="py-10 lg:py-20 bg-gradient-to-b from-white via-[#F0FDF4]/40 to-slate-50 relative overflow-hidden border-b border-slate-200">
         
         {/* Background Mesh Glows */}
         <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -491,7 +491,7 @@ export default function InvestorsPage() {
       </section>
 
       {/* 4. Investment Opportunities to Collaborate (3 Investment Models) */}
-      <section className=" py-10 lg:py-24 bg-white relative overflow-hidden border-b border-slate-200">
+      <section className=" py-10 lg:py-20 bg-white relative overflow-hidden border-b border-slate-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-16 space-y-4">
@@ -598,7 +598,7 @@ export default function InvestorsPage() {
       </section>
 
       {/* 5. Investor Contact & Consultation Banner */}
-      <section id="investor-enquiry" className="py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+      <section id="investor-enquiry" className="py-10 lg:py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#F0FDF4] via-white to-[#F0FDF4] border border-emerald-200 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">

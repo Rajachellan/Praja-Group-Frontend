@@ -26,15 +26,15 @@ function Solutions() {
 
       gsap.fromTo(
         '.dev-solutions-header',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -42,17 +42,17 @@ function Solutions() {
 
       gsap.fromTo(
         '.dev-solution-card',
-        { opacity: 0, y: 40, scale: 0.96 },
+        { opacity: 0, y: 20, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.75,
-          stagger: 0.16,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.05,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: '.dev-solutions-grid',
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -63,7 +63,7 @@ function Solutions() {
 
   return (
     <>
-      <section ref={containerRef} className="py-24 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
+      <section ref={containerRef} className="py-10 lg:py-20 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:gap-12 gap-5">
 
           {/* Header Block */}

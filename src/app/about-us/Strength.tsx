@@ -26,15 +26,15 @@ function Strength() {
 
       gsap.fromTo(
         '.strength-header',
-        { opacity: 0, y: 35 },
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
+          duration: 0.35,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: containerRef.current,
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -42,17 +42,17 @@ function Strength() {
 
       gsap.fromTo(
         '.strength-card',
-        { opacity: 0, y: 40, scale: 0.95 },
+        { opacity: 0, y: 20, scale: 0.97 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.75,
-          stagger: 0.15,
-          ease: 'power3.out',
+          duration: 0.35,
+          stagger: 0.05,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: '.strength-grid',
-            start: 'top 82%',
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         }
@@ -63,7 +63,7 @@ function Strength() {
 
   return (
     <>
-      <section ref={containerRef} className="py-24 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-b border-slate-200">
+      <section ref={containerRef} className="py-10 lg:py-20 bg-gradient-to-b from-white via-[#F0FDF4]/30 to-slate-50 relative overflow-hidden border-b border-slate-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="strength-header text-center max-w-3xl mx-auto mb-16 space-y-4">
