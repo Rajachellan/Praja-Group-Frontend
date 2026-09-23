@@ -164,47 +164,91 @@ export default function AssociateDirectorsPage() {
             <span className="text-[#F37924] font-bold">Associate</span>
           </nav>
 
-          <div className="max-w-3xl space-y-6 text-left">
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
-              </span>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#0F2D24]">
-                ASSOCIATE DIRECTOR PROGRAM • TAMIL NADU
-              </span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              {/* Tagline Badge */}
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
+                </span>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#0F2D24]">
+                  ASSOCIATE DIRECTOR PROGRAM • TAMIL NADU
+                </span>
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-black leading-[1.15]">
+                Lead Our Branches Across <br className="hidden sm:inline" />
+                <span className="text-[#166534]">Tamil Nadu</span>
+              </h1>
+
+              {/* Sub-headline Pill */}
+              <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
+                <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
+                <h2 className="text-[14px] sm:text-[15px] font-bold text-slate-800 italic">
+                  Business Development • Construction • Facility Management
+                </h2>
+              </div>
+
+              {/* Intro Paragraph */}
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+                At Prajha Group, we are expanding and seeking dynamic individuals to lead our branches in Tamil Nadu. Become a key decision-maker in business development, construction, or facility management and drive real estate projects to success.
+              </p>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <a
+                  href="#apply-today"
+                  className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider"
+                  style={{ letterSpacing: '1px' }}
+                >
+                  <span>Apply for Associate Directorship</span>
+                  <ArrowRight className="w-4 h-4 text-[#F37924]" />
+                </a>
+
+                <a
+                  href="tel:+919499933461"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm"
+                >
+                  <Phone className="w-4 h-4 text-[#166534]" />
+                  <span>Call Director Desk</span>
+                </a>
+              </div>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-black leading-[1.15]">
-              Lead Our Branches Across <br className="hidden sm:inline" />
-              <span className="text-[#166534]">Tamil Nadu</span>
-            </h1>
-
-            {/* Intro Paragraph */}
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-              At Prajha Group, we are expanding and seeking dynamic individuals to lead our branches in Tamil Nadu. Become a key decision-maker in business development, construction, or facility management and drive real estate projects to success.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="#apply-today"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider"
-                style={{ letterSpacing: '1px' }}
-              >
-                <span>Apply for Associate Directorship</span>
-                <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </a>
-
-              <a
-                href="tel:+919499933461"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-sm"
-              >
-                <Phone className="w-4 h-4 text-[#166534]" />
-                <span>Call Director Desk</span>
-              </a>
+            {/* Right Hero Image Column */}
+            <div className="lg:col-span-5 w-full flex justify-center">
+              <div className="relative w-full max-w-[520px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
+                <Image
+                  src="/commercial-invest.png"
+                  alt="Modern city skyline representing real estate management and property management career opportunities"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F2D24] via-[#0F2D24]/20 to-transparent opacity-90" />
+                
+                {/* Floating Overlay Badge */}
+                <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 shadow-xl space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-black uppercase tracking-widest text-[#166534]">
+                      REGIONAL BRANCH LEADERSHIP
+                    </span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#F37924] animate-ping" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    Drive High-Growth Operations
+                  </h3>
+                  <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                    Prajha Group Associate Directors lead regional business development, construction projects, and asset management across Tamil Nadu.
+                  </p>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
