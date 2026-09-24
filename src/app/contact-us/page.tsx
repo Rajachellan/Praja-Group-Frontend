@@ -24,6 +24,9 @@ import {
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 
+import api from '../../../services/api'
+import { AxiosError } from 'axios';
+
 const contactFaqs: FaqItem[] = [
   {
     id: 'faq-1',
@@ -71,16 +74,19 @@ if (typeof window !== 'undefined') {
 }
 
 export default function ContactUsPage() {
-  const [selectedService, setSelectedService] = useState<string>('Constructions');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
+
+ 
+  const [name,setName]=useState<string>("")
+  const [email,setEmail]=useState<string>("")
+  const [message,setMessage]=useState<string>("")
+  const [phNo,setPhno]=useState<number>()
+
+  const [propertyLocation,setPropertyLocation]=useState<string>('')
+
+
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -120,23 +126,28 @@ export default function ContactUsPage() {
     { scope: containerRef }
   );
 
-  const servicesList = [
-    'Constructions',
-    'Developers & Plots',
-    'Property Management',
-    'Joint Venture',
-    'Investors & Funding',
-  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    // Simulate fast submission API response
-    setTimeout(() => {
-      setLoading(false);
+    setError('');
+
+    try {
+    const res=  await api.post('/add/contact', {
+        name,
+        email,
+        message,
+        phNo,propertyLocation
+      });
+      alert(res.data.message)
       setSubmitted(true);
-    }, 800);
-  };
+    } catch (err) {
+       const error = err as AxiosError<{ message: string }>;
+      setError(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
@@ -217,32 +228,6 @@ export default function ContactUsPage() {
                   </p>
                 </div>
 
-                {/* Service Category Selector Chips */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block">
-                    Select Topic / Requirement:
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {servicesList.map((service) => {
-                      const isActive = selectedService === service;
-                      return (
-                        <button
-                          key={service}
-                          type="button"
-                          onClick={() => setSelectedService(service)}
-                          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all border ${
-                            isActive
-                              ? 'bg-[#166534] text-white border-[#166534] shadow-sm'
-                              : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-emerald-50 hover:text-[#166534]'
-                          }`}
-                        >
-                          {service}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
                 {/* Success Confirmation Notification */}
                 {submitted ? (
                   <div className="p-8 rounded-2xl bg-[#F0FDF4] border border-emerald-300 space-y-4 text-center animate-fadeIn">
@@ -252,13 +237,13 @@ export default function ContactUsPage() {
                     <h3 className="text-xl font-bold text-[#0F2D24]">
                       Message Delivered Successfully!
                     </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
-                      Thank you for contacting Prajha Group regarding <span className="font-bold text-[#166534]">{selectedService}</span>. Our senior advisor will call or email you shortly.
-                    </p>
                     <button
                       onClick={() => {
                         setSubmitted(false);
-                        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+                        setName('');
+                        setEmail('');
+                        setMessage('');
+                        setPhno(undefined);
                       }}
                       className="px-6 py-2.5 rounded-xl bg-[#166534] text-white text-xs font-bold hover:bg-[#0F2D24] transition-colors inline-flex items-center gap-2"
                     >
@@ -278,8 +263,8 @@ export default function ContactUsPage() {
                           type="text"
                           required
                           placeholder="e.g. Rajesh Kumar"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
                           className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all"
                         />
                       </div>
@@ -297,8 +282,11 @@ export default function ContactUsPage() {
                             type="tel"
                             required
                             placeholder="94999 33461"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            value={phNo ?? ''}
+                            onChange={(e) => {
+                              const digits = e.target.value.replace(/\D/g, '');
+                              setPhno(digits ? Number(digits) : undefined);
+                            }}
                             className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all"
                           />
                         </div>
@@ -315,8 +303,8 @@ export default function ContactUsPage() {
                           type="email"
                           required
                           placeholder="rajesh@example.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                           className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all"
                         />
                       </div>
@@ -329,9 +317,7 @@ export default function ContactUsPage() {
                         <input
                           type="text"
                           placeholder="e.g. OMR / Velachery / Chennai"
-                          value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all"
+                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all"  onChange={(e)=>setPropertyLocation(e.target.value)}
                         />
                       </div>
                     </div>
@@ -345,11 +331,17 @@ export default function ContactUsPage() {
                         rows={4}
                         required
                         placeholder="Tell us about your project requirements, plot extent, construction budget, or property management needs..."
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all resize-none"
                       />
                     </div>
+
+                    {error && (
+                      <p role="alert" className="text-sm font-medium text-red-600">
+                        {error}
+                      </p>
+                    )}
 
                     {/* Submit Button */}
                     <button
@@ -371,7 +363,7 @@ export default function ContactUsPage() {
               </div>
             </div>
 
-            {/* Right Column: Direct Channels & HQ Info Cards (5 cols) */}
+            {/* Right Column: Direct Channels & HQ Info Cards (5  cols) */}
             <div className="lg:col-span-5 space-y-6">
               
               {/* Head Office Card */}

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import {
   X,
   CheckCircle2,
@@ -14,17 +13,23 @@ import {
   User,
   Mail,
   MapPin,
+  MessageSquare,
+  Loader2,
 } from 'lucide-react';
+import api from '@/services/api';
+import { AxiosError } from 'axios';
 
 export default function EnquiryModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    service: 'Constructions',
-  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [phNo, setPhno] = useState<number | undefined>(undefined);
+  const [propertyLocation, setPropertyLocation] = useState<string>('');
 
   useEffect(() => {
     // Open modal automatically after page reload/load
@@ -48,21 +53,44 @@ export default function EnquiryModal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
-  const handleSubmit = (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
-    setIsSubmitted(true);
-  };
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await api.post('/add/contact', {
+        name,
+        email,
+        message,
+        phNo,
+        propertyLocation,
+      });
+      setIsSubmitted(true);
+      alert(res.data.message)
+    } catch (err) {
+      const axiosError = err as AxiosError<{ message: string }>;
+      setError(axiosError.response?.data?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleClose = () => {
     setIsOpen(false);
     // Reset submission state after exit animation
     setTimeout(() => {
       setIsSubmitted(false);
+      setName('');
+      setEmail('');
+      setMessage('');
+      setPhno(undefined);
+      setPropertyLocation('');
+      setError('');
     }, 300);
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -93,17 +121,6 @@ export default function EnquiryModal() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#22C55E]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 space-y-6">
-              {/* Brand Logo */}
-              {/* <div className="inline-flex items-center px-3.5 py-2 rounded-2xl bg-white shadow-md border border-white/20">
-                <Image
-                  src="/praja-logo.webp"
-                  alt="Prajha Group Logo"
-                  width={160}
-                  height={50}
-                  className="h-10 sm:h-12 w-auto object-contain"
-                />
-              </div> */}
-
               {/* Tagline Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold uppercase tracking-wider text-amber-300 backdrop-blur-xs">
                 <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
@@ -189,11 +206,11 @@ export default function EnquiryModal() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3.5">
                   
                   {/* Full Name */}
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
                       Full Name <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -201,73 +218,115 @@ export default function EnquiryModal() {
                       <input
                         type="text"
                         required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         placeholder="Enter your full name"
-                        className="w-full bg-gray-50 text-gray-900 text-sm pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
+                        className="w-full bg-gray-50 text-gray-900 text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
 
-                  {/* Phone Number */}
+                  {/* Phone & Email Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Phone Number */}
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                        Phone Number <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <Phone className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="tel"
+                          required
+                          value={phNo ?? ''}
+                          onChange={(e) => {
+                            const digits = e.target.value.replace(/\D/g, '');
+                            setPhno(digits ? Number(digits) : undefined);
+                          }}
+                          placeholder="+91 Mobile number"
+                          className="w-full bg-gray-50 text-gray-900 text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="name@example.com"
+                          className="w-full bg-gray-50 text-gray-900 text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Property Location */}
                   <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
-                      Phone Number <span className="text-red-500">*</span>
+                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                      Property / Preferred Location
                     </label>
                     <div className="relative">
-                      <Phone className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <MapPin className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
-                        type="tel"
+                        type="text"
+                        value={propertyLocation}
+                        onChange={(e) => setPropertyLocation(e.target.value)}
+                        placeholder="e.g. Pallavaram / OMR / Velachery"
+                        className="w-full bg-gray-50 text-gray-900 text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message / Query */}
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+                      Requirement / Query <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <MessageSquare className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
+                      <textarea
                         required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 Mobile number"
-                        className="w-full bg-gray-50 text-gray-900 text-sm pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
+                        rows={3}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Tell us about your project or requirement..."
+                        className="w-full bg-gray-50 text-gray-900 text-xs sm:text-sm pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all resize-none"
                       />
                     </div>
                   </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="name@example.com"
-                        className="w-full bg-gray-50 text-gray-900 text-sm pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Service Needed */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
-                      Service Interested In
-                    </label>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full bg-gray-50 text-gray-900 text-sm px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#166534] focus:bg-white transition-all cursor-pointer"
-                    >
-                      <option value="Constructions">Building & Commercial Construction</option>
-                      <option value="Developers">Developers & Plot Sales</option>
-                      <option value="Joint Ventures">Joint Ventures (Land Owners / Investors)</option>
-                      <option value="Property Management">Property Management</option>
-                    </select>
-                  </div>
+                  {/* Error Notification */}
+                  {error && (
+                    <p role="alert" className="text-xs font-medium text-red-600 bg-red-50 p-2.5 rounded-lg border border-red-200">
+                      {error}
+                    </p>
+                  )}
 
                   {/* Submit CTA */}
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-[#F37924] hover:bg-[#e06816] text-white font-extrabold text-sm py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02] active:scale-98 cursor-pointer group"
+                    disabled={loading}
+                    className="w-full mt-2 bg-[#F37924] hover:bg-[#e06816] disabled:opacity-70 text-white font-extrabold text-sm py-3 px-6 rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] active:scale-98 cursor-pointer group"
                   >
-                    <span>Submit Enquiry</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Enquiry</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </button>
 
                   <p className="text-[11px] text-gray-400 text-center mt-2">
@@ -285,3 +344,4 @@ export default function EnquiryModal() {
     </div>
   );
 }
+
