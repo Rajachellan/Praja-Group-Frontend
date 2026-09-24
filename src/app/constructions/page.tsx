@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import Image from 'next/image';
 import Link from 'next/link';

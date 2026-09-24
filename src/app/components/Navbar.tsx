@@ -50,7 +50,7 @@ export default function Navbar() {
       ],
     },
     { name: 'Careers', href: '#' },
-    { name: 'Blogs', href: '#' },
+    { name: 'Blogs', href: '/blogs' },
     { name: 'Contact Us', href: '/contact-us' },
   ];
 
