@@ -1,8 +1,7 @@
-'use client';
-
-import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { ElementType } from 'react';
+import type { Metadata } from 'next';
 import {
   ChevronRight,
   Sparkles,
@@ -25,12 +24,32 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
-import api from '@/services/api';
+import AssociateApplicationForm from './AssociateApplicationForm';
+
+export const metadata: Metadata = {
+  title: 'Prajha Group Associates | Chennai Construction Partners',
+  description:
+    'Join Prajha Group as an Associate Director in Tamil Nadu. Lead business development, construction, and facility management projects. Apply now for top leadership roles in real estate.',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/associate/',
+  },
+  openGraph: {
+    title: 'Prajha Group Associates | Chennai Construction Partners',
+    description:
+      'Join Prajha Group as an Associate Director in Tamil Nadu. Lead business development, construction, and facility management projects. Apply now for top leadership roles in real estate.',
+    type: 'website',
+    url: 'https://www.prajhagroup.com/associate/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 interface DirectorRole {
   title: string;
   category: string;
-  icon: React.ElementType;
+  icon: ElementType;
   description: string;
   responsibilities: string[];
 }
@@ -113,79 +132,6 @@ const associateFaqs: FaqItem[] = [
 ];
 
 export default function AssociateDirectorsPage() {
-  const [selectedRole, setSelectedRole] = useState<string>('Director - Business Development');
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    role: 'Director - Business Development',
-    message: '',
-  });
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-  const [uploadedR2Url, setUploadedR2Url] = useState<string>('');
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      let pdfFileUrl = '';
-
-      // 1. If file attached, upload to Cloudflare R2 via backend service
-      if (selectedFile) {
-        const fileFormData = new FormData();
-        fileFormData.append('file', selectedFile);
-
-        const uploadRes = await api.post('/upload/document', fileFormData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-
-        if (uploadRes.data && uploadRes.data.url) {
-          pdfFileUrl = uploadRes.data.url;
-          setUploadedR2Url(pdfFileUrl);
-        }
-      }
-
-      // 2. Submit form details along with Cloudflare R2 PDF URL to backend contact endpoint
-      const res = await api.post('/add/contact', {
-        name: formData.name,
-        email: formData.email,
-        phNo: formData.phone,
-        message: formData.message,
-        directorRole: formData.role,
-        file: pdfFileUrl,
-        propertyLocation: 'Associate Director Application',
-      });
-
-      if (res.data && res.data.success) {
-        setSubmitted(true);
-      } else {
-        setError(res.data?.message || 'Application submission failed. Please try again.');
-      }
-    } catch (err: any) {
-      console.error('Associate Director form submission error:', err);
-      setError(
-        err.response?.data?.message ||
-          'Failed to upload PDF document or submit form. Please check server connection.'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
@@ -359,7 +305,6 @@ export default function AssociateDirectorsPage() {
                   <div className="pt-6 mt-6 border-t border-slate-100">
                     <a
                       href="#apply-today"
-                      onClick={() => setSelectedRole(role.title)}
                       className="w-full py-3 rounded-xl bg-slate-50 hover:bg-[#166534] text-slate-800 hover:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-slate-200 group-hover:border-[#166534]"
                     >
                       <span>Apply For This Role</span>
@@ -460,7 +405,10 @@ export default function AssociateDirectorsPage() {
         </div>
       </section>
 
-      {/* 4. Apply Today / Application Form Section */}
+      <AssociateApplicationForm />
+
+      {/* Legacy inline application form retained temporarily during extraction.
+      4. Apply Today / Application Form Section
       <section id="apply-today" className="py-16 lg:py-24 bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
@@ -532,7 +480,7 @@ export default function AssociateDirectorsPage() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Name Input */}
+                  Name Input
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5 text-[#166534]" /> Name *
@@ -547,7 +495,7 @@ export default function AssociateDirectorsPage() {
                     />
                   </div>
 
-                  {/* Phone Input */}
+                  Phone Input
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                       <Phone className="w-3.5 h-3.5 text-[#166534]" /> Phone No *
@@ -564,7 +512,7 @@ export default function AssociateDirectorsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Email Input */}
+                  Email Input
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-[#166534]" /> Email *
@@ -579,7 +527,7 @@ export default function AssociateDirectorsPage() {
                     />
                   </div>
 
-                  {/* Select Director Role */}
+                  Select Director Role
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                       <Briefcase className="w-3.5 h-3.5 text-[#166534]" /> Select Director Role *
@@ -596,7 +544,7 @@ export default function AssociateDirectorsPage() {
                   </div>
                 </div>
 
-                {/* Message with your town name */}
+                Message with your town name
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-[#166534]" /> Message with your town name *
@@ -611,7 +559,7 @@ export default function AssociateDirectorsPage() {
                   />
                 </div>
 
-                {/* Attach Your Profile (File Upload) */}
+                Attach Your Profile (File Upload)
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                     <Paperclip className="w-3.5 h-3.5 text-[#166534]" /> Attach Your Profile (Resume / Portfolio PDF)
@@ -635,7 +583,7 @@ export default function AssociateDirectorsPage() {
                   </div>
                 </div>
 
-                {/* Submit Button */}
+                Submit Button
                 <button
                   type="submit"
                   disabled={loading}
@@ -658,6 +606,8 @@ export default function AssociateDirectorsPage() {
 
         </div>
       </section>
+
+      */}
 
       {/* 5. FAQ Section */}
       <AdvancedFaqSection

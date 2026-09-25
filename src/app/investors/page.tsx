@@ -1,8 +1,6 @@
-'use client';
-
-import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import {
   ChevronRight,
   Sparkles,
@@ -23,120 +21,31 @@ import {
   Coins,
 } from 'lucide-react';
 import Footer from '../components/Footer';
+import InvestmentModelsSection from './InvestmentModelsSection';
 
-interface InvestmentModel {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  badge: string;
-  icon: React.ElementType;
-  highlights: string[];
-}
-
-const INVESTMENT_MODELS: InvestmentModel[] = [
-  {
-    id: 'land-investments',
-    title: 'Land Investments',
-    subtitle: 'High-Appreciation Land & Joint Ventures',
-    description:
-      'Partner with us on strategic land acquisition, CMDA/DTCP layout approvals, and prime parcel developments across rapidly expanding corridors in Chennai and Tamil Nadu.',
-    badge: 'High Land Equity',
-    icon: Landmark,
-    highlights: [
-      'Strategic land acquisition in high-growth Chennai corridors',
-      'Joint Venture (JV) partnership models with clear profit sharing',
-      'CMDA / DTCP approved residential & commercial land layouts',
-    ],
+export const metadata: Metadata = {
+  title: 'Best Commercial Property Investment in Chennai | Prajha Group',
+  description:
+    'Explore high-return commercial property options and grow your real estate portfolio with strategic investments in Chennai and beyond.',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/investors/',
   },
-  {
-    id: 'buildings-projects',
-    title: 'Buildings & Projects',
-    subtitle: 'Residential Flats, Villas & Commercial Towers',
+  openGraph: {
+    title: 'Best Commercial Property Investment in Chennai | Prajha Group',
     description:
-      'Invest directly into active residential flat developments, luxury independent villas, gated communities, and commercial corporate parks with pre-launch pricing advantages.',
-    badge: 'Pre-Launch & Ready Units',
-    icon: Building2,
-    highlights: [
-      'Pre-launch pricing discounts on premium residential flats',
-      'Luxury villa developments with rapid rental yield potential',
-      'Commercial corporate hubs in prime Chennai business districts',
-    ],
+      'Explore high-return commercial property options and grow your real estate portfolio with strategic investments in Chennai and beyond.',
+    type: 'website',
+    url: 'https://www.prajhagroup.com/investors/',
   },
-  {
-    id: 'project-funding',
-    title: 'Project Funding',
-    subtitle: 'Capital Partnership & Debt/Equity Funding',
-    description:
-      'Provide project capital backing for large-scale EPC infrastructure developments. Benefit from structured return rates, locked timelines, and asset-backed security.',
-    badge: 'Structured Capital Returns',
-    icon: Coins,
-    highlights: [
-      'Asset-backed project funding with contractual return rates',
-      'Structured milestone disbursement & transparent BOQ audits',
-      'Flexible equity & debt investment structures for angel investors',
-    ],
+  robots: {
+    index: true,
+    follow: true,
   },
-];
-
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+};
 
 export default function InvestorsPage() {
-  const [activeModel, setActiveModel] = useState<string>(INVESTMENT_MODELS[0].id);
-  const selectedModelData = INVESTMENT_MODELS.find((m) => m.id === activeModel) || INVESTMENT_MODELS[0];
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-      tl.fromTo(
-        '.inv-badge',
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, duration: 0.3 }
-      )
-        .fromTo(
-          '.inv-title',
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.35 },
-          '-=0.15'
-        )
-        .fromTo(
-          '.inv-sub',
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.3 },
-          '-=0.15'
-        )
-        .fromTo(
-          '.inv-card',
-          { opacity: 0, y: 20, scale: 0.97 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.35,
-            stagger: 0.05,
-            scrollTrigger: {
-              trigger: '.inv-grid',
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-    },
-    { scope: containerRef }
-  );
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Section & Breadcrumb */}
       <section className="relative py-10 lg:py-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
@@ -490,7 +399,10 @@ export default function InvestorsPage() {
         </div>
       </section>
 
-      {/* 4. Investment Opportunities to Collaborate (3 Investment Models) */}
+      <InvestmentModelsSection />
+
+      {/* Legacy inline investment model section retained temporarily during extraction.
+      4. Investment Opportunities to Collaborate (3 Investment Models)
       <section className=" py-10 lg:py-20 bg-white relative overflow-hidden border-b border-slate-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
@@ -514,7 +426,7 @@ export default function InvestorsPage() {
             </p>
           </div>
 
-          {/* Model Selection Tabs - Single row scrollable on mobile */}
+          Model Selection Tabs - Single row scrollable on mobile
           <div className="flex flex-nowrap sm:flex-wrap items-center sm:justify-center justify-start gap-3 mb-10 lg:mb-12 overflow-x-auto pb-3 sm:pb-0 scrollbar-none px-2 max-w-full">
             {INVESTMENT_MODELS.map((model) => {
               const isSelected = activeModel === model.id;
@@ -536,11 +448,11 @@ export default function InvestorsPage() {
             })}
           </div>
 
-          {/* Selected Model Deep-Dive Card */}
+          Selected Model Deep-Dive Card
           <div className="bg-gradient-to-r from-[#F0FDF4] via-white to-[#F0FDF4] rounded-3xl p-8 sm:p-12 border border-emerald-200/90 shadow-xl transition-all duration-500">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
-              {/* Left Column Info */}
+              Left Column Info
               <div className="lg:col-span-6 space-y-5 text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#166534] text-white text-xs font-bold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5 text-[#F37924]" />
@@ -571,7 +483,7 @@ export default function InvestorsPage() {
                 </div>
               </div>
 
-              {/* Right Column Key Features */}
+              Right Column Key Features
               <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-sm space-y-4">
                 <h4 className="text-xs font-bold uppercase tracking-widest flex items-center gap-2 text-slate-700">
                   <CheckCircle2 className="w-4 h-4 text-[#166534]" /> Strategic Benefits & Assurance
@@ -596,6 +508,8 @@ export default function InvestorsPage() {
 
         </div>
       </section>
+
+      */}
 
       {/* 5. Investor Contact & Consultation Banner */}
       <section id="investor-enquiry" className="py-10 lg:py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">

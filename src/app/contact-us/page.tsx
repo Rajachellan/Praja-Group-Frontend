@@ -1,7 +1,5 @@
-'use client';
-
-import React, { useState } from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import {
   MapPin,
   Phone,
@@ -23,9 +21,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
-
-import api from '../../../services/api'
-import { AxiosError } from 'axios';
+import ContactForm from './ContactForm';
 
 const contactFaqs: FaqItem[] = [
   {
@@ -65,92 +61,29 @@ const contactFaqs: FaqItem[] = [
   },
 ];
 
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+export const metadata: Metadata = {
+  title: 'Contact Prajha Group | Chennai Construction Company',
+  description:
+    'Contact Us Home Contact Us Contact Details Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. +91 95001 20231 +91 9499933461 prajhaconnect@gmail.com Enquiry Now Address Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. Contact us +91 95001 20231',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/contact-us/',
+  },
+  openGraph: {
+    title: 'Contact Prajha Group | Chennai Construction Company',
+    description:
+      'Contact Us Home Contact Us Contact Details Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. +91 95001 20231 +91 9499933461 prajhaconnect@gmail.com Enquiry Now Address Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. Contact us +91 95001 20231',
+    type: 'website',
+    url: 'https://www.prajhagroup.com/contact-us/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ContactUsPage() {
-
- 
-  const [name,setName]=useState<string>("")
-  const [email,setEmail]=useState<string>("")
-  const [message,setMessage]=useState<string>("")
-  const [phNo,setPhno]=useState<number>()
-
-  const [propertyLocation,setPropertyLocation]=useState<string>('')
-
-
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-      tl.fromTo(
-        '.contact-badge',
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, duration: 0.3 }
-      )
-        .fromTo(
-          '.contact-title',
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.35 },
-          '-=0.15'
-        )
-        .fromTo(
-          '.contact-card',
-          { opacity: 0, y: 20, scale: 0.97 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.35,
-            stagger: 0.05,
-            scrollTrigger: {
-              trigger: '.contact-grid',
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-    },
-    { scope: containerRef }
-  );
-
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-    const res=  await api.post('/add/contact', {
-        name,
-        email,
-        message,
-        phNo,propertyLocation
-      });
-      alert(res.data.message)
-      setSubmitted(true);
-    } catch (err) {
-       const error = err as AxiosError<{ message: string }>;
-      setError(error.response?.data?.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Header Section */}
       <section className="relative py-10 lg:py-20 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 border-b border-slate-200/80 overflow-hidden">
@@ -210,7 +143,10 @@ export default function ContactUsPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-start">
             
-            {/* Left Column: Interactive Contact Form (7 cols) */}
+            <ContactForm />
+
+            {/* Legacy inline contact form retained temporarily during extraction.
+            Left Column: Interactive Contact Form (7 cols)
             <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-10 shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none" />
 
@@ -228,7 +164,7 @@ export default function ContactUsPage() {
                   </p>
                 </div>
 
-                {/* Success Confirmation Notification */}
+                Success Confirmation Notification
                 {submitted ? (
                   <div className="p-8 rounded-2xl bg-[#F0FDF4] border border-emerald-300 space-y-4 text-center animate-fadeIn">
                     <div className="w-16 h-16 rounded-full bg-[#166534] text-white flex items-center justify-center mx-auto shadow-md">
@@ -251,10 +187,10 @@ export default function ContactUsPage() {
                     </button>
                   </div>
                 ) : (
-                  /* Main Form */
+                  Main Form
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {/* Name Input */}
+                      Name Input
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                           <User className="w-3.5 h-3.5 text-[#166534]" /> Full Name *
@@ -269,7 +205,7 @@ export default function ContactUsPage() {
                         />
                       </div>
 
-                      {/* Phone Input */}
+                      Phone Input
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                           <Phone className="w-3.5 h-3.5 text-[#166534]" /> Mobile Number *
@@ -294,7 +230,7 @@ export default function ContactUsPage() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {/* Email Input */}
+                      Email Input
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                           <Mail className="w-3.5 h-3.5 text-[#166534]" /> Email Address *
@@ -309,7 +245,7 @@ export default function ContactUsPage() {
                         />
                       </div>
 
-                      {/* Subject Input */}
+                      Subject Input
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                           <Building2 className="w-3.5 h-3.5 text-[#166534]" /> Project / Property Location
@@ -322,7 +258,7 @@ export default function ContactUsPage() {
                       </div>
                     </div>
 
-                    {/* Requirement Message Box */}
+                    Requirement Message Box
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                         <MessageSquare className="w-3.5 h-3.5 text-[#166534]" /> Detailed Requirement / Query *
@@ -343,7 +279,7 @@ export default function ContactUsPage() {
                       </p>
                     )}
 
-                    {/* Submit Button */}
+                    Submit Button
                     <button
                       type="submit"
                       disabled={loading}
@@ -362,6 +298,8 @@ export default function ContactUsPage() {
                 )}
               </div>
             </div>
+
+            */}
 
             {/* Right Column: Direct Channels & HQ Info Cards (5  cols) */}
             <div className="lg:col-span-5 space-y-6">

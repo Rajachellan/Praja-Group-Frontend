@@ -1,9 +1,6 @@
-'use client';
-
-import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Head from 'next/head';
+import type { Metadata } from 'next';
 import {
   ChevronRight,
   Sparkles,
@@ -12,6 +9,7 @@ import {
   ShieldCheck,
   FileText,
   MapPin,
+  Phone,
   Ruler,
   Compass,
   Building,
@@ -19,21 +17,33 @@ import {
   BarChart3,
   CheckCircle2,
   ArrowRight,
-  User,
-  Phone,
-  Mail,
-  Paperclip,
-  Image as ImageIcon,
-  Send,
-  Check,
-  AlertCircle,
-  ExternalLink,
   Award,
   Layers,
   ArrowUpRight,
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
-import api from '@/services/api';
+import LandownerEnquiryForm from './LandownerEnquiryForm';
+import ScrollToSectionButton from './ScrollToSectionButton';
+
+export const metadata: Metadata = {
+  title: 'Joint Venture Opportunities for Landowners | Prajha Group',
+  description:
+    'Own land and exploring a joint venture? Submit your property details to Prajha Group to discuss potential land development opportunities.',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/landowners/',
+  },
+  openGraph: {
+    title: 'Joint Venture Opportunities for Landowners | Prajha Group',
+    description:
+      'Own land and exploring a joint venture? Submit your property details to Prajha Group to discuss potential land development opportunities.',
+    type: 'website',
+    url: 'https://www.prajhagroup.com/landowners/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const landownerFaqs: FaqItem[] = [
   {
@@ -95,142 +105,8 @@ const landownerFaqs: FaqItem[] = [
 ];
 
 export default function LandownersPage() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
-    email: '',
-    propertyLocation: '',
-    districtCity: '',
-    landArea: '',
-    propertyType: 'Residential Land',
-    existingStructure: 'No',
-    roadWidth: '',
-    currentLandUse: '',
-    message: '',
-  });
-
-  const [documentFile, setDocumentFile] = useState<File | null>(null);
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-  const [uploadedDocUrl, setUploadedDocUrl] = useState<string>('');
-  const [uploadedPhotoUrl, setUploadedPhotoUrl] = useState<string>('');
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleDocumentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setDocumentFile(e.target.files[0]);
-    }
-  };
-
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setPhotoFile(e.target.files[0]);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    try {
-      let docUrl = '';
-      let imgUrl = '';
-
-      if (documentFile) {
-        const docFormData = new FormData();
-        docFormData.append('file', documentFile);
-
-        const docRes = await api.post('/upload/document', docFormData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-
-        if (docRes.data && docRes.data.url) {
-          docUrl = docRes.data.url;
-          setUploadedDocUrl(docUrl);
-        }
-      }
-
-      if (photoFile) {
-        const imgFormData = new FormData();
-        imgFormData.append('image', photoFile);
-
-        const imgRes = await api.post('/upload/image', imgFormData, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-
-        if (imgRes.data && imgRes.data.url) {
-          imgUrl = imgRes.data.url;
-          setUploadedPhotoUrl(imgUrl);
-        }
-      }
-
-      const fullPropertyDetails = `
-=== LANDOWNER ENQUIRY DETAILS ===
-- District / City: ${formData.districtCity}
-- Land Area: ${formData.landArea}
-- Property Type: ${formData.propertyType}
-- Existing Structure: ${formData.existingStructure}
-- Road Width / Access: ${formData.roadWidth || 'N/A'}
-- Current Land Use: ${formData.currentLandUse || 'N/A'}
-- Description & Objective: ${formData.message}
-- Uploaded Document (R2): ${docUrl || 'None'}
-- Uploaded Photo (R2): ${imgUrl || 'None'}
-      `.trim();
-
-      const response = await api.post('/add/contact', {
-        name: formData.fullName,
-        email: formData.email || 'not-provided@landowner.com',
-        phNo: formData.phone,
-        message: fullPropertyDetails,
-        directorRole: 'Landowner Joint Venture',
-        propertyLocation: `${formData.propertyLocation} (${formData.districtCity})`,
-        file: docUrl || imgUrl || '',
-      });
-
-      if (response.data && response.data.success) {
-        setSubmitted(true);
-      } else {
-        setError(response.data?.message || 'Failed to submit property enquiry. Please try again.');
-      }
-    } catch (err: any) {
-      console.error('Landowner enquiry submit error:', err);
-      setError(
-        err.response?.data?.message ||
-          'Failed to submit enquiry. Please check your internet connection and try again.'
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <>
-      <Head>
-        <title>Joint Venture Opportunities for Landowners | Prajha Group</title>
-        <meta
-          name="description"
-          content="Own land and exploring a joint venture? Submit your property details to Prajha Group to discuss potential land development opportunities."
-        />
-        <meta property="og:title" content="Joint Venture Opportunities for Landowners | Prajha Group" />
-        <meta
-          property="og:description"
-          content="Own land and considering development through a joint venture? Share your property details with Prajha Group to explore potential opportunities."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.prajhagroup.com/landowners/" />
-        <link rel="canonical" href="https://www.prajhagroup.com/landowners/" />
-        <meta name="robots" content="index, follow" />
-      </Head>
-
       <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
         
         {/* 1. Hero Header Section */}
@@ -284,13 +160,13 @@ export default function LandownersPage() {
                 </p>
 
                 <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={() => scrollToSection('land-enquiry-form')}
+                  <ScrollToSectionButton
+                    targetId="land-enquiry-form"
                     className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-xl uppercase tracking-wider cursor-pointer"
                   >
                     <span>Submit Your Land Details</span>
                     <ArrowRight className="w-4 h-4 text-[#F37924]" />
-                  </button>
+                  </ScrollToSectionButton>
 
                   <Link
                     href="/joint-venture"
@@ -351,13 +227,13 @@ export default function LandownersPage() {
             </div>
 
             <div className="pt-4">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider cursor-pointer"
               >
                 <span>Discuss Your Land With Us</span>
                 <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </button>
+              </ScrollToSectionButton>
             </div>
           </div>
         </section>
@@ -426,13 +302,13 @@ export default function LandownersPage() {
             </div>
 
             <div className="text-center pt-4">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider cursor-pointer"
               >
                 <span>Submit Your Property Details</span>
                 <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </button>
+              </ScrollToSectionButton>
             </div>
 
           </div>
@@ -608,387 +484,21 @@ export default function LandownersPage() {
             </div>
 
             <div className="text-center pt-4">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider cursor-pointer"
               >
                 <span>Submit Land Details</span>
                 <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </button>
+              </ScrollToSectionButton>
             </div>
 
           </div>
         </section>
 
-        {/* 7. Landowner Enquiry Form */}
-        <section id="land-enquiry-form" className="py-16 lg:py-24 bg-white border-b border-slate-200">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            
-            <div className="text-center space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#166534]/10 text-[#166534] text-[11px] font-bold uppercase tracking-wider border border-[#166534]/20">
-                <Sparkles className="w-3.5 h-3.5 text-[#F37924]" />
-                <span>LANDOWNER ENQUIRY FORM</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
-                Submit Your Land Details
-              </h2>
-              <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-medium">
-                Interested in exploring a joint venture for your property? Share the details below and our team will review your enquiry.
-              </p>
-            </div>
+        {/* <LandownerEnquiryForm /> */}
 
-            <div className="bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-10 shadow-xl relative overflow-hidden">
-              
-              {error && (
-                <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-semibold flex items-start gap-3">
-                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                  <span>{error}</span>
-                </div>
-              )}
-
-              {submitted ? (
-                <div className="p-8 rounded-2xl bg-[#F0FDF4] border border-emerald-300 space-y-4 text-center animate-fadeIn">
-                  <div className="w-16 h-16 rounded-full bg-[#166534] text-white flex items-center justify-center mx-auto shadow-md">
-                    <Check className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#0F2D24]">
-                    Land Enquiry Submitted Successfully!
-                  </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
-                    Thank you for sharing your property details with Prajha Group. Our real estate development team will evaluate your submission and contact you shortly.
-                  </p>
-
-                  {(uploadedDocUrl || uploadedPhotoUrl) && (
-                    <div className="space-y-2 pt-2">
-                      {uploadedDocUrl && (
-                        <div className="p-3 rounded-xl bg-white border border-emerald-200 inline-flex items-center gap-2 text-xs font-semibold text-slate-700 max-w-full overflow-hidden text-ellipsis mr-2">
-                          <Paperclip className="w-4 h-4 text-[#166534] shrink-0" />
-                          <span className="truncate">Document Uploaded to Cloudflare R2:</span>
-                          <a
-                            href={uploadedDocUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#166534] hover:underline font-bold inline-flex items-center gap-1 shrink-0"
-                          >
-                            <span>View PDF</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        </div>
-                      )}
-
-                      {uploadedPhotoUrl && (
-                        <div className="p-3 rounded-xl bg-white border border-emerald-200 inline-flex items-center gap-2 text-xs font-semibold text-slate-700 max-w-full overflow-hidden text-ellipsis">
-                          <ImageIcon className="w-4 h-4 text-[#166534] shrink-0" />
-                          <span className="truncate">Photo Uploaded to Cloudflare R2:</span>
-                          <a
-                            href={uploadedPhotoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#166534] hover:underline font-bold inline-flex items-center gap-1 shrink-0"
-                          >
-                            <span>View Photo</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  <div>
-                    <button
-                      onClick={() => {
-                        setSubmitted(false);
-                        setUploadedDocUrl('');
-                        setUploadedPhotoUrl('');
-                        setDocumentFile(null);
-                        setPhotoFile(null);
-                        setFormData({
-                          fullName: '',
-                          phone: '',
-                          email: '',
-                          propertyLocation: '',
-                          districtCity: '',
-                          landArea: '',
-                          propertyType: 'Residential Land',
-                          existingStructure: 'No',
-                          roadWidth: '',
-                          currentLandUse: '',
-                          message: '',
-                        });
-                      }}
-                      className="px-6 py-2.5 rounded-xl bg-[#166534] text-white text-xs font-bold hover:bg-[#0F2D24] transition-colors inline-flex items-center gap-2 cursor-pointer mt-3"
-                    >
-                      <span>Submit Another Land Enquiry</span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  
-                  {/* Your Details */}
-                  <div className="space-y-4">
-                    <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#166534] border-b border-slate-100 pb-2">
-                      Your Details
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <User className="w-3.5 h-3.5 text-[#166534]" /> Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="e.g. Ramesh Kumar"
-                          value={formData.fullName}
-                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Phone className="w-3.5 h-3.5 text-[#166534]" /> Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          placeholder="+91 94999 33461"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Mail className="w-3.5 h-3.5 text-[#166534]" /> Email Address
-                        </label>
-                        <input
-                          type="email"
-                          placeholder="ramesh@example.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Property Details */}
-                  <div className="space-y-4">
-                    <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#166534] border-b border-slate-100 pb-2">
-                      Property Details
-                    </h3>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-[#166534]" /> Property Location *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="e.g. Velachery, OMR, Porur, Tambaram"
-                          value={formData.propertyLocation}
-                          onChange={(e) => setFormData({ ...formData, propertyLocation: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Building className="w-3.5 h-3.5 text-[#166534]" /> District / City
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Chennai, Coimbatore, Madurai, Trichy"
-                          value={formData.districtCity}
-                          onChange={(e) => setFormData({ ...formData, districtCity: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Ruler className="w-3.5 h-3.5 text-[#166534]" /> Land Area *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="e.g. 50 Cents, 2 Acres, 3600 sq.ft"
-                          value={formData.landArea}
-                          onChange={(e) => setFormData({ ...formData, landArea: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Layers className="w-3.5 h-3.5 text-[#166534]" /> Property Type *
-                        </label>
-                        <select
-                          value={formData.propertyType}
-                          onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-bold"
-                        >
-                          <option value="Residential Land">Residential Land</option>
-                          <option value="Commercial Property">Commercial Property</option>
-                          <option value="Existing Property">Existing Property</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Building2 className="w-3.5 h-3.5 text-[#166534]" /> Existing Structure — Yes / No
-                        </label>
-                        <select
-                          value={formData.existingStructure}
-                          onChange={(e) => setFormData({ ...formData, existingStructure: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-bold"
-                        >
-                          <option value="No">No</option>
-                          <option value="Yes">Yes</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Compass className="w-3.5 h-3.5 text-[#166534]" /> Road Width / Access
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g. 40 ft road access, 60 ft main road"
-                          value={formData.roadWidth}
-                          onChange={(e) => setFormData({ ...formData, roadWidth: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <BarChart3 className="w-3.5 h-3.5 text-[#166534]" /> Current Land Use
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Agricultural, Vacant Plot, Commercial"
-                          value={formData.currentLandUse}
-                          onChange={(e) => setFormData({ ...formData, currentLandUse: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-medium"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Additional Details */}
-                  <div className="space-y-4">
-                    <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#166534] border-b border-slate-100 pb-2">
-                      Additional Details
-                    </h3>
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                        <FileText className="w-3.5 h-3.5 text-[#166534]" /> Tell us about your property & what you are looking to achieve with the property?
-                      </label>
-                      <textarea
-                        rows={4}
-                        placeholder="Provide details about your property, title clarity, target project type (residential apartments, commercial complex, joint development terms), or what you are looking to achieve..."
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all resize-none font-medium"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Optional Uploads */}
-                  <div className="space-y-4">
-                    <h3 className="text-xs font-extrabold uppercase tracking-widest text-[#166534] border-b border-slate-100 pb-2">
-                      Optional Uploads
-                    </h3>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Upload Property Documents */}
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <Paperclip className="w-3.5 h-3.5 text-[#166534]" /> Upload Property Documents
-                        </label>
-                        <div className="relative border-2 border-dashed border-slate-200 rounded-2xl p-4 bg-slate-50 hover:bg-emerald-50/50 hover:border-emerald-300 transition-all text-center cursor-pointer">
-                          <input
-                            type="file"
-                            accept=".pdf,.doc,.docx"
-                            onChange={handleDocumentChange}
-                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                          />
-                          <div className="flex flex-col items-center justify-center gap-1">
-                            <Paperclip className="w-5 h-5 text-[#166534]" />
-                            <span className="text-xs font-bold text-slate-700">
-                              {documentFile ? documentFile.name : 'Upload Property Documents'}
-                            </span>
-                            <span className="text-[11px] text-slate-400">
-                              {documentFile ? `${(documentFile.size / 1024).toFixed(1)} KB` : 'Optional'}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Upload Property Photos */}
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                          <ImageIcon className="w-3.5 h-3.5 text-[#166534]" /> Upload Property Photos
-                        </label>
-                        <div className="relative border-2 border-dashed border-slate-200 rounded-2xl p-4 bg-slate-50 hover:bg-emerald-50/50 hover:border-emerald-300 transition-all text-center cursor-pointer">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoChange}
-                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                          />
-                          <div className="flex flex-col items-center justify-center gap-1">
-                            <ImageIcon className="w-5 h-5 text-[#166534]" />
-                            <span className="text-xs font-bold text-slate-700">
-                              {photoFile ? photoFile.name : 'Upload Property Photos'}
-                            </span>
-                            <span className="text-[11px] text-slate-400">
-                              {photoFile ? `${(photoFile.size / 1024).toFixed(1)} KB` : 'Optional'}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full py-4 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer mt-6"
-                  >
-                    {loading ? (
-                      <span>Uploading Files & Submitting Land Details...</span>
-                    ) : (
-                      <>
-                        <span>Submit Land Details</span>
-                        <Send className="w-4 h-4 text-[#F37924]" />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Form Disclaimer */}
-                  <p className="text-[11px] text-slate-400 text-center leading-relaxed font-medium pt-2">
-                    Submission of property details does not constitute acceptance of a joint venture proposal. Each property is subject to individual legal, technical and development evaluation.
-                  </p>
-
-                </form>
-              )}
-
-            </div>
-
-          </div>
-        </section>
-
+       
         {/* 8. What Happens After Submission? */}
         <section className="py-16 lg:py-24 bg-gradient-to-b from-white via-slate-50/60 to-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -1061,13 +571,13 @@ export default function LandownersPage() {
             </div>
 
             <div className="text-center pt-4">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider cursor-pointer"
               >
                 <span>Start Your Enquiry</span>
                 <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </button>
+              </ScrollToSectionButton>
             </div>
 
           </div>
@@ -1107,13 +617,13 @@ export default function LandownersPage() {
             </div>
 
             <div className="pt-2">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#F37924] hover:bg-[#d96515] text-white font-bold text-xs sm:text-sm transition-all shadow-lg hover:shadow-xl uppercase tracking-wider cursor-pointer"
               >
                 <span>Talk to Prajha Group</span>
                 <Phone className="w-4 h-4 text-white" />
-              </button>
+              </ScrollToSectionButton>
             </div>
 
           </div>
@@ -1255,13 +765,13 @@ export default function LandownersPage() {
                 Submit Your Land Details
               </p>
               <div>
-                <button
-                  onClick={() => scrollToSection('land-enquiry-form')}
+                <ScrollToSectionButton
+                  targetId="land-enquiry-form"
                   className="px-6 py-3 rounded-xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer"
                 >
                   <span>Submit Your Land Details</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#F37924]" />
-                </button>
+                </ScrollToSectionButton>
               </div>
             </div>
 
@@ -1285,21 +795,21 @@ export default function LandownersPage() {
             </p>
 
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-              <button
-                onClick={() => scrollToSection('land-enquiry-form')}
+              <ScrollToSectionButton
+                targetId="land-enquiry-form"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-xs sm:text-sm transition-all shadow-lg hover:shadow-xl uppercase tracking-wider cursor-pointer"
               >
                 <span>Submit Your Land Details</span>
                 <ArrowRight className="w-4 h-4 text-[#F37924]" />
-              </button>
+              </ScrollToSectionButton>
 
-              <button
-                onClick={() => scrollToSection('resources')}
+              <ScrollToSectionButton
+                targetId="resources"
                 className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all border border-slate-200 cursor-pointer"
               >
                 <span>Explore Joint Venture Guides</span>
                 <ChevronRight className="w-4 h-4 text-[#166534]" />
-              </button>
+              </ScrollToSectionButton>
             </div>
 
           </div>

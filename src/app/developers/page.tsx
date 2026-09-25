@@ -1,5 +1,5 @@
 
-
+import type { Metadata } from 'next';
 import React from "react"
 import {
    ShieldCheck,
@@ -16,6 +16,27 @@ import Solutions from "./Solutions";
 import Services from "./Services";
 import WhyChooseUs from "./WhyChooseUs";
 import Faqs from "./Faqs";
+
+export const metadata: Metadata = {
+  title: 'Top Real Estate Developers Chennai | Prajha Group',
+  description:
+    'Discover premier real estate development services in Chennai with Prajha Group. We specialize in residential flats, luxury villas, gated communities, and prime plots. Contact us today to turn your property dreams into reality.',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/developers/',
+  },
+  openGraph: {
+    title: 'Top Real Estate Developers Chennai | Prajha Group',
+    description:
+      'Discover premier real estate development services in Chennai with Prajha Group. We specialize in residential flats, luxury villas, gated communities, and prime plots. Contact us today to turn your property dreams into reality.',
+    url: 'https://www.prajhagroup.com/developers/',
+    siteName: 'Prajha Group',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 function page(){
   return(

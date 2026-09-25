@@ -1,8 +1,8 @@
-'use client';
 
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import {
   ChevronRight,
   Sparkles,
@@ -17,10 +17,34 @@ import StatsSection from './StatsSection';
 import VisionMissionSection from './MissionandVission';
 import Values from '../components/Values';
 import Clients from '../components/Clients';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Prajha Group | Chennai Construction & Real Estate Leaders',
+  description:
+    'Our Company Prajha Group of Company is a Chennai based firm that specializes in Engineering Procurement Contracting, construction : Infrastructure & Building, Building Maintenance , Empowering Challenged, academy for skill developments and having Prajha Trust for social responsibilities.Started in 2010 by Mr. P.R.BabuPrabakaran, an Engineering Graduate who has done',
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/about-us/',
+  },
+  openGraph: {
+    title: 'About Prajha Group | Chennai Construction & Real Estate Leaders',
+    description:
+      "Our Company Prajha Group of Company is a Chennai based firm that specializes in Engineering Procurement Contracting, construction : Infrastructure & Building, Building Maintenance , Empowering Challenged, academy for skill developments and having Prajha Trust for social responsibilities.Started in 2010 by Mr. P.R.BabuPrabakaran, an Engineering Graduate who has done'",
+    url: 'https://www.prajhagroup.com/about-us/',
+    siteName: 'Prajha Group',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
+    <>
+
+      <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
       
       {/* 1. Hero Section & Breadcrumb */}
       <section className="relative py-10 lg:py-20 bg-gradient-to-b from-[#F4F8F6] via-white to-[#F8FAFC] border-b border-slate-100 overflow-hidden">
@@ -226,5 +250,6 @@ export default function AboutUsPage() {
       </section>
 
     </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
-'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import type { Metadata } from 'next';
+
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,6 +38,39 @@ import {
 import ConstructionBadge from './Animation'
 import Services from './Services';
 import WhyChooseUs from './WhyChooseUs';
+
+
+export const metadata: Metadata = {
+  title: 'Top Construction Company Chennai | Prajha Group Services',
+  description:
+    'Looking for the best construction company in Chennai? Prajha Group specializes in premium residential, commercial, and design-build services. Contact us to build your dream project today!',
+  // keywords: [
+  //   'construction company in Chennai',
+  //   'real estate developers Chennai',
+  //   'property management Chennai',
+  //   'joint venture real estate Chennai',
+  //   'Prajha Group',
+  //   'investment opportunities Chennai',
+  //   'builders in Chennai',
+  //   'commercial construction Chennai',
+  //   'residential development Chennai',
+  // ],
+  alternates: {
+    canonical: 'https://www.prajhagroup.com/constructions/',
+  },
+  openGraph: {
+    title: 'Top Construction Company Chennai | Prajha Group Services',
+    description:
+      'Looking for the best construction company in Chennai? Prajha Group specializes in premium residential, commercial, and design-build services. Contact us to build your dream project today!',
+    url: 'https://www.prajhagroup.com/constructions/',
+    siteName: 'Prajha Group',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 interface ProcessStep {
   step: string;
@@ -80,24 +113,24 @@ const STEPS: ProcessStep[] = [
 ];
 
 export default function ConstructionsPage() {
-  const [activePackage, setActivePackage] = useState<'essential' | 'luxury' | 'platinum'>('luxury');
-  const [builtUpArea, setBuiltUpArea] = useState<number>(1800);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string; desc: string } | null>(null);
+  // const [activePackage, setActivePackage] = useState<'essential' | 'luxury' | 'platinum'>('luxury');
+  // const [builtUpArea, setBuiltUpArea] = useState<number>(1800);
+  // const [formSubmitted, setFormSubmitted] = useState(false);
+  // const [selectedImage, setSelectedImage] = useState<{ src: string; title: string; desc: string } | null>(null);
 
-  const [inView, setInView] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  // const [inView, setInView] = useState(false);
+  // const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) setInView(true);
+  //     },
+  //     { threshold: 0.2 }
+  //   );
+  //   if (sectionRef.current) observer.observe(sectionRef.current);
+  //   return () => observer.disconnect();
+  // }, []);
 
 
   const packageSpecs = {
@@ -142,8 +175,8 @@ export default function ConstructionsPage() {
     },
   };
 
-  const currentPkg = packageSpecs[activePackage];
-  const totalCostEstimate = (builtUpArea * currentPkg.rate).toLocaleString('en-IN');
+  // const currentPkg = packageSpecs[activePackage];
+  // const totalCostEstimate = (builtUpArea * currentPkg.rate).toLocaleString('en-IN');
 
   const constructionsFaqs: FaqItem[] = [
     {
@@ -182,6 +215,7 @@ export default function ConstructionsPage() {
       category: 'Contact & Booking',
     },
   ];
+
 
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-[#F37924] selection:text-white font-sans overflow-x-hidden">

@@ -29,8 +29,9 @@ const handFont = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Prajha Group | Leading Construction & Real Estate Developers in Chennai",
-  description: "With 15+ years of experience and 106+ completed projects, Prajha Group delivers exceptional residential, commercial, industrial and infrastructure developments.",
+  title: 'Prajha Group – Top Construction & Real Estate Developers in Chennai',
+  description:
+    'Prajha Group is a leading construction and real estate development company in Chennai, offering expert services in property management, joint ventures, and investment opportunities. Explore our premium projects and connect with us today!',
 };
 
 import GsapProvider from "./components/GsapProvider";
