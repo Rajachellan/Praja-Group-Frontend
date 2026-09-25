@@ -78,16 +78,16 @@ export default function ServicesSection() {
       icon: Building2,
       badge: 'Approved Layouts',
     },
-    {
-      title: 'PROPERTY MANAGEMENT',
-      subtitle: 'NRI Caretaking, Tenant Screening & Maintenance',
-      description:
-        'Complete asset protection under "Mr. Care Taker". Periodic photo/video site reports, verified tenant onboarding, rent collection, and facility maintenance.',
-      image: '/service-property-management.png',
-      href: '/property-management',
-      icon: Settings,
-      badge: 'Caretaking & NRI Care',
-    },
+    // {
+    //   title: 'PROPERTY MANAGEMENT',
+    //   subtitle: 'NRI Caretaking, Tenant Screening & Maintenance',
+    //   description:
+    //     'Complete asset protection under "Mr. Care Taker". Periodic photo/video site reports, verified tenant onboarding, rent collection, and facility maintenance.',
+    //   image: '/service-property-management.png',
+    //   href: '/property-management',
+    //   icon: Settings,
+    //   badge: 'Caretaking & NRI Care',
+    // },
   ];
 
   return (
@@ -120,7 +120,7 @@ export default function ServicesSection() {
         </div>
 
         {/* 3 Core Divisions Grid */}
-        <div className="services-grid grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch">
+        <div className="services-grid grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {divisions.map((division, idx) => {
             const Icon = division.icon;
             return (

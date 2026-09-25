@@ -21,8 +21,11 @@ import {
   Check,
   Briefcase,
   MapPin,
+  AlertCircle,
+  ExternalLink,
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
+import api from '@/services/api';
 
 interface DirectorRole {
   title: string;
@@ -121,6 +124,8 @@ export default function AssociateDirectorsPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+  const [uploadedR2Url, setUploadedR2Url] = useState<string>('');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -128,14 +133,58 @@ export default function AssociateDirectorsPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError('');
+
+    try {
+      let pdfFileUrl = '';
+
+      // 1. If file attached, upload to Cloudflare R2 via backend service
+      if (selectedFile) {
+        const fileFormData = new FormData();
+        fileFormData.append('file', selectedFile);
+
+        const uploadRes = await api.post('/upload/document', fileFormData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        if (uploadRes.data && uploadRes.data.url) {
+          pdfFileUrl = uploadRes.data.url;
+          setUploadedR2Url(pdfFileUrl);
+        }
+      }
+
+      // 2. Submit form details along with Cloudflare R2 PDF URL to backend contact endpoint
+      const res = await api.post('/add/contact', {
+        name: formData.name,
+        email: formData.email,
+        phNo: formData.phone,
+        message: formData.message,
+        directorRole: formData.role,
+        file: pdfFileUrl,
+        propertyLocation: 'Associate Director Application',
+      });
+
+      if (res.data && res.data.success) {
+        setSubmitted(true);
+      } else {
+        setError(res.data?.message || 'Application submission failed. Please try again.');
+      }
+    } catch (err: any) {
+      console.error('Associate Director form submission error:', err);
+      setError(
+        err.response?.data?.message ||
+          'Failed to upload PDF document or submit form. Please check server connection.'
+      );
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#F37924] selection:text-white overflow-x-hidden">
@@ -430,6 +479,13 @@ export default function AssociateDirectorsPage() {
 
           <div className="bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-10 shadow-xl relative overflow-hidden">
             
+            {error && (
+              <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-semibold flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <span>{error}</span>
+              </div>
+            )}
+
             {submitted ? (
               <div className="p-8 rounded-2xl bg-[#F0FDF4] border border-emerald-300 space-y-4 text-center animate-fadeIn">
                 <div className="w-16 h-16 rounded-full bg-[#166534] text-white flex items-center justify-center mx-auto shadow-md">
@@ -441,16 +497,36 @@ export default function AssociateDirectorsPage() {
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
                   Thank you for applying for <span className="font-bold text-[#166534]">{formData.role}</span>. Our executive board will review your profile and contact you shortly.
                 </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', email: '', phone: '', role: 'Director - Business Development', message: '' });
-                    setSelectedFile(null);
-                  }}
-                  className="px-6 py-2.5 rounded-xl bg-[#166534] text-white text-xs font-bold hover:bg-[#0F2D24] transition-colors inline-flex items-center gap-2"
-                >
-                  <span>Submit Another Application</span>
-                </button>
+
+                {uploadedR2Url && (
+                  <div className="p-3.5 rounded-xl bg-white border border-emerald-200 inline-flex items-center gap-2 text-xs font-semibold text-slate-700 max-w-full overflow-hidden text-ellipsis">
+                    <Paperclip className="w-4 h-4 text-[#166534] shrink-0" />
+                    <span className="truncate">Cloudflare R2 PDF Attached:</span>
+                    <a
+                      href={uploadedR2Url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#166534] hover:underline font-bold inline-flex items-center gap-1 shrink-0"
+                    >
+                      <span>View File</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
+
+                <div>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setUploadedR2Url('');
+                      setFormData({ name: '', email: '', phone: '', role: 'Director - Business Development', message: '' });
+                      setSelectedFile(null);
+                    }}
+                    className="px-6 py-2.5 rounded-xl bg-[#166534] text-white text-xs font-bold hover:bg-[#0F2D24] transition-colors inline-flex items-center gap-2 cursor-pointer mt-2"
+                  >
+                    <span>Submit Another Application</span>
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -538,7 +614,7 @@ export default function AssociateDirectorsPage() {
                 {/* Attach Your Profile (File Upload) */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                    <Paperclip className="w-3.5 h-3.5 text-[#166534]" /> Attach Your Profile (Resume / Portfolio)
+                    <Paperclip className="w-3.5 h-3.5 text-[#166534]" /> Attach Your Profile (Resume / Portfolio PDF)
                   </label>
                   <div className="relative border-2 border-dashed border-slate-200 rounded-2xl p-4 bg-slate-50 hover:bg-emerald-50/50 hover:border-emerald-300 transition-all text-center cursor-pointer">
                     <input
@@ -566,7 +642,7 @@ export default function AssociateDirectorsPage() {
                   className="w-full py-4 rounded-2xl bg-[#166534] hover:bg-[#0F2D24] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer mt-4"
                 >
                   {loading ? (
-                    <span>Submitting Application...</span>
+                    <span>Uploading PDF & Submitting...</span>
                   ) : (
                     <>
                       <span>Submit Application</span>
@@ -593,3 +669,4 @@ export default function AssociateDirectorsPage() {
     </div>
   );
 }
+

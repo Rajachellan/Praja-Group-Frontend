@@ -56,7 +56,7 @@ export default function Footer() {
             </div>
 
             {/* Newsletter / Quick Email Subscribe */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-xs">
+            {/* <div className="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-xs">
               <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-2 flex items-center gap-2">
                 <Send className="w-3.5 h-3.5 text-[#F37924]" />
                 <span>Stay Updated</span>
@@ -74,7 +74,7 @@ export default function Footer() {
                   Join
                 </button>
               </form>
-            </div>
+            </div> */}
 
             {/* Social Links using react-icons */}
             <div className="flex items-center gap-3">
@@ -142,7 +142,7 @@ export default function Footer() {
               {[
                 { name: 'Constructions', href: '/constructions' },
                 { name: 'Developers & Plots', href: '/developers' },
-                { name: 'Property Management', href: '/property-management' },
+                // { name: 'Property Management', href: '/property-management' },
                 { name: 'Land Owners JV', href: '/land-owners' },
                 { name: 'Associate Directors', href: '/associate-directors' },
                 { name: 'Investors Program', href: '/investors' },

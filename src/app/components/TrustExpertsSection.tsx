@@ -89,7 +89,7 @@ export default function TrustExpertsSection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-10 lg:py-20 overflow-hidden">
       {/* Ambient background blur elements */}
       <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-[#F37924]/5 rounded-full blur-3xl pointer-events-none" />
