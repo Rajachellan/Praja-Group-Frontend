@@ -17,6 +17,7 @@ import {
   FileText,
   HeartHandshake
 } from 'lucide-react';
+import Link from 'next/link';
 
 interface PillarItem {
   id: string;
@@ -242,13 +243,13 @@ cursor-pointer flex flex-col justify-between relative group'
               </p>
 
               <div className="pt-2">
-                <a
-                  href="#enquiry-form"
+                <Link 
+                  href="contact-us"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs transition-all shadow-md hover:shadow-lg"
                 >
                   <span>Discuss Your Project With Us</span>
                   <ArrowRight className="w-4 h-4 text-[#F37924]" />
-                </a>
+                </Link>
               </div>
             </div>
 
