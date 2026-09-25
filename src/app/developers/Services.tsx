@@ -23,6 +23,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import Link from 'next/link'
+
 interface ServiceDetail {
   id: string;
   title: string;
@@ -495,13 +497,13 @@ export default function Services() {
 
               {/* Bottom CTA Button inside Left Column */}
               <div className="pt-8 relative z-10">
-                <a
-                  href="#enquiry-form"
+                <Link 
+                  href="/contact-us"
                   className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-sm tracking-wide transition-all shadow-lg hover:shadow-xl"
                 >
                   <span>Request Proposal for {activeService.title}</span>
                   <ArrowRight className="w-4 h-4 text-[#F37924]" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -606,13 +608,13 @@ export default function Services() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 shrink-0 relative z-10 w-full md:w-auto">
-            <a
-              href="#enquiry-form"
+            <Link
+              href="contact-us"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-sm transition-all shadow-lg hover:shadow-xl text-center"
             >
               <span>Book Free Site Visit</span>
               <ArrowRight className="w-4 h-4 text-[#F37924]" />
-            </a>
+            </Link>
 
             <a
               href="tel:+919499933461"

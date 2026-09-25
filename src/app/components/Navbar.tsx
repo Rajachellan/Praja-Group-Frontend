@@ -46,7 +46,7 @@ export default function Navbar() {
       href: '#joint-ventures',
       hasDropdown: true,
       subLinks: [
-        { name: 'Land Owners', href: '/land-owners' },
+        { name: 'Land Owners', href: '/landowners' },
         { name: 'Associate Directors', href: '/associate-directors' },
         { name: 'Investors', href: '/investors' },
       ],

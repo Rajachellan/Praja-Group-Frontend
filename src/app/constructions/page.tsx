@@ -493,13 +493,13 @@ export default function ConstructionsPage() {
 
           {/* Action CTA Row */}
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <a
-              href="#enquiry-form"
+            <Link
+              href="/contact-us"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#166534] hover:bg-[#166534] text-white font-bold text-base transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span>Book Free Site Consultation</span>
               <ArrowRight className="w-5 h-5 text-[#F37924]" />
-            </a>
+            </Link>
 
             <div className="flex items-center gap-2 text-xs font-bold text-slate-700 bg-white px-5 py-3.5 rounded-2xl border border-slate-200 shadow-sm">
               <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
