@@ -29,16 +29,18 @@ export default function Navbar() {
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about-us' },
-    {
-      name: 'Services',
-      href: '#services',
-      hasDropdown: true,
-      subLinks: [
-        { name: 'Constructions', href: '/constructions' },
-        { name: 'Developers', href: '/developers' },
-        { name: 'Property Management', href: '/property-management' },
-      ],
-    },
+    {name:'Construction', href:'/constructions'},
+    {name:'Developers', href:'/developers'},
+    // {
+    //   name: 'Services',
+    //   href: '#services',
+    //   hasDropdown: true,
+    //   subLinks: [
+    //     { name: 'Constructions', href: '/constructions' },
+    //     { name: 'Developers', href: '/developers' },
+    //     { name: 'Property Management', href: '/property-management' },
+    //   ],
+    // },
     {
       name: 'Joint Ventures',
       href: '#joint-ventures',
