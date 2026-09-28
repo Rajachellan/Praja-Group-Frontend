@@ -409,7 +409,7 @@ export default function ContactUsPage() {
 
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://www.facebook.com/profile.php?id=100075918745331"
+                    href="https://www.facebook.com/prajhagroup/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-3 rounded-xl bg-slate-50 hover:bg-[#166534] text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-2"
@@ -419,7 +419,7 @@ export default function ContactUsPage() {
                   </a>
 
                   <a
-                    href="https://www.instagram.com/prajhagroup/"
+                    href="https://www.instagram.com/prajha_group/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-3 rounded-xl bg-slate-50 hover:bg-[#166534] text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-2"
@@ -428,15 +428,6 @@ export default function ContactUsPage() {
                     <span>Instagram</span>
                   </a>
 
-                  <a
-                    href="https://www.linkedin.com/company/69127920/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 rounded-xl bg-slate-50 hover:bg-[#166534] text-slate-700 hover:text-white border border-slate-200 text-xs font-bold transition-all flex items-center justify-center gap-2"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>LinkedIn</span>
-                  </a>
                 </div>
               </div>
 

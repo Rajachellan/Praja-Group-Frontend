@@ -15,7 +15,7 @@ import {
   ArrowUp,
   Sparkles,
 } from 'lucide-react';
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -79,7 +79,7 @@ export default function Footer() {
             {/* Social Links using react-icons */}
             <div className="flex items-center gap-3">
               <a
-                href="https://www.facebook.com/profile.php?id=100075918745331"
+                href="https://www.facebook.com/prajhagroup/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#F37924] border border-white/10 hover:border-[#F37924] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-md"
@@ -88,22 +88,13 @@ export default function Footer() {
                 <FaFacebookF className="w-4 h-4" />
               </a>
               <a
-                href="https://www.instagram.com/prajhagroup/"
+                href="https://www.instagram.com/prajha_group/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#F37924] border border-white/10 hover:border-[#F37924] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-md"
                 aria-label="Instagram"
               >
                 <FaInstagram className="w-4.5 h-4.5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/69127920/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#F37924] border border-white/10 hover:border-[#F37924] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-md"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedinIn className="w-4.5 h-4.5" />
               </a>
             </div>
           </div>
