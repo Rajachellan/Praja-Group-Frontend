@@ -114,7 +114,7 @@ function page(){
                     <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Experience</p>
-                  <p className="text-xs sm:text-sm font-bold text-slate-900">15+ Years</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">17+ Years</p>
                 </div>
 
                 <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-300 transition-all">

@@ -216,7 +216,7 @@ return (
                   <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#F37924] flex items-center justify-center mb-4">
                     <Award className="w-6 h-6" />
                   </div>
-                  <div className="text-3xl font-extrabold text-slate-900">15+ Yrs</div>
+                  <div className="text-3xl font-extrabold text-slate-900">17+ Yrs</div>
                   <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
                     Engineering Excellence
                   </div>

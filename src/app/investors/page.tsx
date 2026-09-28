@@ -333,7 +333,7 @@ export default function InvestorsPage() {
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100 mt-6 flex items-center justify-between text-xs font-bold text-[#166534]">
-                <span>15+ Years Excellence</span>
+                <span>17+ Years Excellence</span>
                 <CheckCircle2 className="w-4 h-4 text-[#F37924]" />
               </div>
             </div>

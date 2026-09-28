@@ -99,7 +99,7 @@ export default function Values() {
       borderColor: 'group-hover:border-[#166534]',
       badgeStyle: 'bg-emerald-100/80 text-[#166534] border-emerald-200',
       bullets: [
-        '15+ Years Proven Track Record',
+        '17+ Years Proven Track Record',
         'On-Time Handover Guarantee',
         'Dedicated Post-Handover Care',
       ],

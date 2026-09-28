@@ -29,7 +29,7 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * ease(t);
  */
 export default function ConstructionAnimation({
   label = 'Prajha Civil Engineering',
-  subLabel = 'Turnkey Structural Execution • 15+ Yrs',
+  subLabel = 'Turnkey Structural Execution • 17+ Yrs',
   href,
   className = '',
 }: ConstructionAnimationProps) {

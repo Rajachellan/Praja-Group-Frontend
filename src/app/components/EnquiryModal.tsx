@@ -142,7 +142,7 @@ export default function EnquiryModal() {
                 <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center shrink-0 text-amber-300">
                   <Award className="w-3.5 h-3.5" />
                 </div>
-                <span className="font-medium">15+ Years of Architectural Excellence</span>
+                <span className="font-medium">17+ Years of Architectural Excellence</span>
               </div>
               <div className="flex items-center gap-3 text-xs text-white/90">
                 <div className="w-6 h-6 rounded-full bg-white/15 flex items-center justify-center shrink-0 text-amber-300">

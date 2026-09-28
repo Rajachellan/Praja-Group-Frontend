@@ -39,7 +39,7 @@ const PILLARS_DATA: PillarItem[] = [
     subtitle: 'Proven Civil Expertise',
     description:
       'With over 15 years of experience in the construction industry, we have the knowledge and skills to take on any project, big or small.',
-    tag: '15+ Years Track Record',
+    tag: '17+ Years Track Record',
     icon: HardHat,
     badgeBg: 'bg-emerald-100/80',
     iconColor: 'text-[#166534]',

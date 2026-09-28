@@ -294,7 +294,7 @@ function Solutions() {
               </div>
 
               <div className="space-y-1 pt-4 md:pt-0">
-                <p className="text-3xl sm:text-4xl font-bold text-white">15+ Years</p>
+                <p className="text-3xl sm:text-4xl font-bold text-white">17+ Years</p>
                 <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">Civil Engineering Excellence</p>
                 <p className="text-[11px] text-emerald-400">Proven Structural Expertise</p>
               </div>

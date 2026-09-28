@@ -128,7 +128,7 @@ export default function Herosection() {
 
               <div className="hero-desc flex flex-col gap-3 mb-8">
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
-                  With 15+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai.
+                  With 17+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai.
                 </p>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
                   From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life.

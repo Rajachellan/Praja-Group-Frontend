@@ -606,7 +606,7 @@ export default function LandownersPage() {
             {/* Verified Statistics Counters */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-emerald-800/60 max-w-xl">
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm space-y-1">
-                <div className="text-3xl sm:text-4xl font-black text-[#F37924]">15+</div>
+                <div className="text-3xl sm:text-4xl font-black text-[#F37924]">17+</div>
                 <div className="text-xs sm:text-sm font-bold text-slate-200">Years of Experience</div>
               </div>
 

@@ -4,14 +4,14 @@ import VillaPageClient from './components/VillaPageClient';
 export const metadata: Metadata = {
   title: 'Villa in Sriperumbudur | Prajha Group Chennai',
   description:
-    'Modern Design Villa With 15+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai. From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life. View Property Kaduvancheri,Sriperumbudur. 9500120231 / 9499933741 +91 9962562562 marketing@prajhagroup.com Premium Villas',
+    'Modern Design Villa With17+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai. From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life. View Property Kaduvancheri,Sriperumbudur. 9500120231 / 9499933741 +91 9962562562 marketing@prajhagroup.com Premium Villas',
   alternates: {
     canonical: 'https://www.prajhagroup.com/villa-in-sriperumbudur/',
   },
   openGraph: {
     title: 'Villa in Sriperumbudur | Prajha Group Chennai',
     description:
-      'Modern Design Villa With 15+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai. From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life. View Property Kaduvancheri,Sriperumbudur. 9500120231 / 9499933741 +91 9962562562 marketing@prajhagroup.com Premium Villas',
+      'Modern Design Villa With 17+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Chennai. From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life. View Property Kaduvancheri,Sriperumbudur. 9500120231 / 9499933741 +91 9962562562 marketing@prajhagroup.com Premium Villas',
     type: 'website',
     url: 'https://www.prajhagroup.com/villa-in-sriperumbudur/',
     images: [

@@ -51,7 +51,7 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-white/75 text-xs sm:text-sm leading-relaxed max-w-sm font-normal">
-                Prajha Group is Chennai’s trusted leader in residential, commercial construction, joint ventures, and property management with 15+ years of architectural excellence.
+                Prajha Group is Chennai’s trusted leader in residential, commercial construction, joint ventures, and property management with 17+ years of architectural excellence.
               </p>
             </div>
 

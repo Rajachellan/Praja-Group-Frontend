@@ -90,7 +90,7 @@ function page(){
                     <Award className="w-5 h-5" />
                   </div>
                   <p className="text-xs text-slate-500 font-medium">Experience</p>
-                  <p className="text-sm font-bold text-slate-900">15+ Years</p>
+                  <p className="text-sm font-bold text-slate-900">17+ Years</p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-300 transition-all">

@@ -255,7 +255,7 @@ export default function ConstructionsPage() {
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
                 </span>
                 <span className="text-xs font-bold uppercase tracking-wider ">
-                  PRAJHA CONSTRUCTIONS DIVISION • 15+ YEARS CIVIL EXCELLENCE
+                  PRAJHA CONSTRUCTIONS DIVISION • 17+ YEARS CIVIL EXCELLENCE
                 </span>
               </div>
 
@@ -292,7 +292,7 @@ export default function ConstructionsPage() {
                     <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Experience</p>
-                  <p className="text-xs sm:text-sm font-bold text-slate-900">15+ Years</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">17+ Years</p>
                 </div>
 
                 <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
@@ -472,7 +472,7 @@ export default function ConstructionsPage() {
               </div>
 
               <div className="space-y-1 pt-4 md:pt-0">
-                <p className="text-3xl sm:text-4xl font-bold text-white">15+ Years</p>
+                <p className="text-3xl sm:text-4xl font-bold text-white">17+ Years</p>
                 <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">Civil Engineering Excellence</p>
                 <p className="text-[11px] text-emerald-400">Proven Structural Expertise</p>
               </div>
