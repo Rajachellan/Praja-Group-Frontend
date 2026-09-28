@@ -98,13 +98,13 @@ export default function Herosection() {
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce"></span>
                 </span>
                 <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.15em] text-[#0F2D24]">
-                  BUILDING INDIA. POWERING LIVES.
+                  BUILDING INDIA. POWERING INDIA.
                 </span>
               </div>
 
               {/* Heading */}
               <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-[1.12] mb-5 heading">
-                Leading Construction & Real Estate Developers in <span className="text-[#166534] relative inline-block">Chennai</span>
+                Leading Construction & Real Estate Developers in <span className="text-[#166534] relative inline-block">Tamilnadu</span>
               </h1>
 
               <h2 className="hero-sub hero-heading italic text-[16px] font-bold mb-5" style={{letterSpacing:"1px"}}>

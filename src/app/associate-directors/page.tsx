@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import AssociateApplicationForm from './AssociateApplicationForm';
+import boardroomHero from '../../../public/boardroom-hero.png';
 
 export const metadata: Metadata = {
   title: 'Prajha Group Associates | Chennai Construction Partners',
@@ -68,7 +69,7 @@ const DIRECTOR_ROLES: DirectorRole[] = [
     ],
   },
   {
-    title: 'Director - Construction Management',
+    title: 'Director - Construction Projects',
     category: 'Civil Execution & Delivery',
     icon: HardHat,
     description:
@@ -79,18 +80,18 @@ const DIRECTOR_ROLES: DirectorRole[] = [
       'Optimize BOQ budgets and completion timelines',
     ],
   },
-  {
-    title: 'Director - Facility Management',
-    category: 'Asset Care & Operations',
-    icon: Wrench,
-    description:
-      'Lead property caretaking, commercial facility maintenance, tenant relations, and operational asset management for branch projects.',
-    responsibilities: [
-      'Maintain residential & commercial real estate assets',
-      'Implement preventive maintenance & safety audits',
-      'Ensure maximum tenant satisfaction and asset longevity',
-    ],
-  },
+  // {
+  //   title: 'Director - Facility Management',
+  //   category: 'Asset Care & Operations',
+  //   icon: Wrench,
+  //   description:
+  //     'Lead property caretaking, commercial facility maintenance, tenant relations, and operational asset management for branch projects.',
+  //   responsibilities: [
+  //     'Maintain residential & commercial real estate assets',
+  //     'Implement preventive maintenance & safety audits',
+  //     'Ensure maximum tenant satisfaction and asset longevity',
+  //   ],
+  // },
 ];
 
 const associateFaqs: FaqItem[] = [
@@ -217,8 +218,8 @@ export default function AssociateDirectorsPage() {
             <div className="lg:col-span-5 w-full flex justify-center">
               <div className="relative w-full max-w-[520px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
                 <Image
-                  src="/commercial-invest.png"
-                  alt="Modern city skyline representing real estate management and property management career opportunities"
+                  src={boardroomHero}
+                  alt="Modern executive boardroom setup for Prajha Group Associate Directors"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
@@ -266,7 +267,7 @@ export default function AssociateDirectorsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {DIRECTOR_ROLES.map((role) => {
               const Icon = role.icon;
               return (

@@ -84,7 +84,7 @@ function page(){
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-[1.12]  mb-5 heading">
                 Leading Real Estate Developers <br className="hidden sm:inline" />
-                in <span className="text-[#166534] relative inline-block">Chennai</span>
+                in <span className="text-[#166534] relative inline-block">Tamilnadu</span>
               </h1>
 
               {/* Sub-headline */}

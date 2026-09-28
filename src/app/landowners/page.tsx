@@ -18,12 +18,12 @@ import {
   CheckCircle2,
   ArrowRight,
   Award,
-  Layers,
   ArrowUpRight,
 } from 'lucide-react';
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import LandownerEnquiryForm from './LandownerEnquiryForm';
 import ScrollToSectionButton from './ScrollToSectionButton';
+import landownerPlotHero from '../../../public/landowner-plot-hero.png';
 
 export const metadata: Metadata = {
   title: 'Joint Venture Opportunities for Landowners | Prajha Group',
@@ -182,8 +182,8 @@ export default function LandownersPage() {
               <div className="lg:col-span-5 w-full flex justify-center">
                 <div className="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
                   <Image
-                    src="/skyline-chennai.png"
-                    alt="Prajha Group Landowner Joint Venture Real Estate Development"
+                    src={landownerPlotHero}
+                    alt="Prajha Group Landowner Joint Venture Real Estate Plot and Villa Development"
                     width={800}
                     height={600}
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"

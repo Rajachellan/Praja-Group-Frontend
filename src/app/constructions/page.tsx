@@ -439,7 +439,7 @@ export default function ConstructionsPage() {
             </div>
 
             {/* Card 4 */}
-            <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
+            {/* <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-[#166534]/10 transition-colors" />
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 mt-0.5">
@@ -459,7 +459,7 @@ export default function ConstructionsPage() {
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Structural Strengthening</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Interior Fit-Outs</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Live Performance Counter Bar (Replaces floating image stat) */}

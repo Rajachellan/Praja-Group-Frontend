@@ -14,6 +14,8 @@ import {
   Award,
 } from 'lucide-react';
 
+import trustExpertsVisual from '../../../public/trust-experts-visual.png';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -106,8 +108,8 @@ export default function TrustExpertsSection() {
               {/* Main Visual Image Container */}
               <div className="relative rounded-3xl overflow-hidden bg-white/70 backdrop-blur-sm border border-emerald-900/10 shadow-[0_20px_50px_-15px_rgba(15,45,36,0.15)] transition-all duration-300 group-hover:shadow-[0_25px_60px_-12px_rgba(22,101,52,0.22)]">
                 <Image
-                  src="/experts-visual.png"
-                  alt="Prajha Group Architectural Landmarks and City Developments"
+                  src={trustExpertsVisual}
+                  alt="Prajha Group Engineering Experts and Construction Team"
                   width={680}
                   height={580}
                   className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
