@@ -181,7 +181,7 @@ export default function Navbar() {
           {/* Right Action Certificate Badge */}
           <div className="hidden sm:flex items-center">
             <Image
-              src="/certificate-badge.png"
+              src="/prajha-group-experience.png"
               alt="15 Years Certificate Badge"
               width={200}
               height={100}

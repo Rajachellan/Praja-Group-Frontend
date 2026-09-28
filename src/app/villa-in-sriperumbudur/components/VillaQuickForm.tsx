@@ -13,57 +13,61 @@ import {
   ShieldCheck,
   Headphones,
 } from 'lucide-react';
+import { AxiosError } from 'axios';
 import api from '../../../../services/api';
 
 export default function VillaQuickForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+ 
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phNo, setPhNo] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function enquiryForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    if (!formData.name || !formData.phone) {
-      setError('Please provide your name and phone number.');
-      setLoading(false);
-      return;
-    }
-
     try {
-      await api.post('/enquiries', {
-        name: formData.name,
-        email: formData.email,
-        phNo: formData.phone,
-        message: formData.message,
-        propertyLocation: 'Kaduvancheri, Sriperumbudur Villa',
+      const response = await api.post('/add/contact', {
+        name,
+        email,
+        phNo,
+        message,
+        propertyLocation: 'sriperumbudur',
       });
-      setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (err: unknown) {
-      console.log('API call fallback - showing success message for user submission feedback', err);
-      // Fallback grace so user always gets positive confirmation
-      setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
+
+      if (response.data?.success) {
+        setSubmitted(true);
+      } else {
+        setError(response.data?.message || 'Unable to submit your enquiry. Please try again.');
+      }
+    } catch (submitError) {
+      const axiosError = submitError as AxiosError<{ message: string }>;
+      setError(
+        axiosError.response?.data?.message ||
+          'Unable to submit your enquiry. Please check your connection and try again.'
+      );
     } finally {
       setLoading(false);
     }
-  };
+  }
+
+  function resetForm() {
+    setSubmitted(false);
+    setError('');
+    setName('');
+    setEmail('');
+    setPhNo('');
+    setMessage('');
+  }
+
+ 
 
   return (
     <section id="enquire" className="py-16 bg-[#FBFBFB] relative overflow-hidden">
@@ -134,14 +138,14 @@ export default function VillaQuickForm() {
                       Our Sriperumbudur project manager will get in touch with you shortly with complete brochure, pricing, and site visit options.
                     </p>
                     <button
-                      onClick={() => setSubmitted(false)}
+                      onClick={resetForm}
                       className="px-6 py-2.5 rounded-xl bg-[#166534] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#0B3B24] transition-colors"
                     >
                       Submit Another Enquiry
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={(e)=>enquiryForm(e)} className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900 font-heading mb-4">
                       Book Your Free Site Visit & Floor Plan
                     </h3>
@@ -167,8 +171,8 @@ export default function VillaQuickForm() {
                             type="text"
                             name="name"
                             required
-                            value={formData.name}
-                            onChange={handleChange}
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
                             placeholder="Enter your full name"
                             className="w-full pl-9 pr-3 py-3 rounded-xl border border-gray-200 focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/20 text-sm outline-none transition-all"
                           />
@@ -188,8 +192,8 @@ export default function VillaQuickForm() {
                             type="tel"
                             name="phone"
                             required
-                            value={formData.phone}
-                            onChange={handleChange}
+                            value={phNo}
+                            onChange={(e) => setPhNo(e.target.value.replace(/\D/g, ''))}
                             placeholder="Enter mobile number"
                             className="w-full pl-9 pr-3 py-3 rounded-xl border border-gray-200 focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/20 text-sm outline-none transition-all"
                           />
@@ -200,7 +204,7 @@ export default function VillaQuickForm() {
                     {/* Email Field */}
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                        Email Address
+                        Email Address <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
@@ -209,8 +213,9 @@ export default function VillaQuickForm() {
                         <input
                           type="email"
                           name="email"
-                          value={formData.email}
-                          onChange={handleChange}
+                          required
+                          value={email}
+                          onChange={(e)=>setEmail(e.target.value)}
                           placeholder="Enter your email address"
                           className="w-full pl-9 pr-3 py-3 rounded-xl border border-gray-200 focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/20 text-sm outline-none transition-all"
                         />
@@ -220,7 +225,7 @@ export default function VillaQuickForm() {
                     {/* Message Field */}
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
-                        Message / Query
+                        Message / Query <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <div className="absolute top-3 left-3 pointer-events-none text-gray-400">
@@ -229,8 +234,9 @@ export default function VillaQuickForm() {
                         <textarea
                           name="message"
                           rows={3}
-                          value={formData.message}
-                          onChange={handleChange}
+                          required
+                          value={message}
+                          onChange={(e)=>setMessage(e.target.value)}
                           placeholder="Tell us about your requirement or preferred site visit date..."
                           className="w-full pl-9 pr-3 py-3 rounded-xl border border-gray-200 focus:border-[#166534] focus:ring-2 focus:ring-[#166534]/20 text-sm outline-none transition-all resize-none"
                         ></textarea>
