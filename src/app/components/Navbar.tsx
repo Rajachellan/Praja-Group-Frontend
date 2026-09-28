@@ -51,7 +51,7 @@ export default function Navbar() {
         { name: 'Investors', href: '/investors' },
       ],
     },
-    { name: 'Careers', href: '#' },
+    { name: 'Careers', href: '/careers' },
     { name: 'Blogs', href: '/blogs' },
     { name: 'Contact Us', href: '/contact-us' },
   ];
