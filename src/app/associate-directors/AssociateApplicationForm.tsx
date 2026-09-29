@@ -130,7 +130,8 @@ export default function AssociateApplicationForm() {
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5"><Briefcase className="w-3.5 h-3.5 text-[#166534]" /> Select Director Role *</label>
                   <select value={formData.role} onChange={(event) => setFormData({ ...formData, role: event.target.value })} className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#166534] focus:bg-white focus:outline-none text-xs sm:text-sm text-slate-900 transition-all font-semibold">
-                    <option>Director - Business Development</option><option>Director - Construction Management</option><option>Director - Facility Management</option>
+                    <option>Director - Business Development</option><option>Director - Construction Management</option>
+                    {/* <option>Director - Facility Management</option> */}
                   </select>
                 </div>
               </div>

@@ -75,7 +75,7 @@ const SERVICES_DATA: ServiceDetail[] = [
     ],
     specs: [
       { label: 'Structure', value: 'RCC Framed Structure (Fe 550D TMT Steel)' },
-      { label: 'Flooring', value: '800x800mm Vitrified Tiles (Kajaria / Somany)' },
+      { label: 'Flooring', value: '600x600mm Vitrified Tiles (Kajaria / Somany)' },
       { label: 'Security', value: '24/7 CCTV & Multi-Tier Entrance Access' },
       { label: 'Power Backup', value: '100% Generator Backup for Common Areas' },
       { label: 'Sanction', value: '100% CMDA & Local Body Approved' },

@@ -100,7 +100,7 @@ const associateFaqs: FaqItem[] = [
     category: 'Roles',
     question: '1. What roles are available under the Associate Director program at Prajha Group?',
     answer:
-      'We offer three key director roles across major branches in Tamil Nadu: Director - Business Development, Director - Construction Management, and Director - Facility Management.',
+      'We offer three key director roles across major branches in Tamil Nadu: Director - Business Development, Director - Construction Management.',
   },
   {
     id: 'faq-2',
@@ -185,7 +185,7 @@ export default function AssociateDirectorsPage() {
               <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
                 <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
                 <h2 className="text-[14px] sm:text-[15px] font-bold text-slate-800 italic">
-                  Business Development • Construction • Facility Management
+                  Business Development • Construction
                 </h2>
               </div>
 
