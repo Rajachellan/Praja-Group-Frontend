@@ -24,6 +24,7 @@ import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import LandownerEnquiryForm from './LandownerEnquiryForm';
 import ScrollToSectionButton from './ScrollToSectionButton';
 import LandownerHeroCarousel from './LandownerHeroCarousel';
+import LandForm from './LandForm';
 
 export const metadata: Metadata = {
   title: 'Joint Venture Opportunities for Landowners | Prajha Group',
@@ -479,6 +480,7 @@ export default function LandownersPage() {
         </section>
 
         {/* <LandownerEnquiryForm /> */}
+          <LandForm/>
 
        
         {/* 8. What Happens After Submission? */}

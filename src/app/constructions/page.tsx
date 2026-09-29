@@ -255,26 +255,29 @@ export default function ConstructionsPage() {
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534]" />
                 </span>
                 <span className="text-xs font-bold uppercase tracking-wider ">
-                  PRAJHA CONSTRUCTIONS DIVISION • 17+ YEARS CIVIL EXCELLENCE
+                  PRAJHA CONSTRUCTIONS DIVISION  • Building Your Vision
                 </span>
               </div>
 
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-[1.12]  mb-5 heading">
                 Best Construction Company <br className="hidden sm:inline" />
-                in <span className="text-[#166534] relative inline-block">Chennai</span>
+                in <span className="text-[#166534] relative inline-block">Tamilnadu</span>
               </h1>
 
               {/* Sub-headline */}
               <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
                 <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
                 <h2 className="hero-heading italic  text-[16px] font-bold">
-                  Build Your Dream Project with Experts
+                  Trusted Construction Services.
                 </h2>
               </div>
 
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl ">
-                At Prajha Group, we turn ambitious architectural concepts into structural reality. From individual turnkey luxury villas to high-rise commercial corporate hubs, our civil engineering team delivers superior standards, complete material transparency, and on-time project completion.
+                At Prajha Group, we turn your construction vision into reality through expert craftsmanship, meticulous attention to detail, and an unwavering commitment to quality. Whether you are planning to build a independent home, villa, bungalow, gated communities, commercial property, our experienced team of professionals is committed to guiding you through every stage of the construction process.
+              </p>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl ">
+                We take pride in delivering quality construction services tailored to your requirements and objectives. From conceptual planning and design to construction and final execution, our expertise covers a comprehensive range of construction solutions.
               </p>
 
               {/* Quick Key Highlights Grid */}

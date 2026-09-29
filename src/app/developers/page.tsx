@@ -8,7 +8,8 @@ import {
   Award,
   ChevronRight,
   FileCheck,
-  Home
+  Home,
+  Layers
 } from 'lucide-react';
 import Link from "next/link";
 import RealEstateDeveloperAnimation from './Animation'
@@ -100,7 +101,7 @@ function page(){
               </p>
 
               {/* Quick Key Highlights Grid */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-2">
                 <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center mb-1.5 sm:mb-2">
                     <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -123,6 +124,14 @@ function page(){
                   </div>
                   <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Approvals</p>
                   <p className="text-xs sm:text-sm font-bold text-slate-900">CMDA & DTCP</p>
+                </div>
+
+                <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-orange-300 transition-all">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-50 text-[#F37924] flex items-center justify-center mb-1.5 sm:mb-2">
+                    <Layers className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Key Specifications · Flooring</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">600 × 600 mm Vitrified Tiles</p>
                 </div>
               </div>
 

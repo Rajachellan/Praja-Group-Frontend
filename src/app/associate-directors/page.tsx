@@ -178,7 +178,7 @@ export default function AssociateDirectorsPage() {
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-black leading-[1.15]">
                 Lead Our Branches Across <br className="hidden sm:inline" />
-                <span className="text-[#166534]">Tamil Nadu</span>
+                <span className="text-[#166534]">Tamil Nadu Business Development, Construction</span>
               </h1>
 
               {/* Sub-headline Pill */}
@@ -191,7 +191,7 @@ export default function AssociateDirectorsPage() {
 
               {/* Intro Paragraph */}
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-                At Prajha Group, we are expanding and seeking dynamic individuals to lead our branches in Tamil Nadu. Become a key decision-maker in business development, construction, or facility management and drive real estate projects to success.
+                At Prajha Group, we are expanding and seeking dynamic individuals to lead our branches in Tamil Nadu. Become a key decision-maker in business development, construction, drive real estate projects to success.
               </p>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">

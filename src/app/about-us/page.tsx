@@ -104,7 +104,7 @@ export default function AboutUsPage() {
 
                 {/* Overview Text */}
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-                  Prajha Group of Companies is a Chennai-based premier Builders and Developers firm specializing in residential, commercial, and infrastructure development. With expertise spanning Engineering, Procurement & Contracting (EPC), building construction, infrastructure development, and building maintenance services, we deliver quality-driven projects built on innovation, reliability, and lasting value.
+                  Prajha Group of Companies is a <b className='font-bold'>Chennai-based group engaged</b> in Building Construction, Property Development, Skill Development, Empowerment of Challenged Individuals, and Social Responsibility initiatives through Prajha Trust.
                 </p>
 
                 {/* Founder Spotlight Card */}
@@ -130,7 +130,7 @@ export default function AboutUsPage() {
                         </span>
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                        Started by Mr. P.R. Babu Prabakaran, an Engineering Graduate holding a Master’s Degree in Business Administration, Prajha Group has rapidly emerged as one of the fastest culture-growing construction, maintenance, and infrastructure companies in Tamil Nadu.
+                        Founded by <b className='font-black'>Mr. P.R. Babu Prabakaran,</b> an Engineering Graduate with a <b className='font-black'>Master’s Degree in Business Administration,</b> Prajha Group has steadily grown into an established <b className='font-black'>construction and property development company in Tamil Nadu,</b> with a focus on delivering quality projects and creating long-term value.
                       </p>
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function AboutUsPage() {
                       <span className="w-2.5 h-2.5 rounded-full bg-[#F37924] animate-ping" />
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-slate-900">
-                      Integrated EPC & Infrastructure Contracting
+                       Builders & Developers • Infrastructure Development
                     </h3>
                     <p className="text-[11px] sm:text-xs text-slate-600 font-medium leading-relaxed">
                       Delivering high-precision building construction, civil maintenance, skill academies, and social empowerment across Tamil Nadu.

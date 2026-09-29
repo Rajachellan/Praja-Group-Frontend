@@ -181,10 +181,10 @@ export default function Navbar() {
           {/* Right Action Certificate Badge */}
           <div className="hidden sm:flex items-center">
             <Image
-              src="/prajha-group-experience.png"
-              alt="15 Years Certificate Badge"
-              width={200}
-              height={100}
+              src="/year.png"
+              alt="17 Years Certificate Badge"
+              width={1347}
+              height={1167}
               priority
               className="h-16 sm:h-20 lg:h-[84px] w-auto object-contain transform hover:scale-105 transition-transform duration-200"
             />
@@ -258,10 +258,10 @@ export default function Navbar() {
 
           <div className="pt-2 flex justify-center border-t border-gray-100">
             <Image
-              src="/certificate-badge.png"
-              alt="15 Years Certificate Badge"
-              width={160}
-              height={80}
+              src="/prajha-group-experience.png"
+              alt="17 Years Certificate Badge"
+              width={1347}
+              height={1167}
               className="h-16 w-auto object-contain"
             />
           </div>
