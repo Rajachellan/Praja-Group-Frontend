@@ -78,7 +78,7 @@ export default function Herosection() {
   );
 
   const stats = [
-    { icon: Clock, num: 15, suffix: '+', label: 'Years of Experience' },
+    { icon: Clock, num: 17, suffix: '+', label: 'Years of Experience' },
     { icon: Award, num: 106, suffix: '+', label: 'Completed Projects' },
     { icon: Building2, num: 25, suffix: '+', label: 'Ongoing Projects' },
     { icon: Users, num: 500, suffix: '+', label: 'Happy Customers' },

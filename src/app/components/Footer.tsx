@@ -111,6 +111,8 @@ export default function Footer() {
                 { name: 'Careers', href: '#' },
                 { name: 'Blogs', href: '#' },
                 { name: 'Contact Us', href: '/contact-us' },
+                { name: 'Privacy Policy', href: '/privacy-policy' },
+                { name: 'Terms & Conditions', href: '/terms-and-conditions' },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -201,8 +203,8 @@ export default function Footer() {
           </p>
           
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
             
             <button
               onClick={scrollToTop}

@@ -18,7 +18,7 @@ const STATS_DATA: StatItem[] = [
   {
     id: 'exp',
     icon: Clock,
-    targetValue: 15,
+    targetValue: 17,
     label: 'Years Experience',
     sublabel: 'Established in 2010',
     badge: 'Prajha Legacy',
