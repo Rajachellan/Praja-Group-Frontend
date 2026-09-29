@@ -98,7 +98,7 @@ export default function AboutUsPage() {
                 <div className="flex items-start sm:items-center gap-3 px-3.5 sm:px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm max-w-full">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#F37924] shrink-0 mt-0.5 sm:mt-0" />
                   <h2 className="text-xs sm:text-[15px] md:text-[16px] font-bold text-slate-800 italic leading-snug">
-                    EPC Contracting • Builders & Developers • Infrastructure & Construction • Skill Academies & Social Trust
+                    Builders & Developers • Infrastructure Development • Construction Excellence • Property Development
                   </h2>
                 </div>
 

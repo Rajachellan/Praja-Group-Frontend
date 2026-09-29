@@ -69,7 +69,7 @@ const DIRECTOR_ROLES: DirectorRole[] = [
     ],
   },
   {
-    title: 'Director - Construction Projects',
+    title: 'Director - Projects',
     category: 'Civil Execution & Delivery',
     icon: HardHat,
     description:

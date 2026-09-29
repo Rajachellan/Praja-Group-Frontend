@@ -23,7 +23,7 @@ import {
 import AdvancedFaqSection, { FaqItem } from '../components/AdvancedFaqSection';
 import LandownerEnquiryForm from './LandownerEnquiryForm';
 import ScrollToSectionButton from './ScrollToSectionButton';
-import landownerPlotHero from '../../../public/landowner-plot-hero.png';
+import LandownerHeroCarousel from './LandownerHeroCarousel';
 
 export const metadata: Metadata = {
   title: 'Joint Venture Opportunities for Landowners | Prajha Group',
@@ -178,27 +178,9 @@ export default function LandownersPage() {
                 </div>
               </div>
 
-              {/* Hero Visual Image */}
+              {/* Hero Visual Image Carousel */}
               <div className="lg:col-span-5 w-full flex justify-center">
-                <div className="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
-                  <Image
-                    src={landownerPlotHero}
-                    alt="Prajha Group Landowner Joint Venture Real Estate Plot and Villa Development"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#F37924]">
-                      PRAJHA LAND DEVELOPMENT
-                    </span>
-                    <h3 className="text-base font-bold leading-tight">
-                      Transforming Prime Land Into High-Value Real Estate
-                    </h3>
-                  </div>
-                </div>
+                <LandownerHeroCarousel />
               </div>
 
             </div>
