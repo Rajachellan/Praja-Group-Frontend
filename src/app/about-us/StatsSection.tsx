@@ -81,7 +81,7 @@ export default function StatsSection() {
 
       const obj = { exp: 0, completed: 0, ongoing: 0, workforce: 0 };
       gsap.to(obj, {
-        exp: 15,
+        exp: 17,
         completed: 106,
         ongoing: 4,
         workforce: 97,
