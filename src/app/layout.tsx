@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   title: 'Prajha Group – Top Construction & Real Estate Developers in Chennai',
   description:
     'Prajha Group is a leading construction and real estate development company in Chennai, offering expert services in property management, joint ventures, and investment opportunities. Explore our premium projects and connect with us today!',
+  icons: {
+    icon: '/fav-icon.png',
+    shortcut: '/fav-icon.png',
+    apple: '/fav-icon.png',
+  },
 };
 
 import GsapProvider from "./components/GsapProvider";
