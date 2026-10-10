@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Herosection from './components/Herosection';
 import TrustExpertsSection from './components/TrustExpertsSection';
 import ServicesSection from './components/ServicesSection';
+import ProjectsShowcase from './components/ProjectsShowcase';
 import Values from './components/Values';
 import Clients from './components/Clients';
 
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     url: 'https://www.prajhagroup.com/',
     siteName: 'Prajha Group',
     type: 'website',
-  },
+    },
   robots: {
     index: true,
     follow: true,
@@ -43,6 +44,7 @@ export default function Home() {
       <Herosection />
       <TrustExpertsSection />
       <ServicesSection />
+      <ProjectsShowcase />
       <Values />
       <Clients />
     </main>

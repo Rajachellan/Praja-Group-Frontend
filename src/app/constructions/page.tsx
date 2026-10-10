@@ -38,6 +38,7 @@ import {
 import ConstructionBadge from './Animation'
 import Services from './Services';
 import WhyChooseUs from './WhyChooseUs';
+import ProjectsShowcase from '../components/ProjectsShowcase';
 
 
 export const metadata: Metadata = {
@@ -308,7 +309,7 @@ export default function ConstructionsPage() {
               </div>
 
               {/* CTA Action Buttons */}
-               {/* CTA Action Buttons */}
+              {/* CTA Action Buttons */}
               <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
                 <Link
                   href="#projects"
@@ -346,7 +347,7 @@ export default function ConstructionsPage() {
           {/* Header Block */}
           <div className="text-center max-w-3xl mx-auto flex flex-col lg:gap-7 gap-5">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto" style={{alignSelf:"flex-start"}}>
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto" style={{ alignSelf: "flex-start" }}>
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-60 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce" />
@@ -356,7 +357,7 @@ export default function ConstructionsPage() {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black" style={{letterSpacing:"1px",lineHeight:"60px"}}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black" style={{ letterSpacing: "1px", lineHeight: "60px" }}>
               Building Your Vision <br className="hidden sm:inline" />
               <span className="text-[#166534]">Trusted Construction Services</span>
             </h2>
@@ -516,9 +517,12 @@ export default function ConstructionsPage() {
       {/* Our Construction Services Component Section */}
       <Services />
 
+      {/* Unified Swiper Showcase: Project Photos & 4K Video Tours */}
+      <ProjectsShowcase />
+
       {/* Why Choose Prajha Group? (5 Core Pillars) Component Section */}
       <WhyChooseUs />
-      
+
     </div>
   );
 }
