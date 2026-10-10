@@ -380,60 +380,38 @@ export default function ProjectsShowcase() {
                     <SwiperSlide key={project.id}>
                       <div
                         onClick={() => setSelectedImage(project)}
-                        className="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col h-full group"
+                        className="relative h-80 sm:h-[380px] w-full rounded-2xl overflow-hidden border border-slate-700/60 shadow-xl hover:shadow-2xl hover:border-emerald-500/50 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer group bg-slate-950"
                       >
-                        <div className="relative h-64 w-full bg-slate-950 overflow-hidden">
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-95 group-hover:opacity-100"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-95 group-hover:opacity-100"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        
+                        {/* Overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 opacity-60 group-hover:opacity-40 transition-opacity" />
 
-                          <div className="absolute top-3 left-3 z-10">
-                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/90 text-emerald-200 backdrop-blur-md border border-emerald-500/30">
-                              {project.status}
-                            </span>
-                          </div>
-
-                          <div className="absolute top-3 right-3 z-10">
-                            <span className="px-3 py-1 rounded-full text-xs font-medium bg-slate-950/80 text-slate-200 backdrop-blur-md">
-                              {project.categoryLabel}
-                            </span>
-                          </div>
-
-                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                            <span className="inline-flex items-center gap-2 bg-white/95 text-slate-900 px-4 py-2 rounded-full font-bold text-xs shadow-xl backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                              <Maximize2 className="w-4 h-4 text-[#166534]" />
-                              View Lightbox & Specs
-                            </span>
-                          </div>
+                        {/* Top Badges */}
+                        <div className="absolute top-3.5 left-3.5 z-10">
+                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/90 text-emerald-200 backdrop-blur-md border border-emerald-500/30 shadow-md">
+                            {project.status}
+                          </span>
                         </div>
 
-                        <div className="p-6 flex-1 flex flex-col justify-between">
-                          <div>
-                            <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 mb-1.5">
-                              <MapPin className="w-3.5 h-3.5 text-amber-600" />
-                              <span>{project.location}</span>
-                            </div>
-                            <h3 className="text-xl font-bold font-serif text-slate-900 group-hover:text-[#166534] transition-colors leading-snug line-clamp-1">
-                              {project.title}
-                            </h3>
-                            <p className="mt-2 text-slate-600 text-xs sm:text-sm line-clamp-2">
-                              {project.description}
-                            </p>
-                          </div>
+                        <div className="absolute top-3.5 right-3.5 z-10">
+                          <span className="px-3 py-1 rounded-full text-xs font-medium bg-slate-950/80 text-slate-200 backdrop-blur-md border border-white/10">
+                            {project.categoryLabel}
+                          </span>
+                        </div>
 
-                          <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold">
-                            <span className="flex items-center gap-1 text-slate-700">
-                              <Layers className="w-3.5 h-3.5 text-emerald-600" />
-                              {project.area}
-                            </span>
-                            <span className="text-[#166534] group-hover:translate-x-1 transition-transform flex items-center gap-0.5">
-                              Details <ChevronRight className="w-4 h-4" />
-                            </span>
-                          </div>
+                        {/* Center Hover Expand Button */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                          <span className="inline-flex items-center gap-2 bg-white/95 text-slate-900 px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl backdrop-blur-sm transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                            <Maximize2 className="w-4 h-4 text-[#166534]" />
+                            Expand High-Res Image
+                          </span>
                         </div>
                       </div>
                     </SwiperSlide>

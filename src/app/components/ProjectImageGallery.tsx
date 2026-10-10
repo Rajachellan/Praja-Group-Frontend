@@ -233,76 +233,46 @@ export default function ProjectImageGallery() {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="project-card-item group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col"
+              className="project-card-item relative h-80 sm:h-[380px] w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 cursor-pointer group bg-slate-950"
             >
-              {/* Image Container */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-95 group-hover:opacity-100"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                
-                {/* Gradient Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-95 group-hover:opacity-100"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+              
+              {/* Gradient Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 opacity-60 group-hover:opacity-40 transition-opacity" />
 
-                {/* Status Badge Top Left */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/80 text-emerald-200 backdrop-blur-md border border-emerald-500/30">
-                    {project.status}
-                  </span>
-                </div>
-
-                {/* Category Badge Top Right */}
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-900/70 text-slate-200 backdrop-blur-md border border-white/20">
-                    {project.categoryLabel}
-                  </span>
-                </div>
-
-                {/* Hover Quick Action Button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                  <span className="inline-flex items-center gap-2 bg-white/95 text-slate-900 px-4 py-2 rounded-full font-semibold text-xs shadow-xl backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <Maximize2 className="w-4 h-4 text-[#166534]" />
-                    View Details & Specs
-                  </span>
-                </div>
+              {/* Status Badge Top Left */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-900/90 text-emerald-200 backdrop-blur-md border border-emerald-500/30 shadow-md">
+                  {project.status}
+                </span>
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 mb-2">
-                    <MapPin className="w-3.5 h-3.5 text-amber-600" />
-                    <span>{project.location}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 font-serif group-hover:text-[#166534] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2.5 text-slate-600 text-sm line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
+              {/* Category Badge Top Right */}
+              <div className="absolute top-4 right-4 z-10">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-slate-950/80 text-slate-200 backdrop-blur-md border border-white/20">
+                  {project.categoryLabel}
+                </span>
+              </div>
 
-                {/* Footer specs */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                    <Layers className="w-4 h-4 text-emerald-600" />
-                    <span>{project.area}</span>
-                  </div>
-                  <div className="inline-flex items-center text-xs font-bold text-[#166534] group-hover:translate-x-1 transition-transform">
-                    Explore <ChevronRight className="w-4 h-4 ml-0.5" />
-                  </div>
-                </div>
+              {/* Hover Quick Action Button */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                <span className="inline-flex items-center gap-2 bg-white/95 text-slate-900 px-5 py-2.5 rounded-full font-bold text-xs shadow-2xl backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <Maximize2 className="w-4 h-4 text-[#166534]" />
+                  Expand High-Res Image
+                </span>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bottom Metrics Bar */}
-        <div className="mt-16 bg-gradient-to-r from-[#166534] to-[#0f4623] rounded-2xl p-8 text-white shadow-xl flex flex-wrap items-center justify-around gap-6">
+        {/* <div className="mt-16 bg-gradient-to-r from-[#166534] to-[#0f4623] rounded-2xl p-8 text-white shadow-xl flex flex-wrap items-center justify-around gap-6">
           <div className="text-center">
             <div className="text-3xl sm:text-4xl font-extrabold text-amber-400 font-serif">50+</div>
             <div className="text-xs sm:text-sm text-emerald-100 mt-1 font-medium uppercase tracking-wider">Landmark Projects</div>
@@ -322,7 +292,7 @@ export default function ProjectImageGallery() {
             <div className="text-3xl sm:text-4xl font-extrabold text-amber-400 font-serif">4.9 ★</div>
             <div className="text-xs sm:text-sm text-emerald-100 mt-1 font-medium uppercase tracking-wider">Client Rating</div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
