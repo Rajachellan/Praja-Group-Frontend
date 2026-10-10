@@ -82,7 +82,7 @@ export default function Navbar() {
             <span className="hidden md:inline text-white/40 font-light">•</span>
 
             <span className="hidden md:inline text-white/90 tracking-wide font-playfair">
-              Building Trust & Excellence
+              Building India & Powering India
             </span>
           </div>
 
@@ -181,7 +181,7 @@ export default function Navbar() {
           {/* Right Action Certificate Badge */}
           <div className="hidden sm:flex items-center">
             <Image
-              src="/year.png"
+              src="/badge-new-year.png"
               alt="17 Years Certificate Badge"
               width={1347}
               height={1167}
@@ -258,7 +258,7 @@ export default function Navbar() {
 
           <div className="pt-2 flex justify-center border-t border-gray-100">
             <Image
-              src="/prajha-group-experience.png"
+              src="/badge-new-year.png"
               alt="17 Years Certificate Badge"
               width={1347}
               height={1167}

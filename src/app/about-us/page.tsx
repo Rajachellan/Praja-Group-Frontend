@@ -98,13 +98,13 @@ export default function AboutUsPage() {
                 <div className="flex items-start sm:items-center gap-3 px-3.5 sm:px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm max-w-full">
                   <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#F37924] shrink-0 mt-0.5 sm:mt-0" />
                   <h2 className="text-xs sm:text-[15px] md:text-[16px] font-bold text-slate-800 italic leading-snug">
-                    Builders & Developers • Infrastructure Development • Construction Excellence • Property Development
+                    Builders & Developers : Construction Excellence • Property Development
                   </h2>
                 </div>
 
                 {/* Overview Text */}
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-                  Prajha Group of Companies is a <b className='font-bold'>Chennai-based group engaged</b> in Building Construction, Property Development, Skill Development, Empowerment of Challenged Individuals, and Social Responsibility initiatives through Prajha Trust.
+                 Prajha Group is a Chennai-based construction and property development company with 17+ years of industry experience, delivering residential, commercial, and joint venture projects with a focus on quality, reliability, and sustainable growth.
                 </p>
 
                 {/* Founder Spotlight Card */}
@@ -161,7 +161,7 @@ export default function AboutUsPage() {
               <div className="lg:col-span-5 w-full flex justify-center">
                 <div className="relative w-full max-w-[540px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
                   <Image
-                    src="/about-us-hero.png"
+                    src="/about-us-hero-v2.png"
                     alt="Prajha Group Corporate Headquarters"
                     width={800}
                     height={600}
@@ -179,10 +179,10 @@ export default function AboutUsPage() {
                       <span className="w-2.5 h-2.5 rounded-full bg-[#F37924] animate-ping" />
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-slate-900">
-                       Builders & Developers • Infrastructure Development
+                       Builder & Developers
                     </h3>
                     <p className="text-[11px] sm:text-xs text-slate-600 font-medium leading-relaxed">
-                      Delivering high-precision building construction, civil maintenance, skill academies, and social empowerment across Tamil Nadu.
+                      Delivering high-precision building construction and property development across Tamil Nadu.
                     </p>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function AboutUsPage() {
                   Find Out All the Ways to Enjoy Luxury Residential Life
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
-                  Dedicated to quality, and an unyielding commitment to client satisfaction across every infrastructure and building project we undertake.
+              Dedicated to quality and an unwavering commitment to client satisfaction across every building construction and property development project we undertake
                 </p>
               </div>
 

@@ -77,17 +77,17 @@ export default function TrustExpertsSection() {
     {
       title: 'Commercial Spaces',
       subtitle: 'High-end office buildings & retail centers',
-      description: 'Developing state-of-the-art commercial hubs engineered to foster business growth and corporate excellence.',
+      description: 'Developing state-of-the-art commercial hubs engineered to foster business growth and corporate excellence. End-to-end turnkey construction and heavy infrastructure built with unwavering precision and superior materials.',
       icon: Building2,
       badge: 'Commercial',
     },
-    {
-      title: 'Construction & Infrastructure',
-      subtitle: 'Robust solutions for businesses',
-      description: 'End-to-end turnkey construction and heavy infrastructure built with unwavering precision and superior materials.',
-      icon: HardHat,
-      badge: 'Infrastructure',
-    },
+    // {
+    //   title: 'Construction & Infrastructure',
+    //   subtitle: 'Robust solutions for businesses',
+    //   description: 'End-to-end turnkey construction and heavy infrastructure built with unwavering precision and superior materials.',
+    //   icon: HardHat,
+    //   badge: 'Infrastructure',
+    // },
   ];
 
   return (

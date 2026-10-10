@@ -81,8 +81,8 @@ const SERVICES_DATA: ServiceDetail[] = [
       'Structural Expansion & Additional Floors'
     ],
     specs: [
-      { label: 'Steel Grade', value: 'Fe 550D TMT (Tata Tiscon / JSW)' },
-      { label: 'Cement Quality', value: '53-Grade Weather Plus (Ultratech)' },
+      { label: 'Steel Grade', value: 'Fe 550D TMT' },
+      { label: 'Cement Quality', value: '53-Grade Weather Plus' },
       { label: 'Masonry Work', value: 'First-Quality Red Chamber Bricks / AAC' },
       { label: 'Flooring', value: 'Large Format Vitrified / Italian Marble' },
       { label: 'Warranty', value: '10-Year Contractual Structural Guarantee' },
@@ -127,12 +127,12 @@ const SERVICES_DATA: ServiceDetail[] = [
     bgGradient: 'from-amber-500/10 via-amber-50/50 to-transparent',
     borderColor: 'border-amber-500/30',
     description:
-      'Prajha Group delivers robust commercial construction solutions including corporate office complexes, retail centers, medical clinics, and industrial warehousing. Designed to optimize space utilization, structural load capacities, and fire safety compliance.',
+      'Prajha Group delivers robust commercial construction solutions including corporate office complexes, retail centers, medical clinics . Designed to optimize space utilization, structural load capacities, and fire safety compliance.',
     highlights: [
       'Corporate Office Complexes & Tech Hubs',
       'Retail Showrooms & Multi-Storey Outlets',
       'Medical Centers, Clinics & Hospitals',
-      'Warehouses, Factories & Logistics Facilities'
+    
     ],
     specs: [
       { label: 'Structural Design', value: 'High-Load RCC Frame & Heavy Beam Systems' },
@@ -170,60 +170,60 @@ const SERVICES_DATA: ServiceDetail[] = [
     warranty: '10-Year Heavy Structural',
     idealFor: 'Business Owners, Developers & Investors expanding commercial real estate.'
   },
-  {
-    id: 'design-build',
-    title: 'Design-Build Services',
-    category: 'Integrated Single-Source Solution',
-    badge: '100% Plan Sanctions',
-    tagline: 'Unified architectural design, structural engineering, and government approvals.',
-    icon: DraftingCompass,
-    accentColor: 'text-[#0F2D24]',
-    bgGradient: 'from-[#0F2D24]/10 via-slate-50 to-transparent',
-    borderColor: 'border-[#0F2D24]/30',
-    description:
-      'Our Design-Build model integrates architectural design, structural calculation, soil analysis, and civil execution into one seamless process. This eliminates friction between architects and contractors, preventing budget overruns and construction delays.',
-    highlights: [
-      '2D Floor Plans & Photorealistic 3D Elevations',
-      'CMDA & DTCP Plan Sanction Sanctions',
-      'Structural Calculations & Soil Bearing Tests',
-      'Itemized BOQ & Guaranteed Cost Locks'
-    ],
-    specs: [
-      { label: '3D Renderings', value: '4K Exterior Elevations & VR Walkthroughs' },
-      { label: 'Government Permits', value: '100% Clearance Record (CMDA / DTCP)' },
-      { label: 'Structural Calculations', value: 'STAAD.Pro Certified Engineering' },
-      { label: 'Soil Testing', value: 'SBC Report & Deep Foundation Design' },
-      { label: 'Vastu Planning', value: '100% Vastu-Compliant Floor Plans' },
-      { label: 'Bank Approvals', value: 'Pre-Approved Drawing Formats for Bank Loans' }
-    ],
-    features: [
-      {
-        title: 'Single Point of Accountability',
-        desc: 'One team manages design, permits, and building execution — saving you time and cost.'
-      },
-      {
-        title: 'Instant Sanction Clearance',
-        desc: 'Direct experience navigating CMDA, DTCP, and Chennai Local Body plan approvals.'
-      },
-      {
-        title: 'Photorealistic 3D Visualization',
-        desc: 'See exactly how your building will look before a single brick is laid on site.'
-      },
-      {
-        title: 'Zero Budget Variations',
-        desc: 'Detailed engineering BOQ guarantees that your contract price remains fixed.'
-      }
-    ],
-    process: [
-      { step: '01', title: 'Topographic & Soil Testing' },
-      { step: '02', title: '2D/3D Concept & Vastu Layouts' },
-      { step: '03', title: 'Government Sanction Submission' },
-      { step: '04', title: 'Construction Execution Handover' }
-    ],
-    timeline: 'Design & Approvals in 30 Days',
-    warranty: 'Accurate Engineering Assurance',
-    idealFor: 'Landowners who want hassle-free design, sanction approvals, and execution under one roof.'
-  }
+  // {
+  //   id: 'design-build',
+  //   title: 'Design-Build Services',
+  //   category: 'Integrated Single-Source Solution',
+  //   badge: '100% Plan Sanctions',
+  //   tagline: 'Unified architectural design, structural engineering, and government approvals.',
+  //   icon: DraftingCompass,
+  //   accentColor: 'text-[#0F2D24]',
+  //   bgGradient: 'from-[#0F2D24]/10 via-slate-50 to-transparent',
+  //   borderColor: 'border-[#0F2D24]/30',
+  //   description:
+  //     'Our Design-Build model integrates architectural design, structural calculation, soil analysis, and civil execution into one seamless process. This eliminates friction between architects and contractors, preventing budget overruns and construction delays.',
+  //   highlights: [
+  //     '2D Floor Plans & Photorealistic 3D Elevations',
+  //     'CMDA & DTCP Plan Sanction Sanctions',
+  //     'Structural Calculations & Soil Bearing Tests',
+  //     'Itemized BOQ & Guaranteed Cost Locks'
+  //   ],
+  //   specs: [
+  //     { label: '3D Renderings', value: '4K Exterior Elevations & VR Walkthroughs' },
+  //     { label: 'Government Permits', value: '100% Clearance Record (CMDA / DTCP)' },
+  //     { label: 'Structural Calculations', value: 'STAAD.Pro Certified Engineering' },
+  //     { label: 'Soil Testing', value: 'SBC Report & Deep Foundation Design' },
+  //     { label: 'Vastu Planning', value: '100% Vastu-Compliant Floor Plans' },
+  //     { label: 'Bank Approvals', value: 'Pre-Approved Drawing Formats for Bank Loans' }
+  //   ],
+  //   features: [
+  //     {
+  //       title: 'Single Point of Accountability',
+  //       desc: 'One team manages design, permits, and building execution — saving you time and cost.'
+  //     },
+  //     {
+  //       title: 'Instant Sanction Clearance',
+  //       desc: 'Direct experience navigating CMDA, DTCP, and Chennai Local Body plan approvals.'
+  //     },
+  //     {
+  //       title: 'Photorealistic 3D Visualization',
+  //       desc: 'See exactly how your building will look before a single brick is laid on site.'
+  //     },
+  //     {
+  //       title: 'Zero Budget Variations',
+  //       desc: 'Detailed engineering BOQ guarantees that your contract price remains fixed.'
+  //     }
+  //   ],
+  //   process: [
+  //     { step: '01', title: 'Topographic & Soil Testing' },
+  //     { step: '02', title: '2D/3D Concept & Vastu Layouts' },
+  //     { step: '03', title: 'Government Sanction Submission' },
+  //     { step: '04', title: 'Construction Execution Handover' }
+  //   ],
+  //   timeline: 'Design & Approvals in 30 Days',
+  //   warranty: 'Accurate Engineering Assurance',
+  //   idealFor: 'Landowners who want hassle-free design, sanction approvals, and execution under one roof.'
+  // }
 ];
 
 function Services() {
@@ -294,7 +294,7 @@ function Services() {
         </div>
 
         {/* Interactive Tab Switcher Navigation */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-8 p-2 bg-slate-100/80 rounded-2xl border border-slate-200/90 max-w-6xl mx-auto shadow-inner">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8 p-3 bg-slate-100/80 rounded-2xl border border-slate-200/90 max-w-6xl mx-auto shadow-inner">
           {SERVICES_DATA.map((service) => {
             const Icon = service.icon;
             const isActive = activeTab === service.id;
@@ -302,7 +302,7 @@ function Services() {
               <button
                 key={service.id}
                 onClick={() => setActiveTab(service.id)}
-                className={`flex-1 min-w-[200px] sm:min-w-[210px] flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl  text-sm sm:text-base transition-all duration-300 ${
+                className={`flex-1 min-w-[200px] sm:min-w-[400px] flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl  text-sm sm:text-base transition-all duration-300 ${
                   isActive
                     ? 'bg-[#166534] text-white shadow-lg shadow-[#166534]/20 scale-[1.02]'
                     : 'bg-transparent text-slate-700 hover:bg-white hover:text-slate-900'

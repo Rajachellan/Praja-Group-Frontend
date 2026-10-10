@@ -60,7 +60,7 @@ export default function ServicesSection() {
   const divisions = [
     {
       title: 'CONSTRUCTION',
-      subtitle: 'Turnkey Residential, Commercial & Civil Infrastructure',
+      subtitle: 'Turnkey Residential, Commercial Projects',
       description:
         'Custom architectural 3D design, structural engineering, and end-to-end turnkey construction of luxury villas, office buildings, and commercial spaces in Chennai.',
       image: '/service-construction.png',

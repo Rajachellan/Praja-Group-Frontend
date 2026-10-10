@@ -101,7 +101,7 @@ function page(){
               </p>
 
               {/* Quick Key Highlights Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 pt-2">
                 <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center mb-1.5 sm:mb-2">
                     <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -126,13 +126,13 @@ function page(){
                   <p className="text-xs sm:text-sm font-bold text-slate-900">CMDA & DTCP</p>
                 </div>
 
-                <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-orange-300 transition-all">
+                {/* <div className="p-2.5 sm:p-4 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-orange-300 transition-all">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-orange-50 text-[#F37924] flex items-center justify-center mb-1.5 sm:mb-2">
                     <Layers className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Key Specifications · Flooring</p>
                   <p className="text-xs sm:text-sm font-bold text-slate-900">600 × 600 mm Vitrified Tiles</p>
-                </div>
+                </div> */}
               </div>
 
           
@@ -141,7 +141,7 @@ function page(){
                 <Link
                   href="#projects"
                   className="get-in-touch-btn group">
-                  <span>Book a Free Counsultation</span>
+                  <span>Land Owner Enquiry</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
@@ -151,7 +151,7 @@ function page(){
                   <div className="w-7 h-7 rounded-full bg-emerald-100/80 border border-emerald-600/30 flex items-center justify-center text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-all duration-200 shrink-0">
                     <Home className="w-3.5 h-3.5" />
                   </div>
-                  <span>Villa for sale</span>
+                  <span>Enquiry for Property</span>
                 </Link>
               </div>
 
@@ -167,7 +167,7 @@ function page(){
         </div>
     </section>
 
-    <Solutions/>
+    {/* <Solutions/> */}
     <Services/>
     <WhyChooseUs/>
     <Faqs/>

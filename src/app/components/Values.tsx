@@ -192,10 +192,10 @@ export default function Values() {
                 </div>
 
                 {/* Card Bottom Footer Accent */}
-                <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-[#166534] transition-colors">
+                {/* <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 group-hover:text-[#166534] transition-colors">
                   <span>PRAJHA COMMITMENT</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-                </div>
+                </div> */}
               </div>
             );
           })}

@@ -98,7 +98,7 @@ export default function Clients() {
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium max-w-2xl mx-auto">
-            Delivering high-precision civil engineering, infrastructure development, and EPC contracting for government institutions, tech leaders, and corporate enterprises.
+            Delivering quality construction, property development and turnkey solutions across residential and commercial projects.
           </p>
         </div>
 

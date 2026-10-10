@@ -317,14 +317,14 @@ export default function ConstructionsPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
-                <Link href={'/contact-us'}
+                {/* <Link href={'/contact-us'}
                   aria-label="Villa For Sale"
                   className="sale-btn" >
                   <div className="w-7 h-7 rounded-full bg-emerald-100/80 border border-emerald-600/30 flex items-center justify-center text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-all duration-200 shrink-0">
                     <Home className="w-3.5 h-3.5" />
                   </div>
                   <span>Villa for sale</span>
-                </Link>
+                </Link> */}
               </div>
 
             </div>
@@ -362,7 +362,7 @@ export default function ConstructionsPage() {
             </h2>
 
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed ">
-              At Prajha Group, we bring your construction dreams to life with expert craftsmanship, attention to detail, and a commitment to quality. Whether you’re building a residential home, commercial property, or undertaking a renovation project, our team of professional builders is here to guide you every step of the way.
+              At Prajha Group, we bring your construction vision to life through expert craftsmanship, technical expertise, and uncompromising attention to quality. From residential homes to commercial buildings and institutional projects, our experienced team manages every stage of construction with precision, transparency, and a strong commitment to delivering lasting quality.
             </p>
 
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -385,13 +385,13 @@ export default function ConstructionsPage() {
               </div>
               <h3 className="text-2xl font-bold  mb-3">Residential & Commercial Construction</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                Turnkey luxury villas, independent houses, gated communities, and corporate office complexes across Chennai with Fe 550D TMT steel and 53-grade cement.
+                Turnkey luxury villas, independent houses, and gated communities across Tamil Nadu, built with quality materials and superior construction standards.
               </p>
               <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 pt-4 border-t border-slate-100">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Independent Villas</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Commercial Towers</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Gated Communities</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Multi-Story Duplex</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Independent House</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Villa</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Bungalow </span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Apartments </span>
               </div>
             </div>
 
@@ -408,18 +408,18 @@ export default function ConstructionsPage() {
               </div>
               <h3 className="text-2xl font-bold  mb-3">Design & Build Solutions</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                2D/3D architectural drawings, structural engineering calculations, soil testing, and CMDA/DTCP government building permits under one roof.
+                Turnkey corporate offices, commercial buildings, and business spaces across Tamil Nadu, built to high-quality construction standards.
               </p>
               <div className="grid grid-cols-2 gap-2 text-xs font-bold text-slate-700 pt-4 border-t border-slate-100">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> 3D Elevation Layouts</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> CMDA & DTCP Permits</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Structural Calculations</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Bank Loan Support</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Commercial Towers </span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Hospital</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> School</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> College</span>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
+            {/* <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:bg-[#166534]/10 transition-colors" />
               <div className="flex items-center justify-between mb-6">
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0 mt-0.5">
@@ -439,7 +439,7 @@ export default function ConstructionsPage() {
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Solar Net Metering</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#166534]" /> Green Building Standards</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Card 4 */}
             {/* <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-lg hover:shadow-2xl hover:border-[#166534] transition-all duration-300 relative group overflow-hidden">

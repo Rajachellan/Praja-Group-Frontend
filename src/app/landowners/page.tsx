@@ -25,6 +25,7 @@ import LandownerEnquiryForm from './LandownerEnquiryForm';
 import ScrollToSectionButton from './ScrollToSectionButton';
 import LandownerHeroCarousel from './LandownerHeroCarousel';
 import LandForm from './LandForm';
+import Solutions from '../developers/Solutions';
 
 export const metadata: Metadata = {
   title: 'Joint Venture Opportunities for Landowners | Prajha Group',
@@ -169,13 +170,13 @@ export default function LandownersPage() {
                     <ArrowRight className="w-4 h-4 text-[#F37924]" />
                   </ScrollToSectionButton>
 
-                  <Link
+                  {/* <Link
                     href="/joint-venture"
                     className="inline-flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer"
                   >
                     <span>Explore Joint Ventures</span>
                     <ChevronRight className="w-4 h-4 text-[#166534]" />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
 
@@ -220,6 +221,8 @@ export default function LandownersPage() {
             </div>
           </div>
         </section>
+
+        <Solutions/>
 
         {/* 4. Why Explore a Joint Venture? */}
         <section className="py-16 lg:py-24 bg-slate-50/70 border-b border-slate-200">

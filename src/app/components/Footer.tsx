@@ -51,7 +51,7 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-white/75 text-xs sm:text-sm leading-relaxed max-w-sm font-normal">
-                Prajha Group is Chennai’s trusted leader in residential, commercial construction, joint ventures with 17+ years of architectural excellence. 
+                Prajha Group is a trusted Chennai-based construction and property development company with 17+ years of experience in residential, commercial construction and joint venture projects.
               </p>
             </div>
 
@@ -134,11 +134,11 @@ export default function Footer() {
             <div className="flex flex-col gap-2.5">
               {[
                 { name: 'Constructions', href: '/constructions' },
-                { name: 'Developers & Plots', href: '/developers' },
+                { name: 'Developers', href: '/developers' },
                 // { name: 'Property Management', href: '/property-management' },
-                { name: 'Land Owners JV', href: '/land-owners' },
+                { name: 'Land Owners', href: '/land-owners' },
                 { name: 'Associate Directors', href: '/associate-directors' },
-                { name: 'Investors Program', href: '/investors' },
+                { name: 'Investors', href: '/investors' },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -189,7 +189,7 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F37924] shrink-0">
                   <Clock className="w-4 h-4" />
                 </div>
-                <span className="text-white/80">10:00 AM - 06:00 PM (Mon - Sat)</span>
+                <span className="text-white/80">10:00 AM - 06:00 PM (Mon - Fri)</span>
               </div>
             </div>
           </div>

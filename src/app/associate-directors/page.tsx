@@ -70,7 +70,7 @@ const DIRECTOR_ROLES: DirectorRole[] = [
   },
   {
     title: 'Director - Projects',
-    category: 'Civil Execution & Delivery',
+    category: 'Building With Precision. Delivering With Purpose',
     icon: HardHat,
     description:
       'Oversee site operations, civil engineering quality, BOQ compliance, safety standards, and timely project handovers.',
@@ -177,15 +177,15 @@ export default function AssociateDirectorsPage() {
 
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-black leading-[1.15]">
-                Lead Our Branches Across <br className="hidden sm:inline" />
-                <span className="text-[#166534]">Tamil Nadu Business Development, Construction</span>
+               Own Our Branches Across Tamil Nadu for a   <br className="hidden sm:inline" />
+                <span className="text-[#166534]">Real Estate Property Development.</span>
               </h1>
 
               {/* Sub-headline Pill */}
               <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-emerald-50/30 border-l-4 border-[#F37924] bg-white shadow-sm">
                 <Sparkles className="w-5 h-5 text-[#F37924] shrink-0" />
                 <h2 className="text-[14px] sm:text-[15px] font-bold text-slate-800 italic">
-                  Business Development • Construction
+                  Strategic Growth • Civil Projects
                 </h2>
               </div>
 
@@ -334,7 +334,7 @@ export default function AssociateDirectorsPage() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-snug">
-                Join Our Team: Associate Director for Branches in Major Towns of Tamil Nadu
+                Own Our Team: Associate Director for Branches in Major Towns of Tamil Nadu
               </h2>
 
               <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -385,19 +385,13 @@ export default function AssociateDirectorsPage() {
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
                 <Image
-                  src="/skyline-chennai.png"
-                  alt="Modern city skyline representing real estate management and property management career opportunities"
+                  src="/flats-apartments.png"
+                  alt="Modern residential flats and apartments project by Prajha Group"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/20 shadow-lg">
-                  <p className="text-xs font-bold text-slate-900 text-center">
-                    Modern city skyline representing real estate management and property management career opportunities
-                  </p>
-                </div>
               </div>
             </div>
 

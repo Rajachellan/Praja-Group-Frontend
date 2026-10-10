@@ -107,7 +107,7 @@ export default function Herosection() {
                 Leading Construction & Real Estate Developers in <span className="text-[#166534] relative inline-block">Tamilnadu</span>
               </h1>
 
-              <h2 className="hero-sub hero-heading italic text-[16px] font-bold mb-5" style={{letterSpacing:"1px"}}>
+              <h2 className="hero-sub hero-heading italic text-[16px] font-bold mb-5" style={{ letterSpacing: "1px" }}>
                 We Deliver{" "}
                 <TypeAnimation
                   sequence={[
@@ -141,12 +141,12 @@ export default function Herosection() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
-                <Link href={'/villa-in-sriperumbudur'} aria-label="Villa For Sale" className="hero-cta sale-btn">
+                {/* <Link href={'/villa-in-sriperumbudur'} aria-label="Villa For Sale" className="hero-cta sale-btn">
                   <div className="w-7 h-7 rounded-full bg-emerald-100/80 border border-emerald-600/30 flex items-center justify-center text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-all duration-200 shrink-0">
                     <Home className="w-3.5 h-3.5" />
                   </div>
                   <span>Villa for sale</span>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

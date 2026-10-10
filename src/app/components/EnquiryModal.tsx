@@ -128,7 +128,7 @@ export default function EnquiryModal() {
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-heading leading-snug">
-                Building Your Dream Spaces In Chennai
+                Building Your Dream Spaces In Tamilnadu
               </h3>
 
               <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-normal">

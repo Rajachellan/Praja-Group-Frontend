@@ -163,60 +163,60 @@ const SERVICES_DATA: ServiceDetail[] = [
     warranty: '10-Year Contractual Guarantee',
     idealFor: 'Homeowners desiring space, privacy, and luxury independent villa living in Chennai.',
   },
-  {
-    id: 'gated-community',
-    title: 'Gated Communities',
-    category: 'Secure Township Living',
-    badge: '24/7 Security',
-    tagline: 'Secure gated communities with 24/7 safety, green spaces, and neighborhood lifestyle.',
-    icon: ShieldCheck,
-    accentColor: 'text-blue-700',
-    bgGradient: 'from-blue-500/10 via-blue-50/50 to-transparent',
-    borderColor: 'border-blue-500/30',
-    description:
-      'Live in a secure gated community in Chennai with 24/7 safety, green spaces, and a close-knit neighborhood lifestyle.',
-    highlights: [
-      'Controlled Main Gate Arch with 24/7 Security Guards',
-      'CMDA/DTCP Approved Parks, Walking Trails & Play Enclaves',
-      'Underground Electrical Cabling & Blacktop Avenue Roads',
-      'Community Clubhouse, Gym & Shared Amenities',
-    ],
-    specs: [
-      { label: 'Road Infrastructure', value: '30ft & 40ft Heavy Duty Blacktop Roads' },
-      { label: 'Electricity', value: 'Concealed Underground Cabling & LED Streetlights' },
-      { label: 'Drainage', value: 'Stormwater Gradient Channels & Sewerage Lines' },
-      { label: 'Perimeter', value: 'High Compound Wall with RFID Gate Access' },
-      { label: 'Approvals', value: '100% CMDA & DTCP Layout Sanctioned' },
-      { label: 'Water Supply', value: 'Individual Water Line Connections & OHT' },
-    ],
-    features: [
-      {
-        title: '24/7 Multi-Layer Security',
-        desc: 'Gated entrance arch with guards, RFID boom barriers, and CCTV coverage.',
-      },
-      {
-        title: 'Lush Green Spaces',
-        desc: 'Landscaped public parks, jogging tracks, and dedicated children play arenas.',
-      },
-      {
-        title: 'Underground Utilities',
-        desc: 'No unsightly overhead wires; concealed power cables and avenue streetlights.',
-      },
-      {
-        title: 'Close-Knit Community',
-        desc: 'Fostering a vibrant, safe, and family-friendly neighborhood environment.',
-      },
-    ],
-    process: [
-      { step: '01', title: 'Township Visit & Plot Reservation' },
-      { step: '02', title: 'Document Verification & Loan Approval' },
-      { step: '03', title: 'Plot Registration & Infrastructure Access' },
-      { step: '04', title: 'Villa Construction / Handover' },
-    ],
-    timeline: 'Immediate Registration & Ready to Build',
-    warranty: 'Township Maintenance Guarantee',
-    idealFor: 'Families looking for safe, amenity-rich gated community living in Chennai.',
-  },
+  // {
+  //   id: 'gated-community',
+  //   title: 'Gated Communities',
+  //   category: 'Secure Township Living',
+  //   badge: '24/7 Security',
+  //   tagline: 'Secure gated communities with 24/7 safety, green spaces, and neighborhood lifestyle.',
+  //   icon: ShieldCheck,
+  //   accentColor: 'text-blue-700',
+  //   bgGradient: 'from-blue-500/10 via-blue-50/50 to-transparent',
+  //   borderColor: 'border-blue-500/30',
+  //   description:
+  //     'Live in a secure gated community in Chennai with 24/7 safety, green spaces, and a close-knit neighborhood lifestyle.',
+  //   highlights: [
+  //     'Controlled Main Gate Arch with 24/7 Security Guards',
+  //     'CMDA/DTCP Approved Parks, Walking Trails & Play Enclaves',
+  //     'Underground Electrical Cabling & Blacktop Avenue Roads',
+  //     'Community Clubhouse, Gym & Shared Amenities',
+  //   ],
+  //   specs: [
+  //     { label: 'Road Infrastructure', value: '30ft & 40ft Heavy Duty Blacktop Roads' },
+  //     { label: 'Electricity', value: 'Concealed Underground Cabling & LED Streetlights' },
+  //     { label: 'Drainage', value: 'Stormwater Gradient Channels & Sewerage Lines' },
+  //     { label: 'Perimeter', value: 'High Compound Wall with RFID Gate Access' },
+  //     { label: 'Approvals', value: '100% CMDA & DTCP Layout Sanctioned' },
+  //     { label: 'Water Supply', value: 'Individual Water Line Connections & OHT' },
+  //   ],
+  //   features: [
+  //     {
+  //       title: '24/7 Multi-Layer Security',
+  //       desc: 'Gated entrance arch with guards, RFID boom barriers, and CCTV coverage.',
+  //     },
+  //     {
+  //       title: 'Lush Green Spaces',
+  //       desc: 'Landscaped public parks, jogging tracks, and dedicated children play arenas.',
+  //     },
+  //     {
+  //       title: 'Underground Utilities',
+  //       desc: 'No unsightly overhead wires; concealed power cables and avenue streetlights.',
+  //     },
+  //     {
+  //       title: 'Close-Knit Community',
+  //       desc: 'Fostering a vibrant, safe, and family-friendly neighborhood environment.',
+  //     },
+  //   ],
+  //   process: [
+  //     { step: '01', title: 'Township Visit & Plot Reservation' },
+  //     { step: '02', title: 'Document Verification & Loan Approval' },
+  //     { step: '03', title: 'Plot Registration & Infrastructure Access' },
+  //     { step: '04', title: 'Villa Construction / Handover' },
+  //   ],
+  //   timeline: 'Immediate Registration & Ready to Build',
+  //   warranty: 'Township Maintenance Guarantee',
+  //   idealFor: 'Families looking for safe, amenity-rich gated community living in Chennai.',
+  // },
   {
     id: 'plots',
     title: 'Residential Plots',
@@ -228,7 +228,7 @@ const SERVICES_DATA: ServiceDetail[] = [
     bgGradient: 'from-emerald-500/10 via-emerald-50/50 to-transparent',
     borderColor: 'border-emerald-500/30',
     description:
-      'Choose from prime residential plots in Chennai ready for your dream home or smart investment with clear documents and great returns.',
+      'Choose from prime residential plots near Chennai ready for your dream home or smart investment with clear documents and great returns.',
     highlights: [
       '100% CMDA & DTCP Approved Layout Clearances',
       'Clear 30-Year Advocate Verified Legal Title Deeds',
@@ -273,7 +273,7 @@ const SERVICES_DATA: ServiceDetail[] = [
   },
   {
     id: 'farm-lands',
-    title: 'Farm & Lands',
+    title: 'Farm Land',
     category: 'Eco & Green Wealth',
     badge: 'High Capital Growth',
     tagline: 'Serene farmlands perfect for weekend getaways, organic farming & appreciation.',
@@ -328,56 +328,56 @@ const SERVICES_DATA: ServiceDetail[] = [
   {
     id: 'community-living',
     title: 'Community Living',
-    category: 'Sustainable Lifestyle Apartments',
-    badge: 'Eco & Co-Living',
-    tagline: 'Modern community living combining social connection, amenities & sustainability.',
+    category: 'Theme-Based Developments',
+    badge: 'Senior & Theme-Based Living',
+    tagline: 'Theme-based communities integrating healthcare, therapy, common kitchens & wellness.',
     icon: Users,
     accentColor: 'text-purple-700',
     bgGradient: 'from-purple-500/10 via-purple-50/50 to-transparent',
     borderColor: 'border-purple-500/30',
     description:
-      'Experience modern community living apartments in Chennai that combine social connection, shared amenities, and sustainable living.',
+      'We develop theme-based communities such as Senior Living, Assisted Living, and communities for special-needs families, professionals, NRI families, and other specific groups. Our projects integrate healthcare, therapy, wellness, common kitchens, dining, recreation, and essential support services to create safe, accessible, comfortable, and self-sustaining communities that promote independence, dignity, security, and quality of life.',
     highlights: [
-      'Shared Co-Working Lounges, Fitness & Social Hubs',
-      'Integrated Solar Power & Rainwater Harvesting Infrastructure',
-      'Resource-Conscious, Sustainable Building Design',
-      'Vibrant Social Events & Shared Lifestyle Facilities',
+      'Theme-Based Community Living – Senior Living, Assisted Living, Wellness & Family Communities',
+      'Integrated Healthcare Facilities – Medical Centre, Nursing Support & Emergency Care',
+      'Common Kitchen & Dining – Hygienic, accessible and community-focused dining facilities',
+      'Wellness & Recreation – Fitness, therapy, gardens, walking spaces & community activity areas',
     ],
     specs: [
-      { label: 'Eco System', value: 'Rooftop Solar Grid & Rainwater Harvesting' },
-      { label: 'Shared Hubs', value: 'Co-Working Lounge, Gym, Terrace Cafe' },
-      { label: 'Waste Mgmt', value: 'Organic Waste Composting & Greywater Recycling' },
-      { label: 'Connectivity', value: 'High-Speed Optical Fiber Internet Hub' },
-      { label: 'Security', value: 'Smart Digital Keycard & CCTV Access' },
-      { label: 'Sanctions', value: 'CMDA Approved Green Building Sanction' },
+      { label: 'Healthcare', value: 'Medical Centre, Nursing Support & Emergency Assistance' },
+      { label: 'Therapy & Wellness', value: 'Physiotherapy, Therapy Rooms, Fitness & Wellness Facilities' },
+      { label: 'Daily Living', value: 'Common Kitchen, Dining Area, Housekeeping & Essential Services' },
+      { label: 'Safety & Security', value: 'CCTV, Digital Access Control, Emergency Response Systems' },
+      { label: 'Community Spaces', value: 'Common Halls, Gardens, Walking Areas & Recreation Spaces' },
+      { label: 'Sustainability', value: 'Solar Power, Rainwater Harvesting & Waste Management' },
     ],
     features: [
       {
-        title: 'Social Connection & Networking',
-        desc: 'Thoughtfully designed lounges and shared hubs for easy community connection.',
+        title: 'End-to-End Development',
+        desc: 'Planning, infrastructure development, construction and project delivery under one integrated approach.',
       },
       {
-        title: 'Sustainable Eco Infrastructure',
-        desc: 'Solar electricity, rainwater conservation, and energy-efficient lighting.',
+        title: 'Wellness & Recreation',
+        desc: 'Fitness, therapy, gardens, walking spaces and community activity areas.',
       },
       {
-        title: 'All-Inclusive Amenities',
-        desc: 'Fitness center, co-working desks, game rooms, and rooftop garden decks.',
+        title: 'Integrated Daily-Care Facilities',
+        desc: 'Medical centre, therapy, pharmacy, common kitchen, dining and housekeeping support.',
       },
       {
-        title: 'Low Carbon Footprint',
-        desc: 'Built with eco-conscious materials and green building standards.',
+        title: 'Community-Centred Lifestyle',
+        desc: 'Shared spaces that encourage social interaction, engagement and a sense of belonging.',
       },
     ],
     process: [
-      { step: '01', title: 'Community Tour & Apartment Selection' },
-      { step: '02', title: 'Custom Finishing Options' },
-      { step: '03', title: 'Agreement & Bank Loan Approval' },
-      { step: '04', title: 'Move-In & Community Welcome' },
+      { step: '01', title: 'Theme & Site Concept Planning' },
+      { step: '02', title: 'Healthcare & Wellness Integration' },
+      { step: '03', title: 'Civil Construction & Facility Setup' },
+      { step: '04', title: 'Community Handover & Support Operations' },
     ],
-    timeline: 'Ready for Move-In',
-    warranty: '10-Year Structural & Green Care',
-    idealFor: 'Young professionals, remote workers & eco-conscious buyers seeking vibrant living.',
+    timeline: 'Custom Development Schedules',
+    warranty: 'Integrated Facility & Structural Guarantee',
+    idealFor: 'Senior living, assisted care, special-needs families, NRI families & themed community groups.',
   },
 ];
 
@@ -420,7 +420,9 @@ export default function Services() {
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-            From modern residential flats and luxury villas to approved plot layouts, farmlands, and gated communities—we build properties tailored for high appreciation and peaceful living.
+            
+From modern residential flats and luxury villas to approved plot layouts, farmlands, and Theme Based Community Living —we build properties tailored for high appreciation and peaceful living.
+
           </p>
         </div>
 

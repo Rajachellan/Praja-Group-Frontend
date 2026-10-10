@@ -38,14 +38,14 @@ const PILLARS_DATA: PillarItem[] = [
     title: 'Experienced Builders',
     subtitle: 'Proven Civil Expertise',
     description:
-      'With over 15 years of experience in the construction industry, we have the knowledge and skills to take on any project, big or small.',
+      'With over 17 years of experience in the construction industry, we have the knowledge and skills to take on any project, big or small.',
     tag: '17+ Years Track Record',
     icon: HardHat,
     badgeBg: 'bg-emerald-100/80',
     iconColor: 'text-[#166534]',
     hoverBorder: 'hover:border-[#166534]',
     details: [
-      '150+ completed turnkey projects across Chennai',
+      '106+ completed turnkey projects across Chennai',
       'Senior civil engineering leadership on all sites',
       'Deep structural expertise in foundation & RCC design'
     ]

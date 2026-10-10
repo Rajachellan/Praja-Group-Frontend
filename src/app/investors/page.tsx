@@ -91,7 +91,7 @@ export default function InvestorsPage() {
               {/* Main Headline */}
               <h1 className="inv-title text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-black leading-[1.25]">
                 Invest with Us: <br className="hidden sm:inline" />
-                <span className="text-[#166534]">Unlock Lucrative Opportunities</span> in Property Development
+                <span className="text-[#166534]">Unlock Lucrative Opportunities</span> Real Estate  Property Development
               </h1>
 
               {/* Sub-headline Pill */}
@@ -208,77 +208,114 @@ export default function InvestorsPage() {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce" />
             </span>
             <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.15em] text-[#0F2D24]">
-            market assests and opportunities
+              INVESTMENT MODELS & OPPORTUNITIES
             </span>
           </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold line-height" >
               Strategic Capital Opportunities in <span className="text-[#166534]">Chennai</span>
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Explore high-growth real estate portfolios backed by solid demand and CMDA/DTCP approved master planning.
+              Explore structured real estate investment models, project funding, and end-to-end development consultancy.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* Showcase Card 1 */}
-            <div className="rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
+            {/* Card 01 */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md hover:shadow-2xl hover:border-[#166534]/40 transition-all duration-300 flex flex-col group">
+              <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
                 <Image
-                  src="/skyline-chennai.png"
-                  alt="Modern city skyline representing real estate management"
+                  src="/service-construction.png"
+                  alt="Project Management Consultancy - Prajha Group"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#166534] text-[10px] font-bold uppercase tracking-wider">
-                  Urban Master Planning
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#166534] text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                  Card 01 • Consultancy
                 </div>
               </div>
-              <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#166534] transition-colors mb-2">
-                    Modern City Skyline & Infrastructure Portfolio
+              <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#166534] transition-colors">
+                    Project Management Consultancy
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                    Modern city skyline representing real estate management and property management career & capital growth opportunities across Chennai's prime growth hubs.
+                    Have land and project funding available? Partner with us for end-to-end project management, including planning, design coordination, budgeting, contractor management, quality control, project completion.
                   </p>
                 </div>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#166534]">
-                  <span>High Yield Potential</span>
-                  <ArrowRight className="w-4 h-4 text-[#F37924]" />
+                <div className="pt-4 border-t border-slate-100 bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100">
+                  <p className="text-xs font-bold text-[#166534] leading-snug italic">
+                    "Let us turn your investment into a well-managed development project."
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Showcase Card 2 */}
-            <div className="rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
+            {/* Card 02 */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md hover:shadow-2xl hover:border-[#F37924]/40 transition-all duration-300 flex flex-col group">
+              <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
                 <Image
                   src="/commercial-invest.png"
-                  alt="Prime commercial property investment opportunity in Chennai"
+                  alt="Project Funding - Prajha Group"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#F37924] text-[10px] font-bold uppercase tracking-wider">
-                  Commercial Real Estate
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#F37924] text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                  Card 02 • Funding
                 </div>
               </div>
-              <div className="p-6 sm:p-8 space-y-3 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#166534] transition-colors mb-2">
-                    Prime Commercial Property Investment Opportunities
+              <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#F37924] transition-colors">
+                    Project Funding
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                    Prime commercial property investment opportunity in Chennai for real estate investors and corporate property investors looking for stable rental income & long-term value appreciation.
+                    Partner with us to invest in housing and urban development projects through structured funding options, transparent project management, potential returns based on project performance and mutually agreed investment terms.
                   </p>
                 </div>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#166534]">
-                  <span>Corporate Grade Assets</span>
-                  <ArrowRight className="w-4 h-4 text-[#F37924]" />
+                <div className="pt-4 border-t border-slate-100 bg-amber-50/60 p-4 rounded-2xl border border-amber-100">
+                  <p className="text-xs font-bold text-[#F37924] leading-snug italic">
+                    "Invest in Real Estate Development. Contribute to Nation Building"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 03 */}
+            <div className="rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md hover:shadow-2xl hover:border-[#166534]/40 transition-all duration-300 flex flex-col group">
+              <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
+                <Image
+                  src="/skyline-chennai.png"
+                  alt="Real Estate Investment Opportunities - Prajha Group"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#166534] text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                  Card 03 • Investment
+                </div>
+              </div>
+              <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#166534] transition-colors">
+                    Real Estate Investment Opportunities
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                    Partner with us to explore collective investment opportunities in residential, commercial, and urban development projects through structured investment models, including fractional ownership and crowdfunding, subject to applicable regulations.
+                  </p>
+                  <p className="text-xs text-slate-500 leading-relaxed pt-1">
+                    Discover opportunities to participate in professionally managed real estate development with clearly defined investment terms and potential returns based on project performance.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-slate-100 bg-emerald-50/60 p-4 rounded-2xl border border-emerald-100">
+                  <p className="text-xs font-bold text-[#166534] leading-snug italic">
+                    "Invest Together. Build Together. Grow Together."
+                  </p>
                 </div>
               </div>
             </div>

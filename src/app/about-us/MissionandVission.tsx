@@ -168,7 +168,7 @@ export default function VisionMissionSection() {
             {/* Mission Image Frame */}
             <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-100">
               <Image
-                src="/mission-image.png"
+                src="/mission-image-v3.png"
                 alt="Prajha Group Mission - Design Build Operate Transfer Execution"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -219,36 +219,7 @@ export default function VisionMissionSection() {
 
         </div>
 
-        {/* Special Social Initiatives Cards - Light Theme */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* Skill Academy */}
-          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#166534]/30 transition-all duration-300 flex items-center gap-5">
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center shrink-0 shadow-sm">
-              <GraduationCap className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-[#0F2D24]">Academy for Skill Developments</h4>
-              <p className="text-xs text-slate-600 mt-0.5 leading-snug">
-                Empowering youth and civil tradespeople through certified technical skill training programs.
-              </p>
-            </div>
-          </div>
-
-          {/* Prajha Trust */}
-          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#F37924]/30 transition-all duration-300 flex items-center gap-5">
-            <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#F37924] flex items-center justify-center shrink-0 shadow-sm">
-              <Heart className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-[#0F2D24]">Prajha Trust for Social Responsibilities</h4>
-              <p className="text-xs text-slate-600 mt-0.5 leading-snug">
-                Empowering challenged individuals and conducting community welfare initiatives across Tamil Nadu.
-              </p>
-            </div>
-          </div>
-
-        </div>
+      
 
       </div>
     </section>
