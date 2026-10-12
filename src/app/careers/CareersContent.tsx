@@ -175,7 +175,7 @@ return (
 
               {/* Subheading */}
               <p className="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-                Be part of Chennai’s premier construction & real estate leadership. We empower top engineering talent, site supervisors, architects, and project managers to construct landmark infrastructure with innovation, safety, and pride.
+                Be part of Chennai’s premier construction & real estate leadership. We empower top engineering talent, site supervisors, and project Engineers to construct landmark infrastructure with innovation, safety, and pride.
               </p>
 
               {/* CTA Quick Buttons */}
@@ -206,7 +206,7 @@ return (
                   <div className="w-12 h-12 rounded-xl bg-[#F0FDF4] text-[#166534] flex items-center justify-center mb-4">
                     <Building2 className="w-6 h-6" />
                   </div>
-                  <div className="text-3xl font-extrabold text-slate-900">100+</div>
+                  <div className="text-3xl font-extrabold text-slate-900">106+</div>
                   <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">
                     Delivered Projects
                   </div>
