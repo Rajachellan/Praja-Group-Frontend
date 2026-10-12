@@ -131,7 +131,7 @@ export default function Herosection() {
                   With 17+ years of experience, 106+ completed projects, and a dedicated team of experts, we are redefining the construction and real estate industry in Tamilnadu.
                 </p>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
-                  From residential and commercial buildings to industrial and infrastructure projects, we bring visionary ideas to life.
+                  From residential and commercial, industrial & infrastructure projects, we bring visionary ideas to life.
                 </p>
               </div>
 

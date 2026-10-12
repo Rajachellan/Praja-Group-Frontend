@@ -258,7 +258,7 @@ export default function InvestorsPage() {
               <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
                 <Image
                   src="/commercial-invest.png"
-                  alt="Project Funding - Prajha Group"
+                  alt="Low-rise Residential Flats Project Funding - Prajha Group"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 33vw"
@@ -290,7 +290,7 @@ export default function InvestorsPage() {
               <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-900">
                 <Image
                   src="/skyline-chennai.png"
-                  alt="Real Estate Investment Opportunities - Prajha Group"
+                  alt="Low-rise Residential Apartment Community Investment - Prajha Group"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 33vw"

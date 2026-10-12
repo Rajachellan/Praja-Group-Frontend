@@ -108,8 +108,8 @@ export default function Footer() {
               {[
                 { name: 'Home', href: '/' },
                 { name: 'About Us', href: '/about-us' },
-                { name: 'Careers', href: '#' },
-                { name: 'Blogs', href: '#' },
+                { name: 'Careers', href: '/careers' },
+                { name: 'Blogs', href: '/blogs' },
                 { name: 'Contact Us', href: '/contact-us' },
                 { name: 'Privacy Policy', href: '/privacy-policy' },
                 { name: 'Terms & Conditions', href: '/terms-and-conditions' },
@@ -136,7 +136,7 @@ export default function Footer() {
                 { name: 'Constructions', href: '/constructions' },
                 { name: 'Developers', href: '/developers' },
                 // { name: 'Property Management', href: '/property-management' },
-                { name: 'Land Owners', href: '/land-owners' },
+                { name: 'Land Owners', href: '/landowners' },
                 { name: 'Associate Directors', href: '/associate-directors' },
                 { name: 'Investors', href: '/investors' },
               ].map((link) => (
