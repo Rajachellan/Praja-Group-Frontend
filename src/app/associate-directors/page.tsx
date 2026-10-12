@@ -385,8 +385,8 @@ export default function AssociateDirectorsPage() {
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="relative w-full max-w-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
                 <Image
-                  src="/flats-apartments.png"
-                  alt="Modern residential flats and apartments project by Prajha Group"
+                  src="/small-building.png"
+                  alt="Modern boutique low-rise residential building by Prajha Group"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"

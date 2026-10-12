@@ -143,7 +143,7 @@ export default function ConstructionsPage() {
       steel: 'Fe 550D TMT Steel (Tata Tiscon / JSW)',
       cement: '53 Grade OPC / PPC (Ultratech / ACC)',
       bricks: 'First Quality Red Clay Bricks / High-Density AAC',
-      flooring: 'Vitrified Tiles ₹65/sq.ft (Kajaria / Somany)',
+      flooring: 'Vitrified Tiles ₹65/sq.ft',
       fittings: 'Jaquar / Cera Designer Sanitaryware',
       wiring: 'Fire-Resistant Copper Wiring (Finolex / Havells)',
       painting: 'Asian Paints Tractor Emulsion (2 Coats)',
@@ -156,7 +156,7 @@ export default function ConstructionsPage() {
       steel: 'Fe 550D Primary TMT Steel (Tata Tiscon)',
       cement: '53 Grade Premium Weather Plus (Ultratech Super)',
       bricks: 'High-Density Red Chamber Bricks',
-      flooring: 'Large Format Premium Tiles ₹110/sq.ft (Kajaria Eternity)',
+      flooring: 'Large Format Premium Tiles ₹110/sq.ft',
       fittings: 'Kohler / Grohe Premium Sanitaryware',
       wiring: 'Modular Switches & Flame Guard Cables (Legrand / Havells)',
       painting: 'Asian Paints Royale Luxury Emulsion + Apex Exterior',
@@ -470,7 +470,7 @@ export default function ConstructionsPage() {
           <div className="bg-[#0F2D24] text-white rounded-3xl p-8 sm:p-10 shadow-2xl mb-12 border border-emerald-900">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-emerald-900/80">
               <div className="space-y-1 pt-4 md:pt-0">
-                <p className="text-3xl sm:text-4xl font-bold text-[#F37924]">150+</p>
+                <p className="text-3xl sm:text-4xl font-bold text-[#F37924]">106+</p>
                 <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">Completed Projects</p>
                 <p className="text-[11px] text-emerald-400">Across Prime Chennai Locations</p>
               </div>

@@ -222,7 +222,7 @@ export default function LandownersPage() {
           </div>
         </section>
 
-        <Solutions/>
+        {/* <Solutions/> */}
 
         {/* 4. Why Explore a Joint Venture? */}
         <section className="py-16 lg:py-24 bg-slate-50/70 border-b border-slate-200">

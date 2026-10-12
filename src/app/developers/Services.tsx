@@ -57,16 +57,16 @@ interface ServiceDetail {
 const SERVICES_DATA: ServiceDetail[] = [
   {
     id: 'flats',
-    title: 'Residential Flats',
+    title: 'Residential Apartments',
     category: 'Urban Convenience & Modern Living',
     badge: 'Most Popular',
-    tagline: 'Thoughtfully designed residential flats in prime Chennai locations.',
+    tagline: 'Thoughtfully designed residential apartments in prime Chennai locations.',
     icon: Building2,
     accentColor: 'text-[#166534]',
     bgGradient: 'from-emerald-500/10 via-emerald-50/50 to-transparent',
     borderColor: 'border-emerald-500/30',
     description:
-      'Own thoughtfully designed residential flats in Chennai that offer convenience, security, and easy access to every city comfort.',
+      'Own thoughtfully designed residential apartments in Chennai that offer convenience, security, and easy access to every city comfort.',
     highlights: [
       'Prime Chennai City Corridors & Seamless Metro Access',
       'Architecturally Optimized Floor Plans & Ventilation',
@@ -75,7 +75,7 @@ const SERVICES_DATA: ServiceDetail[] = [
     ],
     specs: [
       { label: 'Structure', value: 'RCC Framed Structure (Fe 550D TMT Steel)' },
-      { label: 'Flooring', value: '600x600mm Vitrified Tiles (Kajaria / Somany)' },
+      { label: 'Flooring', value: '600x600mm Vitrified Tiles' },
       { label: 'Security', value: '24/7 CCTV & Multi-Tier Entrance Access' },
       { label: 'Power Backup', value: '100% Generator Backup for Common Areas' },
       { label: 'Sanction', value: '100% CMDA & Local Body Approved' },
@@ -327,7 +327,7 @@ const SERVICES_DATA: ServiceDetail[] = [
   },
   {
     id: 'community-living',
-    title: 'Community Living',
+    title: 'Gated Communities & Community Living',
     category: 'Theme-Based Developments',
     badge: 'Senior & Theme-Based Living',
     tagline: 'Theme-based communities integrating healthcare, therapy, common kitchens & wellness.',
@@ -421,7 +421,7 @@ export default function Services() {
 
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             
-From modern residential flats and luxury villas to approved plot layouts, farmlands, and Theme Based Community Living —we build properties tailored for high appreciation and peaceful living.
+From modern residential apartments and luxury villas to approved plot layouts, farmlands, and Gated Communities & Community Living —we build properties tailored for high appreciation and peaceful living.
 
           </p>
         </div>

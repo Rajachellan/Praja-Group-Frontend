@@ -68,7 +68,7 @@ function Solutions() {
 
           {/* Header Block */}
           <div className="dev-solutions-header text-center max-w-3xl mx-auto flex flex-col lg:gap-7 gap-5">
-            {/* Tagline Badge */}
+          
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto" style={{alignSelf:"flex-start"}}>
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-60 animate-ping" />

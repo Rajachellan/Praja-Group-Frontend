@@ -91,7 +91,7 @@ export default function InvestorsPage() {
               {/* Main Headline */}
               <h1 className="inv-title text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-black leading-[1.25]">
                 Invest with Us: <br className="hidden sm:inline" />
-                <span className="text-[#166534]">Unlock Lucrative Opportunities</span> Real Estate  Property Development
+                <span className="text-[#166534]">Unlock Lucrative Opportunities</span> in Real Estate  Property Development
               </h1>
 
               {/* Sub-headline Pill */}

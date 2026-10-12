@@ -8,7 +8,6 @@ import {
   HeartHandshake,
   ShieldCheck,
   CheckCircle2,
-  Sparkles,
   ArrowRight,
   Award,
   FileCheck,
@@ -209,11 +208,6 @@ cursor-pointer flex flex-col justify-between relative group'>
             
             {/* Left Column Info */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#166534] text-white text-xs font-bold uppercase" style={{ letterSpacing: '2px' }}>
-                <Sparkles className="w-3.5 h-3.5 text-[#F37924]" />
-                <span>Pillar Breakdown: {selectedItem.title}</span>
-              </div>
-
               <h3 className="text-2xl sm:text-3xl font-bold text-black">
                 How We Deliver <span className="text-[#166534]">{selectedItem.title}</span>
               </h3>
