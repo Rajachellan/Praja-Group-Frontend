@@ -384,7 +384,7 @@ export default function ConstructionsPage() {
                   Turnkey Execution
                 </span>
               </div>
-              <h3 className="text-2xl font-bold  mb-3">Residential & Commercial Construction</h3>
+              <h3 className="text-2xl font-bold  mb-3">Residential  Construction</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
                 Turnkey luxury villas, independent houses, and gated communities across Tamil Nadu, built with quality materials and superior construction standards.
               </p>
@@ -407,7 +407,7 @@ export default function ConstructionsPage() {
                   100% Plan Sanctions
                 </span>
               </div>
-              <h3 className="text-2xl font-bold  mb-3">Design & Build Solutions</h3>
+              <h3 className="text-2xl font-bold  mb-3">Commercial  Construction</h3>
               <p className="text-slate-600 text-sm leading-relaxed mb-6">
                 Turnkey corporate offices, commercial buildings, and business spaces across Tamil Nadu, built to high-quality construction standards.
               </p>
