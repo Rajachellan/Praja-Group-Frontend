@@ -163,6 +163,60 @@ const SERVICES_DATA: ServiceDetail[] = [
     warranty: '10-Year Contractual Guarantee',
     idealFor: 'Homeowners desiring space, privacy, and luxury independent villa living in Chennai.',
   },
+   {
+    id: 'community-living',
+    title: 'Gated Communities & Community Living',
+    category: 'Theme-Based Developments',
+    badge: 'Senior & Theme-Based Living',
+    tagline: 'Theme-based communities integrating healthcare, therapy, common kitchens & wellness.',
+    icon: Users,
+    accentColor: 'text-purple-700',
+    bgGradient: 'from-purple-500/10 via-purple-50/50 to-transparent',
+    borderColor: 'border-purple-500/30',
+    description:
+      'We develop theme-based communities such as Senior Living, Assisted Living, and communities for special-needs families, professionals, NRI families, and other specific groups. Our projects integrate healthcare, therapy, wellness, common kitchens, dining, recreation, and essential support services to create safe, accessible, comfortable, and self-sustaining communities that promote independence, dignity, security, and quality of life.',
+    highlights: [
+      'Theme-Based Community Living – Senior Living, Assisted Living, Wellness & Family Communities',
+      'Integrated Healthcare Facilities – Medical Centre, Nursing Support & Emergency Care',
+      'Common Kitchen & Dining – Hygienic, accessible and community-focused dining facilities',
+      'Wellness & Recreation – Fitness, therapy, gardens, walking spaces & community activity areas',
+    ],
+    specs: [
+      { label: 'Healthcare', value: 'Medical Centre, Nursing Support & Emergency Assistance' },
+      { label: 'Therapy & Wellness', value: 'Physiotherapy, Therapy Rooms, Fitness & Wellness Facilities' },
+      { label: 'Daily Living', value: 'Common Kitchen, Dining Area, Housekeeping & Essential Services' },
+      { label: 'Safety & Security', value: 'CCTV, Digital Access Control, Emergency Response Systems' },
+      { label: 'Community Spaces', value: 'Common Halls, Gardens, Walking Areas & Recreation Spaces' },
+      { label: 'Sustainability', value: 'Solar Power, Rainwater Harvesting & Waste Management' },
+    ],
+    features: [
+      {
+        title: 'End-to-End Development',
+        desc: 'Planning, infrastructure development, construction and project delivery under one integrated approach.',
+      },
+      {
+        title: 'Wellness & Recreation',
+        desc: 'Fitness, therapy, gardens, walking spaces and community activity areas.',
+      },
+      {
+        title: 'Integrated Daily-Care Facilities',
+        desc: 'Medical centre, therapy, pharmacy, common kitchen, dining and housekeeping support.',
+      },
+      {
+        title: 'Community-Centred Lifestyle',
+        desc: 'Shared spaces that encourage social interaction, engagement and a sense of belonging.',
+      },
+    ],
+    process: [
+      { step: '01', title: 'Theme & Site Concept Planning' },
+      { step: '02', title: 'Healthcare & Wellness Integration' },
+      { step: '03', title: 'Civil Construction & Facility Setup' },
+      { step: '04', title: 'Community Handover & Support Operations' },
+    ],
+    timeline: 'Custom Development Schedules',
+    warranty: 'Integrated Facility & Structural Guarantee',
+    idealFor: 'Senior living, assisted care, special-needs families, NRI families & themed community groups.',
+  },
   // {
   //   id: 'gated-community',
   //   title: 'Gated Communities',
@@ -325,60 +379,7 @@ const SERVICES_DATA: ServiceDetail[] = [
     warranty: 'Managed Boundary Protection',
     idealFor: 'Nature lovers, organic farmers & investors seeking green wealth near Chennai.',
   },
-  {
-    id: 'community-living',
-    title: 'Gated Communities & Community Living',
-    category: 'Theme-Based Developments',
-    badge: 'Senior & Theme-Based Living',
-    tagline: 'Theme-based communities integrating healthcare, therapy, common kitchens & wellness.',
-    icon: Users,
-    accentColor: 'text-purple-700',
-    bgGradient: 'from-purple-500/10 via-purple-50/50 to-transparent',
-    borderColor: 'border-purple-500/30',
-    description:
-      'We develop theme-based communities such as Senior Living, Assisted Living, and communities for special-needs families, professionals, NRI families, and other specific groups. Our projects integrate healthcare, therapy, wellness, common kitchens, dining, recreation, and essential support services to create safe, accessible, comfortable, and self-sustaining communities that promote independence, dignity, security, and quality of life.',
-    highlights: [
-      'Theme-Based Community Living – Senior Living, Assisted Living, Wellness & Family Communities',
-      'Integrated Healthcare Facilities – Medical Centre, Nursing Support & Emergency Care',
-      'Common Kitchen & Dining – Hygienic, accessible and community-focused dining facilities',
-      'Wellness & Recreation – Fitness, therapy, gardens, walking spaces & community activity areas',
-    ],
-    specs: [
-      { label: 'Healthcare', value: 'Medical Centre, Nursing Support & Emergency Assistance' },
-      { label: 'Therapy & Wellness', value: 'Physiotherapy, Therapy Rooms, Fitness & Wellness Facilities' },
-      { label: 'Daily Living', value: 'Common Kitchen, Dining Area, Housekeeping & Essential Services' },
-      { label: 'Safety & Security', value: 'CCTV, Digital Access Control, Emergency Response Systems' },
-      { label: 'Community Spaces', value: 'Common Halls, Gardens, Walking Areas & Recreation Spaces' },
-      { label: 'Sustainability', value: 'Solar Power, Rainwater Harvesting & Waste Management' },
-    ],
-    features: [
-      {
-        title: 'End-to-End Development',
-        desc: 'Planning, infrastructure development, construction and project delivery under one integrated approach.',
-      },
-      {
-        title: 'Wellness & Recreation',
-        desc: 'Fitness, therapy, gardens, walking spaces and community activity areas.',
-      },
-      {
-        title: 'Integrated Daily-Care Facilities',
-        desc: 'Medical centre, therapy, pharmacy, common kitchen, dining and housekeeping support.',
-      },
-      {
-        title: 'Community-Centred Lifestyle',
-        desc: 'Shared spaces that encourage social interaction, engagement and a sense of belonging.',
-      },
-    ],
-    process: [
-      { step: '01', title: 'Theme & Site Concept Planning' },
-      { step: '02', title: 'Healthcare & Wellness Integration' },
-      { step: '03', title: 'Civil Construction & Facility Setup' },
-      { step: '04', title: 'Community Handover & Support Operations' },
-    ],
-    timeline: 'Custom Development Schedules',
-    warranty: 'Integrated Facility & Structural Guarantee',
-    idealFor: 'Senior living, assisted care, special-needs families, NRI families & themed community groups.',
-  },
+ 
 ];
 
 export default function Services() {
