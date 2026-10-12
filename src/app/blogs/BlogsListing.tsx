@@ -7,7 +7,16 @@ import api from '../../../services/api';
 import { IBlog } from '../../types/blog';
 import { estimateReadingTime, formatDate } from '../../lib/utils';
 
-const categories = ['All', 'General', 'Business Development', 'Construction & Infrastructure', 'Facility Management', 'Real Estate & Land Acquisition', 'Corporate News'];
+const categories = [
+  'All',
+  'Construction',
+  'Developer',
+  'Land Owner',
+  'Associate Directors',
+  'Investors',
+  'Careers',
+  'Corporate News',
+];
 
 export default function BlogsListing() {
   const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -28,7 +37,7 @@ export default function BlogsListing() {
   const filteredBlogs = useMemo(() => blogs.filter((blog) => {
     const query = searchQuery.toLowerCase();
     const matchesSearch = !query || [blog.title, blog.excerpt, blog.category].some((value) => value?.toLowerCase().includes(query));
-    const matchesCategory = selectedCategory === 'All' || blog.category?.toLowerCase() === selectedCategory.toLowerCase();
+    const matchesCategory = selectedCategory === 'All' || blog.category?.toLowerCase() === selectedCategory.toLowerCase() || (blog.category ? blog.category.toLowerCase().includes(selectedCategory.toLowerCase()) : false);
     return matchesSearch && matchesCategory;
   }), [blogs, searchQuery, selectedCategory]);
 
@@ -42,7 +51,7 @@ export default function BlogsListing() {
         <div className="max-w-[1440px] mx-auto text-center space-y-4 relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-extrabold tracking-wide backdrop-blur-md text-emerald-300 mx-auto"><Sparkles className="w-4 h-4 text-[#f37924]" />Prajha Groups Insights & Publications</div>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight font-playfair">Explore Corporate Updates & Industry Insights</h1>
-          <p className="text-sm sm:text-base text-emerald-100/80 font-medium max-w-2xl mx-auto leading-relaxed">Stay updated with the latest news on Business Development, Construction Projects, Facility Management, and Land Acquisition.</p>
+          <p className="text-sm sm:text-base text-emerald-100/80 font-medium max-w-2xl mx-auto leading-relaxed">Stay updated with the latest news on Construction, Developers, Land Owners, Associate Directors, Investors, Careers, and Corporate News.</p>
           <div className="pt-4 max-w-xl mx-auto relative"><Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" /><input type="text" placeholder="Search articles by title, topic, or category..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white text-slate-900 text-sm font-medium border border-slate-200 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 shadow-lg" /></div>
         </div>
       </section>

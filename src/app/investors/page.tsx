@@ -308,7 +308,7 @@ export default function InvestorsPage() {
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
                     Partner with us to explore collective investment opportunities in residential, commercial, and urban development projects through structured investment models, including fractional ownership and crowdfunding, subject to applicable regulations.
                   </p>
-                  <p className="text-xs text-slate-500 leading-relaxed pt-1">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
                     Discover opportunities to participate in professionally managed real estate development with clearly defined investment terms and potential returns based on project performance.
                   </p>
                 </div>

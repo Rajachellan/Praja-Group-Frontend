@@ -44,7 +44,7 @@ export default function Home() {
       <Herosection />
       <TrustExpertsSection />
       <ServicesSection />
-      <ProjectsShowcase />
+      {/* <ProjectsShowcase /> */}
       <Values />
       <Clients />
     </main>

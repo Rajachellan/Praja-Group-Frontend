@@ -100,7 +100,7 @@ const associateFaqs: FaqItem[] = [
     category: 'Roles',
     question: '1. What roles are available under the Associate Director program at Prajha Group?',
     answer:
-      'We offer three key director roles across major branches in Tamil Nadu: Director - Business Development, Director - Construction Management.',
+      'We offer two key director roles across major branches in Tamil Nadu: Director - Business Development, Director - Projects',
   },
   {
     id: 'faq-2',

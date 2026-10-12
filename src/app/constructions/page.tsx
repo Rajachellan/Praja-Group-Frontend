@@ -404,7 +404,7 @@ export default function ConstructionsPage() {
                   <DraftingCompass className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-extrabold uppercase tracking-wider border border-blue-200">
-                  100% Plan Sanctions
+                  Building Your Business Future.
                 </span>
               </div>
               <h3 className="text-2xl font-bold  mb-3">Commercial  Construction</h3>
