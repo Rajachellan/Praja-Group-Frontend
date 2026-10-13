@@ -301,7 +301,7 @@ function Solutions() {
 
               <div className="space-y-1 pt-4 md:pt-0">
                 <p className="text-3xl sm:text-4xl font-bold text-[#F37924]">100%</p>
-                <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">CMDA & DTCP Record</p>
+                <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">CMDA , DTCP & RERA Record</p>
                 <p className="text-[11px] text-emerald-400">Government Sanctions Clearance</p>
               </div>
 

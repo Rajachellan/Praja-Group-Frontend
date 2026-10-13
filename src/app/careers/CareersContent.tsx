@@ -309,7 +309,7 @@ return (
               </p>
             </div>
 
-            <div className="group relative bg-[#F8FAFC] p-8 rounded-2xl border border-slate-200/80 hover:border-[#166534]/40 hover:bg-white hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300">
+            {/* <div className="group relative bg-[#F8FAFC] p-8 rounded-2xl border border-slate-200/80 hover:border-[#166534]/40 hover:bg-white hover:shadow-xl hover:shadow-emerald-900/5 transition-all duration-300">
               <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 text-[#166534] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#166534] group-hover:text-white transition-all duration-300">
                 <GraduationCap className="w-7 h-7" />
               </div>
@@ -317,7 +317,7 @@ return (
               <p className="text-slate-600 text-sm leading-relaxed">
                 Gain access to Prajha Group’s internal skill academy workshops, structural design certifications, and executive leadership seminars.
               </p>
-            </div>
+            </div> */}
 
             <div className="group relative bg-[#F8FAFC] p-8 rounded-2xl border border-slate-200/80 hover:border-[#F37924]/40 hover:bg-white hover:shadow-xl hover:shadow-amber-900/5 transition-all duration-300">
               <div className="w-14 h-14 rounded-2xl bg-amber-100/80 text-[#F37924] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#F37924] group-hover:text-white transition-all duration-300">

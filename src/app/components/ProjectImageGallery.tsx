@@ -75,11 +75,11 @@ const DEFAULT_IMAGES: GalleryImageItem[] = [
 const DEFAULT_FEATURED_VIDEO: GalleryVideoItem = {
   id: 'vid-1',
   title: 'Prajha Group Corporate & Project Excellence Tour',
-  youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+  youtubeUrl: 'https://www.youtube.com/watch?v=4BzjUq921Y4',
   tag: 'PRAJHA FEATURED VIDEO',
-  duration: '10:15',
+  duration: '02:40',
   desc: 'Take a visual tour through Prajha Group’s portfolio of premium residential villas, commercial hubs, structural engineering, and gated townships across Chennai.',
-  thumbnail: '/landowner-carousel-commercial.png',
+  thumbnail: 'https://img.youtube.com/vi/4BzjUq921Y4/maxresdefault.jpg',
 };
 
 export function MediaGallerySection({
@@ -210,7 +210,7 @@ export function MediaGallerySection({
               <div>
                 <div className="relative w-full aspect-video sm:aspect-[21/9] lg:aspect-[16/7] max-h-[560px] bg-black">
                   <iframe
-                    src={`https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`}
+                    src={`https://www.youtube.com/embed/${ytId || '4BzjUq921Y4'}?autoplay=1&rel=0`}
                     title={primaryVideo.title}
                     className="w-full h-full border-0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

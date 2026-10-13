@@ -349,7 +349,7 @@ export default function ContactUsPage() {
 
                     <div className="flex items-center gap-3">
                       <Clock className="w-5 h-5 text-[#F37924] shrink-0" />
-                      <span>10.00 AM - 06.00 PM (Monday - Saturday)</span>
+                      <span>10.00 AM - 06.00 PM (Monday - Friday)</span>
                     </div>
                   </div>
 
@@ -456,7 +456,8 @@ export default function ContactUsPage() {
           <div className="rounded-3xl overflow-hidden shadow-xl border border-slate-200 h-96 relative bg-slate-200">
             <iframe
               title="Prajha Group Office Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.085815615712!2d80.1702!3d12.9663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e4c0d000001%3A0x123456789abcdef!2sPallava%20Garden%2C%20Old%20Pallavaram%2C%20Chennai%2C%20Tamil%20Nadu%20600117!5e0!3m2!1sen!2sin!4v1600000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.24557206105!2d80.16978677585695!3d12.95613181521567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e6ee1c4568b%3A0xa56058545066539!2sPrajha%20Properties%20And%20Projects%20Pvt%20Ltd!5e0!3m2!1sen!2sus!4v1791891651455!5m2!1sen!2sus" 
+              
               width="100%"
               height="100%"
               style={{ border: 0 }}

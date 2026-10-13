@@ -70,7 +70,7 @@ export default function ServicesSection() {
     },
     {
       title: 'DEVELOPERS',
-      subtitle: 'CMDA & DTCP Approved Plots & Gated Townships',
+      subtitle: 'CMDA , DTCP & RERA Approved Plots & Gated Townships',
       description:
         'Strategic land development, prime residential plot layouts, luxury villa enclaves, and Joint Venture landowner partnerships across high-growth corridors.',
       image: '/service-developers.png',

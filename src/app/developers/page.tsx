@@ -140,7 +140,7 @@ function page() {
                 {/* CTA Action Buttons */}
                 <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
                   <Link
-                    href="#projects"
+                    href="/landowners#land-enquiry-form"
                     className="get-in-touch-btn group">
                     <span>Land Owner Enquiry</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -304,7 +304,7 @@ export default function ConstructionsPage() {
                     <FileCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <p className="text-[10px] sm:text-xs text-slate-500 font-medium">Approvals</p>
-                  <p className="text-xs sm:text-sm font-bold text-slate-900">CMDA & DTCP</p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-900">CMDA , DTCP & RERA</p>
                 </div>
               </div>
 
@@ -312,7 +312,7 @@ export default function ConstructionsPage() {
               {/* CTA Action Buttons */}
               <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
                 <Link
-                  href="#projects"
+                  href="/contact-us"
                   className="get-in-touch-btn group">
                   <span>Book a Free Counsultation</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -483,7 +483,7 @@ export default function ConstructionsPage() {
 
               <div className="space-y-1 pt-4 md:pt-0">
                 <p className="text-3xl sm:text-4xl font-bold text-[#F37924]">100%</p>
-                <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">CMDA & DTCP Record</p>
+                <p className="text-xs text-emerald-200 font-bold uppercase tracking-wider">CMDA , DTCP & RERA Record</p>
                 <p className="text-[11px] text-emerald-400">Government Sanctions Clearance</p>
               </div>
 

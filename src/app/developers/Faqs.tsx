@@ -27,7 +27,7 @@ const DEVELOPER_FAQS_DATA: FaqItem[] = [
     answer:
       'Yes, we manage 100% end-to-end plan approvals, layout sanctions (CMDA & DTCP), RERA registrations, environmental clearances, and Patta transfer services through our specialized legal panel to ensure your project stays fully compliant without regulatory delays.',
     highlights: [
-      'Complete CMDA & DTCP plan sanction processing',
+      'Complete CMDA , DTCP & RERA plan sanction processing',
       'RERA project registration and documentation',
       'In-house legal advocate panel for Patta transfer & title scrutiny',
     ],

@@ -78,7 +78,7 @@ const SERVICES_DATA: ServiceDetail[] = [
       { label: 'Flooring', value: '600x600mm Vitrified Tiles' },
       { label: 'Security', value: '24/7 CCTV & Multi-Tier Entrance Access' },
       { label: 'Power Backup', value: '100% Generator Backup for Common Areas' },
-      { label: 'Sanction', value: '100% CMDA & Local Body Approved' },
+      { label: 'Sanction', value: '100% CMDA,DTCP & RERA Local Body Approved' },
       { label: 'Title Deed', value: 'Clear 30-Year Advocate Scrutinized' },
     ],
     features: [
@@ -132,7 +132,7 @@ const SERVICES_DATA: ServiceDetail[] = [
       { label: 'Exterior Finish', value: 'Weather-Proof WeatherCoat & Stone Cladding' },
       { label: 'Private Space', value: 'Dedicated Courtyard, Garden & Sky Terrace' },
       { label: 'Joinery', value: 'Teak Wood Main Entrance & UPVC Windows' },
-      { label: 'Sanctions', value: 'CMDA / DTCP Approved Layouts' },
+      { label: 'Sanctions', value: 'CMDA / DTCP / RERA Approved Layouts' },
       { label: 'Loan Status', value: 'Pre-Approved by Top Nationalized Banks' },
     ],
     features: [
@@ -284,13 +284,13 @@ const SERVICES_DATA: ServiceDetail[] = [
     description:
       'Choose from prime residential plots near Chennai ready for your dream home or smart investment with clear documents and great returns.',
     highlights: [
-      '100% CMDA & DTCP Approved Layout Clearances',
+      '100% CMDA , DTCP & RERA Approved Layout Clearances',
       'Clear 30-Year Advocate Verified Legal Title Deeds',
       'Pre-Approved Bank Loans Up to 80% (SBI, HDFC, ICICI)',
       'Ready for Immediate Construction with Blacktop Roads',
     ],
     specs: [
-      { label: 'Sanction Type', value: 'CMDA / DTCP Layout Sanction Order' },
+      { label: 'Sanction Type', value: 'CMDA / DTCP / RERA Layout Sanction Order' },
       { label: 'Title Deed', value: '100% Clear Title Scrutinized by Legal Panel' },
       { label: 'Road Width', value: '30ft & 40ft Avenue Blacktop Roads' },
       { label: 'Bank Loan', value: 'Up to 80% Funding Pre-Sanctioned' },
