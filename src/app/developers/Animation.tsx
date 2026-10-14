@@ -11,6 +11,9 @@ interface RealEstateDeveloperAnimationProps {
     className?: string;
     /** Speed multiplier for loop (default 1) */
     speed?: number;
+    variant?: 'card' | 'viewport';
+    onCanvasClick?: () => void;
+    showPauseButton?: boolean;
 }
 
 const STAGES = [
@@ -34,6 +37,9 @@ export default function RealEstateDeveloperAnimation({
     href,
     className = '',
     speed = 1,
+    variant = 'card',
+    onCanvasClick,
+    showPauseButton = true,
 }: RealEstateDeveloperAnimationProps) {
     const uid = `realestate-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
     const host = useRef<HTMLDivElement>(null);
@@ -592,6 +598,49 @@ export default function RealEstateDeveloperAnimation({
         pausedRef.current = !pausedRef.current;
         setPaused(pausedRef.current);
     };
+
+    if (variant === 'viewport') {
+        return (
+            <div className={`relative w-full h-full overflow-hidden ${className}`}>
+                <style>{`
+          .${uid}-vp { position: relative; width: 100%; height: 100%; min-height: 320px; background: #d4e4e9; overflow: hidden; }
+          .${uid}-vp .canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+          .${uid}-vp .brand { position: absolute; top: 18px; left: 20px; font-size: 10px; letter-spacing: .18em; font-weight: 700; color: #34483e; pointer-events: none; background: rgba(247, 246, 239, 0.9); backdrop-filter: blur(4px); padding: 7px 11px; border-radius: 6px; z-index: 10; border: 1px solid rgba(255,255,255,0.6); }
+          .${uid}-vp .pause { position: absolute; right: 18px; top: 16px; width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(4px); border-radius: 50%; color: #264339; cursor: pointer; display: grid; place-items: center; z-index: 20; transition: transform 0.2s, background 0.2s; }
+          .${uid}-vp .pause:hover { background: #ffffff; transform: scale(1.08); }
+          .${uid}-vp .veil { position: absolute; inset: 0; background: #d4e4e9; pointer-events: none; opacity: 1; z-index: 5; }
+          .${uid}-vp .message { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 28px; color: #344b42; font-size: 14px; }
+          @media(max-width:480px){ .${uid}-vp .brand{ left: 12px; top: 12px; font-size: 8px; } .${uid}-vp .pause{ width: 34px; height: 34px; right: 12px; top: 12px; } }
+        `}</style>
+                <div className={`${uid}-vp`} onClick={onCanvasClick}>
+                    <div ref={host} className="canvas" role="img" aria-label="3D Real Estate Developer Animation" />
+                    <div ref={curtain} className="veil" aria-hidden="true" />
+                    <div className="brand">{label ? label.toUpperCase() : 'PRAJHA / REAL ESTATE DEVELOPERS'}</div>
+                    {status !== 'ready' && (
+                        <div className="message">
+                            {status === 'loading' ? 'Building 3D Real Estate Master-Plan…' : 'WebGL is required for 3D walkthrough rendering.'}
+                        </div>
+                    )}
+                    {status === 'ready' && !reduced && showPauseButton && (
+                        <button
+                            type="button"
+                            className="pause"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                togglePause();
+                            }}
+                            aria-label={paused ? 'Play 3D Walkthrough' : 'Pause 3D Walkthrough'}
+                            aria-pressed={paused}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                                {paused ? <path d="M4 2L12 7L4 12Z" fill="currentColor" /> : <path d="M4 2V12M10 2V12" stroke="currentColor" strokeWidth="2" />}
+                            </svg>
+                        </button>
+                    )}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <figure className={`${uid} ${className}`} style={{ margin: 0 }}>

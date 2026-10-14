@@ -8,8 +8,14 @@ import {
   Play,
   X,
   ExternalLink,
-  Film
+  Film,
+  Sparkles
 } from 'lucide-react';
+import ConstructionAnimation from '../constructions/Animation';
+import RealEstateDeveloperAnimation from '../developers/Animation';
+import PropertyManagementAnimation from '../property-management/Animation';
+
+export type AnimationPreset = 'construction' | 'developer' | 'property' | 'custom';
 
 export interface GalleryImageItem {
   id?: string;
@@ -22,12 +28,28 @@ export interface GalleryImageItem {
 export interface GalleryVideoItem {
   id?: string;
   title: string;
-  youtubeUrl: string;
+  /**
+   * FUTURE YOUTUBE INTEGRATION:
+   * When your company launches its official YouTube channel and videos:
+   * 1. Set `youtubeUrl` to your official YouTube video link (e.g. 'https://www.youtube.com/watch?v=YOUR_ID')
+   * 2. Set `isYouTubeActive: true`
+   * The player will automatically switch to your YouTube embed player without changing section design or layout.
+   */
+  youtubeUrl?: string;
   embedUrl?: string;
   thumbnail?: string;
   tag?: string;
   duration?: string;
   desc?: string;
+
+  /** Set to true once your official YouTube video is available. Defaults to false (shows animated video). */
+  isYouTubeActive?: boolean;
+
+  /** Which animated video scene to display: 'construction' | 'developer' | 'property' | 'custom' */
+  animationPreset?: AnimationPreset;
+
+  /** Optional direct animated MP4/WebM video file URL */
+  animatedVideoUrl?: string;
 }
 
 export interface MediaGallerySectionProps {
@@ -38,6 +60,10 @@ export interface MediaGallerySectionProps {
   videos?: GalleryVideoItem[];
   featuredVideo?: GalleryVideoItem;
   className?: string;
+  /** Section-level animation preset override ('construction' | 'developer' | 'property') */
+  animationPreset?: AnimationPreset;
+  /** Set to true in future to switch entire section to official YouTube video */
+  isYouTubeActive?: boolean;
 }
 
 function extractYouTubeId(url?: string): string | null {
@@ -74,12 +100,13 @@ const DEFAULT_IMAGES: GalleryImageItem[] = [
 
 const DEFAULT_FEATURED_VIDEO: GalleryVideoItem = {
   id: 'vid-1',
-  title: 'Prajha Group Corporate & Project Excellence Tour',
-  youtubeUrl: 'https://www.youtube.com/watch?v=4BzjUq921Y4',
-  tag: 'PRAJHA FEATURED VIDEO',
-  duration: '02:40',
-  desc: 'Take a visual tour through Prajha Group’s portfolio of premium residential villas, commercial hubs, structural engineering, and gated townships across Chennai.',
-  thumbnail: 'https://img.youtube.com/vi/4BzjUq921Y4/maxresdefault.jpg',
+  title: 'Prajha Civil Engineering & Construction Tour',
+  youtubeUrl: 'https://www.youtube.com',
+  tag: '3D ANIMATED SITE REEL',
+  duration: 'Interactive 3D',
+  desc: 'Interactive 3D structural time-lapse illustrating foundation rebar, concrete pouring, MIVAN shuttering, and turnkey civil engineering execution.',
+  animationPreset: 'construction',
+  isYouTubeActive: false, // Set to true in the future when official YouTube video is available!
 };
 
 export function MediaGallerySection({
@@ -90,6 +117,8 @@ export function MediaGallerySection({
   videos = [],
   featuredVideo,
   className = '',
+  animationPreset,
+  isYouTubeActive,
 }: MediaGallerySectionProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImageItem | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -98,9 +127,17 @@ export function MediaGallerySection({
   // Take exactly top 3 images as requested
   const displayImages = galleryImages.slice(0, 3);
 
-  // Determine the primary YouTube video to feature
-  const primaryVideo = featuredVideo || (videos && videos.length > 0 ? videos[0] : DEFAULT_FEATURED_VIDEO);
-  const ytId = primaryVideo ? (extractYouTubeId(primaryVideo.youtubeUrl) || extractYouTubeId(primaryVideo.embedUrl)) : null;
+  // Determine the primary video to feature
+  const baseVideo = featuredVideo || (videos && videos.length > 0 ? videos[0] : DEFAULT_FEATURED_VIDEO);
+  const primaryVideo: GalleryVideoItem = {
+    ...baseVideo,
+    animationPreset: animationPreset || baseVideo.animationPreset || 'construction',
+    isYouTubeActive: isYouTubeActive !== undefined ? isYouTubeActive : (baseVideo.isYouTubeActive ?? false),
+  };
+
+  const isYouTubeMode = Boolean(primaryVideo.isYouTubeActive && primaryVideo.youtubeUrl);
+  const activePreset: AnimationPreset = primaryVideo.animationPreset || 'construction';
+  const ytId = isYouTubeMode ? (extractYouTubeId(primaryVideo.youtubeUrl) || extractYouTubeId(primaryVideo.embedUrl)) : null;
   const videoThumb = ytId
     ? `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`
     : (primaryVideo?.thumbnail || '/landowner-carousel-commercial.png');
@@ -161,56 +198,40 @@ export function MediaGallerySection({
         ))}
       </div>
 
-      {/* BELOW: ONE BIG SIZE YOUTUBE VIDEO */}
+      {/* BELOW: ONE BIG SIZE VIDEO SHOWCASE (CONSTRUCTION HERO ANIMATION / FUTURE YOUTUBE) */}
       {primaryVideo && (
         <div className="mt-14 sm:mt-18">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
-              <div className="inline-flex items-center gap-2 text-red-600 font-bold text-xs uppercase tracking-widest mb-1.5">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span>Featured Video</span>
+              <div className="inline-flex items-center gap-2 text-[#166534] font-bold text-xs uppercase tracking-widest mb-1.5">
+                <Film className="w-4 h-4 text-[#166534]" />
+                <span>Featured Project Tour</span>
               </div>
               <h3 className="font-serif font-extrabold text-2xl sm:text-3xl text-slate-900">
-                Watch Our Community in Action
+                {isYouTubeMode ? 'Watch Our Community in Action' : 'Civil Engineering & Construction in Motion'}
               </h3>
             </div>
 
-            <div className="flex items-center gap-3 self-start sm:self-auto">
-              {!isPlaying && (
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(true)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#166534] hover:bg-[#0f4623] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
-                >
-                  <Play className="w-4 h-4 fill-current" />
-                  <span>Play Video Here</span>
-                </button>
-              )}
-
-              <a
-                href={primaryVideo.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+            {/* When official YouTube video is active in future, show play controls */}
+            {isYouTubeMode && !isPlaying && (
+              <button
+                type="button"
+                onClick={() => setIsPlaying(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#166534] hover:bg-[#0f4623] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span>Watch on YouTube</span>
-                <ExternalLink className="w-3.5 h-3.5 ml-0.5" />
-              </a>
-            </div>
+                <Play className="w-4 h-4 fill-current" />
+                <span>Play YouTube Video</span>
+              </button>
+            )}
           </div>
 
-          {/* Big Size Video Player / Thumbnail Container */}
-          <div className="w-full rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 bg-black">
-            {isPlaying ? (
+          {/* Big Size Video Player / Construction Hero Animated Showcase Container */}
+          <div className="w-full rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 bg-[#cadbe0]">
+            {isYouTubeMode && isPlaying ? (
               <div>
                 <div className="relative w-full aspect-video sm:aspect-[21/9] lg:aspect-[16/7] max-h-[560px] bg-black">
                   <iframe
-                    src={`https://www.youtube.com/embed/${ytId || '4BzjUq921Y4'}?autoplay=1&rel=0`}
+                    src={`https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`}
                     title={primaryVideo.title}
                     className="w-full h-full border-0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -250,19 +271,10 @@ export function MediaGallerySection({
                       <X className="w-4 h-4" />
                       <span>Close Player</span>
                     </button>
-                    <a
-                      href={primaryVideo.youtubeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm transition-all shadow-md"
-                    >
-                      <span>Open on YouTube</span>
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
                   </div>
                 </div>
               </div>
-            ) : (
+            ) : isYouTubeMode && !isPlaying ? (
               <div
                 onClick={() => setIsPlaying(true)}
                 role="button"
@@ -277,7 +289,6 @@ export function MediaGallerySection({
                 className="group relative block w-full cursor-pointer hover:border-red-500/40 transition-all duration-300"
               >
                 <div className="relative w-full aspect-video sm:aspect-[21/9] lg:aspect-[16/7] max-h-[540px] overflow-hidden bg-black">
-                  {/* YouTube Video Thumbnail */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={videoThumb}
@@ -310,7 +321,7 @@ export function MediaGallerySection({
                     )}
                   </div>
 
-                  {/* Big YouTube Play Button in Center */}
+                  {/* Big Play Button in Center */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="relative flex items-center justify-center">
                       <div className="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-red-600/30 animate-ping group-hover:scale-110" />
@@ -325,7 +336,7 @@ export function MediaGallerySection({
                     <div className="max-w-2xl">
                       <div className="flex items-center gap-2 text-red-400 text-xs font-bold tracking-wider uppercase mb-1">
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Click to Play Video on Site</span>
+                        <span>Click to Play Video</span>
                       </div>
                       <h4 className="font-serif font-bold text-xl sm:text-2xl lg:text-3xl text-white group-hover:text-red-300 transition-colors">
                         {primaryVideo.title}
@@ -342,18 +353,43 @@ export function MediaGallerySection({
                         <Play className="w-4 h-4 fill-current" />
                         <span>Play Now</span>
                       </span>
-
-                      <a
-                        href={primaryVideo.youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-red-600 text-slate-900 hover:text-white font-bold text-xs sm:text-sm transition-all shadow-lg shrink-0 cursor-pointer"
-                      >
-                        <span>Open YouTube</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
                     </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* ANIMATED VIDEO MODE: CONSTRUCTION HERO BANNER ANIMATED VIDEO (NO REDIRECT TO YOUTUBE) */
+              <div className="relative block w-full">
+                <div className="relative w-full aspect-video sm:aspect-[21/9] lg:aspect-[16/7] min-h-[360px] max-h-[560px] overflow-hidden bg-[#cadbe0]">
+                  {/* Construction Page Hero Banner Animated Video */}
+                  <ConstructionAnimation
+                    variant="viewport"
+                    label="PRAJHA / CIVIL ENGINEERING"
+                  />
+                </div>
+
+                {/* Bottom Information Bar */}
+                <div className="p-5 sm:p-6 bg-white border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-100/90 text-[#166534] text-xs font-bold uppercase tracking-wider border border-emerald-600/20">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        {primaryVideo.tag || 'Turnkey Structural Execution • 17+ Yrs'}
+                      </span>
+                    </div>
+                    <h4 className="font-serif font-bold text-xl sm:text-2xl text-slate-900">
+                      {primaryVideo.title || 'Civil Engineering & Structural Construction In Motion'}
+                    </h4>
+                    <p className="text-slate-600 text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed">
+                      {primaryVideo.desc || '3D procedural time-lapse illustrating excavation, foundation rebar, concrete pouring, MIVAN aluminum shuttering, and turnkey civil engineering execution.'}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-[#166534] text-xs font-semibold">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Live 3D Structural Simulation</span>
+                    </span>
                   </div>
                 </div>
               </div>
