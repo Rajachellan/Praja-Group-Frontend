@@ -12,7 +12,7 @@ import {
   Layers
 } from 'lucide-react';
 import Link from "next/link";
-import RealEstateDeveloperAnimation from './Animation'
+import RealEstateDeveloperAnimation from './Animation';
 import Solutions from "./Solutions";
 import Services from "./Services";
 import WhyChooseUs from "./WhyChooseUs";

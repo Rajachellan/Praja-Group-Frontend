@@ -23,7 +23,7 @@ interface PublicBlogDetailProps {
   params: Promise<{ slug: string }>;
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4005/api';
 
 async function fetchPublicBlog(slug: string): Promise<IBlog | null> {
   try {

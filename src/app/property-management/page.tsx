@@ -10,7 +10,7 @@ FileCheck, Home
 } from 'lucide-react';
 
 import Link from "next/link";
-import PropertyManagementAnimationProps from './Animation'
+import PropertyManagementAnimationProps from './Animation';
 import Solutions from "./Solutions";
 import PropertyTypes from "./PropertyTypes";
 import Faqs from "./Faqs";

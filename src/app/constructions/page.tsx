@@ -35,7 +35,7 @@ import {
   MapPin,
   CheckCircle, Home
 } from 'lucide-react';
-import ConstructionBadge from './Animation'
+import ConstructionBadge from './Animation';
 import Services from './Services';
 import WhyChooseUs from './WhyChooseUs';
 import ProjectsShowcase from '../components/ProjectsShowcase';
