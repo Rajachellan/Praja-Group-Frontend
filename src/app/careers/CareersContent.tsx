@@ -19,6 +19,12 @@ import {
   MapPin,
   X,
   Send,
+  FileText,
+  Paperclip,
+  UploadCloud,
+  Trash2,
+  Loader2,
+  CheckCircle2,
 } from 'lucide-react';
 import axios from 'axios';
 import api from '@/services/api';
@@ -68,6 +74,9 @@ export default function CareersContent() {
     about: '',
   });
 
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeDragActive, setResumeDragActive] = useState(false);
+
   useEffect(() => {
     const getJobs = async () => {
       try {
@@ -89,30 +98,71 @@ export default function CareersContent() {
   const openApplication = (job: Job) => {
     setSelectedJob(job);
     setApplicationForm({ name: '', email: '', phNo: '', about: '' });
+    setResumeFile(null);
+    setResumeDragActive(false);
     setApplicationError('');
     setApplicationSuccess('');
+  };
+
+  const handleResumeChange = (file: File | null) => {
+    if (!file) {
+      setResumeFile(null);
+      return;
+    }
+
+    const validExtensions = ['.pdf', '.doc', '.docx'];
+    const hasValidExt = validExtensions.some((ext) => file.name.toLowerCase().endsWith(ext));
+    if (!hasValidExt) {
+      setApplicationError('Please upload a valid resume in PDF or Word (DOC/DOCX) format.');
+      return;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      setApplicationError('Resume file size must not exceed 15MB.');
+      return;
+    }
+
+    setApplicationError('');
+    setResumeFile(file);
   };
 
   const submitApplication = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!selectedJob) return;
 
+    if (!resumeFile) {
+      setApplicationError('Please upload your resume (PDF or Word format) before submitting.');
+      return;
+    }
+
     setIsSubmitting(true);
     setApplicationError('');
     try {
+      // 1. Upload resume to Cloudflare R2 / Server storage
+      const fileFormData = new FormData();
+      fileFormData.append('file', resumeFile);
+      const uploadResponse = await api.post('/upload/resume', fileFormData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      const resumeUrl = uploadResponse.data?.url || '';
+
+      // 2. Submit job enquiry with resume URL
       const response = await api.post('/add/job/enquiry', {
         ...applicationForm,
+        resume: resumeUrl,
         CareerId: selectedJob._id,
       });
-      alert(response.data.message)
-      setApplicationSuccess(response.data.message || 'Application submitted successfully.');
+
+      setApplicationSuccess(response.data?.message || 'Applied successfully! Our team will connect with you shortly.');
       setSelectedJob(null);
       setApplicationForm({ name: '', email: '', phNo: '', about: '' });
+      setResumeFile(null);
     } catch (error) {
       const message = axios.isAxiosError<{ message?: string }>(error)
         ? error.response?.data?.message
         : undefined;
-      setApplicationError(message || 'Unable to submit your application. Please try again.');
+      setApplicationError(message || 'Unable to submit your application. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -569,6 +619,85 @@ return (
                 />
               </div>
 
+              {/* Resume / CV Upload */}
+              <div className="space-y-1.5">
+                <label className="flex items-center justify-between text-sm font-semibold text-slate-700">
+                  <span className="flex items-center gap-1.5">
+                    <Paperclip className="h-4 w-4 text-[#166534]" />
+                    Upload Resume / CV <span className="text-red-500">*</span>
+                  </span>
+                  <span className="text-xs font-normal text-slate-400">PDF, DOC, DOCX up to 15MB</span>
+                </label>
+
+                {!resumeFile ? (
+                  <div
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      setResumeDragActive(true);
+                    }}
+                    onDragLeave={() => setResumeDragActive(false)}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setResumeDragActive(false);
+                      const file = e.dataTransfer.files?.[0];
+                      if (file) handleResumeChange(file);
+                    }}
+                    className={`relative rounded-2xl border-2 border-dashed p-5 text-center transition-all ${
+                      resumeDragActive
+                        ? 'border-[#166534] bg-emerald-50/70 scale-[1.01]'
+                        : 'border-slate-300 bg-slate-50/70 hover:border-emerald-300 hover:bg-emerald-50/30'
+                    }`}
+                  >
+                    <input
+                      type="file"
+                      id="applicant-resume"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      onChange={(e) => handleResumeChange(e.target.files?.[0] || null)}
+                      className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                      aria-label="Upload resume file"
+                    />
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100/70 text-[#166534]">
+                        <UploadCloud className="h-5 w-5" />
+                      </div>
+                      <div className="text-xs font-semibold text-slate-700">
+                        <span className="text-[#166534] font-bold underline">Click to browse</span> or drag & drop your resume
+                      </div>
+                      <p className="text-[11px] text-slate-400">PDF, DOC or DOCX (Max 15MB)</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between rounded-2xl border border-emerald-200 bg-emerald-50/60 p-3.5 transition-all">
+                    <div className="flex items-center gap-3 overflow-hidden">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#166534] text-white shadow-xs">
+                        <FileText className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="truncate text-xs font-bold text-slate-900">{resumeFile.name}</p>
+                        <p className="text-[11px] font-medium text-emerald-700 flex items-center gap-1">
+                          <CheckCircle2 className="h-3 w-3 shrink-0" />
+                          <span>
+                            {(resumeFile.size / (1024 * 1024) >= 1)
+                              ? `${(resumeFile.size / (1024 * 1024)).toFixed(2)} MB`
+                              : `${(resumeFile.size / 1024).toFixed(1)} KB`}
+                            {' · Attached'}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setResumeFile(null)}
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition hover:bg-red-50 hover:text-red-600"
+                      title="Remove resume"
+                      aria-label="Remove resume"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+              </div>
+
               {applicationError && (
                 <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
                   {applicationError}
@@ -578,10 +707,19 @@ return (
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F37924] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F37924] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-60 shadow-md shadow-orange-500/20"
               >
-                <Send className="h-4 w-4" />
-                {isSubmitting ? 'Submitting application…' : 'Submit application'}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span>Uploading Resume & Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" />
+                    <span>Submit Application</span>
+                  </>
+                )}
               </button>
             </form>
           </section>
