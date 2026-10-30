@@ -28,17 +28,17 @@ export default function Navbar() {
 
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about-us' },
-    {name:'Construction', href:'/constructions'},
-    {name:'Developers', href:'/developers'},
+    { name: 'About Us', href: '/about-us/' },
+    { name: 'Construction', href: '/constructions/' },
+    { name: 'Developers', href: '/developers/' },
     // {
     //   name: 'Services',
     //   href: '#services',
     //   hasDropdown: true,
     //   subLinks: [
-    //     { name: 'Constructions', href: '/constructions' },
-    //     { name: 'Developers', href: '/developers' },
-    //     { name: 'Property Management', href: '/property-management' },
+    //     { name: 'Constructions', href: '/constructions/' },
+    //     { name: 'Developers', href: '/developers/' },
+    //     { name: 'Property Management', href: '/property-management/' },
     //   ],
     // },
     {
@@ -46,14 +46,14 @@ export default function Navbar() {
       href: '#joint-ventures',
       hasDropdown: true,
       subLinks: [
-        { name: 'Land Owners', href: '/landowners' },
-        { name: 'Associate Directors', href: '/associate-directors' },
-        { name: 'Investors', href: '/investors' },
+        { name: 'Land Owners', href: '/landowners/' },
+        { name: 'Associate Directors', href: '/associate-directors/' },
+        { name: 'Investors', href: '/investors/' },
       ],
     },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Blogs', href: '/blogs' },
-    { name: 'Contact Us', href: '/contact-us' },
+    { name: 'Careers', href: '/careers/' },
+    { name: 'Blogs', href: '/blogs/' },
+    { name: 'Contact Us', href: '/contact-us/' },
   ];
 
   return (

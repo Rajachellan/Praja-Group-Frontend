@@ -562,7 +562,7 @@ export default function PropertyTypes() {
 
           <div className="flex flex-col sm:flex-row gap-4 shrink-0 relative z-10 w-full md:w-auto">
             <Link
-              href="/contact-us"
+              href="/contact-us/"
               className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-sm transition-all shadow-lg hover:shadow-xl text-center"
             >
               <span>Book Free Site Visit</span>

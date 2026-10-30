@@ -501,7 +501,7 @@ From modern residential apartments and luxury villas to approved plot layouts, f
               {/* Bottom CTA Button inside Left Column */}
               <div className="pt-8 relative z-10">
                 <Link 
-                  href="/contact-us"
+                  href="/contact-us/"
                   className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-sm tracking-wide transition-all shadow-lg hover:shadow-xl"
                 >
                   <span>Request Proposal for {activeService.title}</span>

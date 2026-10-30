@@ -64,7 +64,7 @@ export default function ServicesSection() {
       description:
         'Custom architectural 3D design, structural engineering, and end-to-end turnkey construction of luxury villas, office buildings, and commercial spaces in Chennai.',
       image: '/service-construction.png',
-      href: '/constructions',
+      href: '/constructions/',
       icon: HardHat,
       badge: 'Turnkey Building',
     },
@@ -74,7 +74,7 @@ export default function ServicesSection() {
       description:
         'Strategic land development, prime residential plot layouts, luxury villa enclaves, and Joint Venture landowner partnerships across high-growth corridors.',
       image: '/service-developers.png',
-      href: '/developers',
+      href: '/developers/',
       icon: Building2,
       badge: 'Approved Layouts',
     },

@@ -146,7 +146,7 @@ function page() {
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  <Link href={'/contact-us'}
+                  <Link href={'/contact-us/'}
                     aria-label="Villa For Sale"
                     className="sale-btn" >
                     <div className="w-7 h-7 rounded-full bg-emerald-100/80 border border-emerald-600/30 flex items-center justify-center text-[#166534] group-hover:bg-[#166534] group-hover:text-white transition-all duration-200 shrink-0">

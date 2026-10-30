@@ -222,7 +222,7 @@ export default function TrustExpertsSection() {
             {/* CTA Button */}
             <div className="experts-cta">
               <Link
-                href="/about-us"
+                href="/about-us/"
                 className="inline-flex items-center justify-center gap-3 bg-[#166534] hover:bg-[#115e2e] text-white font-bold text-sm sm:text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-900/20 hover:shadow-emerald-900/35 hover:scale-[1.02] active:scale-[0.98] transition-all group cursor-pointer"
               >
                 <span>Know More About Prajha Group</span>

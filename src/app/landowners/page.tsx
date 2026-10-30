@@ -673,7 +673,7 @@ export default function LandownersPage() {
                 </div>
                 <div className="pt-4 mt-4 border-t border-slate-200">
                   <Link
-                    href="/blogs"
+                    href="/blogs/"
                     className="text-xs font-bold text-[#166534] hover:text-[#0F2D24] inline-flex items-center gap-1 group-hover:underline"
                   >
                     <span>Explore the Land Development Guide</span>
@@ -697,7 +697,7 @@ export default function LandownersPage() {
                 </div>
                 <div className="pt-4 mt-4 border-t border-slate-200">
                   <Link
-                    href="/blogs"
+                    href="/blogs/"
                     className="text-xs font-bold text-[#166534] hover:text-[#0F2D24] inline-flex items-center gap-1 group-hover:underline"
                   >
                     <span>Read the Guide</span>
@@ -721,7 +721,7 @@ export default function LandownersPage() {
                 </div>
                 <div className="pt-4 mt-4 border-t border-slate-200">
                   <Link
-                    href="/blogs"
+                    href="/blogs/"
                     className="text-xs font-bold text-[#166534] hover:text-[#0F2D24] inline-flex items-center gap-1 group-hover:underline"
                   >
                     <span>Read More</span>

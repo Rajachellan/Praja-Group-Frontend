@@ -498,7 +498,7 @@ export default function ConstructionsPage() {
           {/* Action CTA Row */}
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Link
-              href="/contact-us"
+              href="/contact-us/"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#166534] hover:bg-[#166534] text-white font-bold text-base transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <span>Book Free Site Consultation</span>

@@ -136,7 +136,7 @@ export default function Herosection() {
               </div>
 
               <div className="grid grid-cols-2 lg:gap-5 gap-2 mb-10">
-                <Link href="/contact-us" className="hero-cta get-in-touch-btn group">
+                <Link href="/contact-us/" className="hero-cta get-in-touch-btn group">
                   <span>Get in Touch With Us</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>

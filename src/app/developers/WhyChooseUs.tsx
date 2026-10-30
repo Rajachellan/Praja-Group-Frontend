@@ -218,7 +218,7 @@ cursor-pointer flex flex-col justify-between relative group'>
 
               <div className="pt-2">
                 <Link
-                  href="/contact-us"
+                  href="/contact-us/"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs transition-all shadow-md hover:shadow-lg uppercase" style={{letterSpacing:"1px"}}
                 >
                   <span>Discuss Your Project With Us</span>

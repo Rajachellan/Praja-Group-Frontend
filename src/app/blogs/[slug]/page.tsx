@@ -221,7 +221,7 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
         {/* Back Link */}
         <div>
           <Link
-            href="/blogs"
+            href="/blogs/"
             className="inline-flex items-center gap-2 text-xs font-extrabold text-[#166534] hover:text-[#f37924] transition-colors bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-xs"
           >
             <ArrowLeft className="w-4 h-4" /> Back to All Articles

@@ -116,12 +116,12 @@ export default function Footer() {
             <div className="flex flex-col gap-2.5">
               {[
                 { name: 'Home', href: '/' },
-                { name: 'About Us', href: '/about-us' },
-                { name: 'Careers', href: '/careers' },
-                { name: 'Blogs', href: '/blogs' },
-                { name: 'Contact Us', href: '/contact-us' },
-                { name: 'Privacy Policy', href: '/privacy-policy' },
-                { name: 'Terms & Conditions', href: '/terms-and-conditions' },
+                { name: 'About Us', href: '/about-us/' },
+                { name: 'Careers', href: '/careers/' },
+                { name: 'Blogs', href: '/blogs/' },
+                { name: 'Contact Us', href: '/contact-us/' },
+                { name: 'Privacy Policy', href: '/privacy-policy/' },
+                { name: 'Terms & Conditions', href: '/terms-and-conditions/' },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -142,12 +142,12 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-2.5">
               {[
-                { name: 'Constructions', href: '/constructions' },
-                { name: 'Developers', href: '/developers' },
-                // { name: 'Property Management', href: '/property-management' },
-                { name: 'Land Owners', href: '/landowners' },
-                { name: 'Associate Directors', href: '/associate-directors' },
-                { name: 'Investors', href: '/investors' },
+                { name: 'Constructions', href: '/constructions/' },
+                { name: 'Developers', href: '/developers/' },
+                // { name: 'Property Management', href: '/property-management/' },
+                { name: 'Land Owners', href: '/landowners/' },
+                { name: 'Associate Directors', href: '/associate-directors/' },
+                { name: 'Investors', href: '/investors/' },
               ].map((link) => (
                 <Link
                   key={link.name}
@@ -212,8 +212,8 @@ export default function Footer() {
           </p>
           
           <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+            <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions/" className="hover:text-white transition-colors">Terms & Conditions</Link>
             
             <button
               onClick={scrollToTop}

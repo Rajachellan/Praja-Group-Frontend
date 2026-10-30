@@ -139,7 +139,7 @@ export default function AboutUsPage() {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-2 w-full">
                   <Link
-                    href="/contact-us"
+                    href="/contact-us/"
                     className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-[#166534] hover:bg-[#0f4624] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg uppercase tracking-wider w-full sm:w-auto"
                   >
                     <span>Connect With Our Leadership</span>
