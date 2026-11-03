@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Calendar, Clock, FileText, Filter, Search, Sparkles, User } from 'lucide-react';
 import api from '../../../services/api';
-import { IBlog } from '../../types/blog';
+import { IBlog, IBlogImage } from '../../types/blog';
 import { estimateReadingTime, formatDate } from '../../lib/utils';
 
 const categories = [
@@ -25,8 +25,8 @@ export default function BlogsListing() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
-    api.get('/blogs?status=published').then((response) => {
-      const data = response.data?.data || [];
+    api.get('/blogs?status=publish').then((response) => {
+      const data = response.data?.data || response.data?.blogs || [];
       setBlogs(Array.isArray(data) ? data : []);
     }).catch((error) => {
       console.error('Error fetching public blogs:', error);
@@ -35,14 +35,16 @@ export default function BlogsListing() {
   }, []);
 
   const filteredBlogs = useMemo(() => blogs.filter((blog) => {
+    const summary = blog.excerpt || blog.metaDesc || blog.seo?.description || '';
     const query = searchQuery.toLowerCase();
-    const matchesSearch = !query || [blog.title, blog.excerpt, blog.category].some((value) => value?.toLowerCase().includes(query));
+    const matchesSearch = !query || [blog.title, summary, blog.category].some((value) => value?.toLowerCase().includes(query));
     const matchesCategory = selectedCategory === 'All' || blog.category?.toLowerCase() === selectedCategory.toLowerCase() || (blog.category ? blog.category.toLowerCase().includes(selectedCategory.toLowerCase()) : false);
     return matchesSearch && matchesCategory;
   }), [blogs, searchQuery, selectedCategory]);
 
   const featuredBlog = filteredBlogs[0];
   const remainingBlogs = filteredBlogs.slice(1);
+  const featuredSummary = featuredBlog ? (featuredBlog.excerpt || featuredBlog.metaDesc || featuredBlog.seo?.description || '') : '';
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex flex-col text-slate-900 font-sans pb-16">
@@ -62,17 +64,27 @@ export default function BlogsListing() {
         {loading ? <LoadingState /> : !featuredBlog ? <EmptyState /> : <>
           <article className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group">
             <BlogImage blog={featuredBlog} featured />
-            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6"><div className="space-y-3"><div className="flex items-center gap-3 text-xs font-bold text-slate-500 flex-wrap"><span className="px-2.5 py-1 bg-emerald-50 text-[#166534] border border-emerald-200 rounded-full font-extrabold uppercase text-[10px]">{featuredBlog.category || 'General'}</span><span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#f37924]" /> {estimateReadingTime(featuredBlog.content)} min read</span></div><h2 className="text-xl sm:text-3xl font-black text-slate-900 group-hover:text-[#166534] transition-colors leading-tight font-playfair"><Link href={`/blogs/${featuredBlog.slug}`}>{featuredBlog.title}</Link></h2>{featuredBlog.excerpt && <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed line-clamp-3">{featuredBlog.excerpt}</p>}</div><BlogFooter blog={featuredBlog} featured /></div>
+            <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6"><div className="space-y-3"><div className="flex items-center gap-3 text-xs font-bold text-slate-500 flex-wrap"><span className="px-2.5 py-1 bg-emerald-50 text-[#166534] border border-emerald-200 rounded-full font-extrabold uppercase text-[10px]">{featuredBlog.category || 'General'}</span><span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#f37924]" /> {estimateReadingTime(featuredBlog.content)} min read</span></div><h2 className="text-xl sm:text-3xl font-black text-slate-900 group-hover:text-[#166534] transition-colors leading-tight font-playfair"><Link href={`/blogs/${featuredBlog.slug}/`}>{featuredBlog.title}</Link></h2>{featuredSummary && <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed line-clamp-3">{featuredSummary}</p>}</div><BlogFooter blog={featuredBlog} featured /></div>
           </article>
-          {remainingBlogs.length > 0 && <div className="space-y-6"><h3 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2 font-playfair"><FileText className="w-5 h-5 text-[#166534]" /> Recent Articles ({remainingBlogs.length})</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">{remainingBlogs.map((blog) => <article key={blog._id} className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"><BlogImage blog={blog} /><div className="px-6 pt-4 space-y-2"><div className="flex items-center gap-3 text-[11px] font-bold text-slate-400"><span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-[#166534]" /> {formatDate(blog.publishedAt || blog.createdAt)}</span><span>•</span><span><Clock className="w-3.5 h-3.5 inline text-[#f37924]" /> {estimateReadingTime(blog.content)} min</span></div><h4 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#166534] transition-colors leading-snug line-clamp-2 font-playfair"><Link href={`/blogs/${blog.slug}`}>{blog.title}</Link></h4>{blog.excerpt && <p className="text-xs text-slate-600 font-medium leading-relaxed line-clamp-2">{blog.excerpt}</p>}</div><BlogFooter blog={blog} /></article>)}</div></div>}
+          {remainingBlogs.length > 0 && <div className="space-y-6"><h3 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2 font-playfair"><FileText className="w-5 h-5 text-[#166534]" /> Recent Articles ({remainingBlogs.length})</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">{remainingBlogs.map((blog) => { const summary = blog.excerpt || blog.metaDesc || blog.seo?.description || ''; return <article key={blog._id} className="bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"><BlogImage blog={blog} /><div className="px-6 pt-4 space-y-2"><div className="flex items-center gap-3 text-[11px] font-bold text-slate-400"><span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-[#166534]" /> {formatDate(blog.publishedAt || blog.createdAt)}</span><span>•</span><span><Clock className="w-3.5 h-3.5 inline text-[#f37924]" /> {estimateReadingTime(blog.content)} min</span></div><h4 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#166534] transition-colors leading-snug line-clamp-2 font-playfair"><Link href={`/blogs/${blog.slug}/`}>{blog.title}</Link></h4>{summary && <p className="text-xs text-slate-600 font-medium leading-relaxed line-clamp-2">{summary}</p>}</div><BlogFooter blog={blog} /></article>; })}</div></div>}
         </>}
       </main>
     </div>
   );
 }
 
-function getBlogImageUrl(blog: any): string {
-  const raw = blog.images || blog.coverImage?.url || blog.featuredImage?.url || blog.mainImage?.url || (typeof blog.coverImage === 'string' ? blog.coverImage : '') || (typeof blog.featuredImage === 'string' ? blog.featuredImage : '') || '';
+function extractImageUrl(imageField?: IBlogImage | string): string {
+  if (!imageField) return '';
+  return typeof imageField === 'string' ? imageField : imageField.url || '';
+}
+
+function getBlogImageUrl(blog: IBlog): string {
+  const raw =
+    blog.images ||
+    extractImageUrl(blog.coverImage) ||
+    extractImageUrl(blog.featuredImage) ||
+    extractImageUrl(blog.mainImage) ||
+    '';
   if (!raw) return 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=1200&q=80';
   if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
   const baseUrl = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, '') : 'https://api.prajhagroup.com';
@@ -86,7 +98,7 @@ function BlogImage({ blog, featured = false }: { blog: IBlog; featured?: boolean
 
 
 function BlogFooter({ blog, featured = false }: { blog: IBlog; featured?: boolean }) {
-  return <div className={`${featured ? 'pt-4' : 'p-6 pt-4 mt-4'} border-t border-slate-100 flex items-center justify-between`}><span className="flex items-center gap-2 text-xs font-bold text-slate-700 truncate"><User className="w-3.5 h-3.5 text-slate-400" />{blog.author?.name || 'Prajha Team'}</span><Link href={`/blogs/${blog.slug}`} className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#166534] text-white hover:bg-[#12542a] text-xs font-extrabold rounded-xl shadow-xs transition-all">Read Article <ArrowRight className="w-4 h-4" /></Link></div>;
+  return <div className={`${featured ? 'pt-4' : 'p-6 pt-4 mt-4'} border-t border-slate-100 flex items-center justify-between`}><span className="flex items-center gap-2 text-xs font-bold text-slate-700 truncate"><User className="w-3.5 h-3.5 text-slate-400" />{blog.author?.name || 'Prajha Team'}</span><Link href={`/blogs/${blog.slug}/`} className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#166534] text-white hover:bg-[#12542a] text-xs font-extrabold rounded-xl shadow-xs transition-all">Read Article <ArrowRight className="w-4 h-4" /></Link></div>;
 }
 
 function LoadingState() {

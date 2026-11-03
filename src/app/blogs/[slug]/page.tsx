@@ -1,21 +1,14 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { IBlog } from '../../../types/blog';
+import { BlogContentValue, IBlog, IBlogImage, ITiptapMark, ITiptapNode } from '../../../types/blog';
 import BlogFaqAccordion from '../../components/BlogFaqAccordion';
-import { formatDate, estimateReadingTime } from '../../../lib/utils';
+import { formatDate, estimateReadingTime, parseBlogContent } from '../../../lib/utils';
 import { 
   Calendar, 
-  User, 
   Tag, 
-  HelpCircle, 
   ArrowLeft, 
-  Clock, 
-  Share2, 
-  Building2, 
-  CheckCircle2, 
-  Sparkles,
-  ChevronDown
+  Clock
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,6 +17,18 @@ interface PublicBlogDetailProps {
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.prajhagroup.com/api';
+const ASSET_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, '');
+
+function extractImageUrl(imageField?: IBlogImage | string): string {
+  if (!imageField) return '';
+  return typeof imageField === 'string' ? imageField : imageField.url || '';
+}
+
+function resolveAssetUrl(raw?: string): string | null {
+  if (!raw) return null;
+  if (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('data:')) return raw;
+  return `${ASSET_BASE_URL}${raw.startsWith('/') ? '' : '/'}${raw}`;
+}
 
 async function fetchPublicBlog(slug: string): Promise<IBlog | null> {
   try {
@@ -32,7 +37,7 @@ async function fetchPublicBlog(slug: string): Promise<IBlog | null> {
     });
     if (!res.ok) return null;
     const data = await res.json();
-    return data.data || null;
+    return data.data || data.blog || null;
   } catch {
     return null;
   }
@@ -50,21 +55,27 @@ export async function generateMetadata({ params }: PublicBlogDetailProps): Promi
     };
   }
 
-  const title = blog.seo?.title || `${blog.title} | Prajha Groups`;
-  const description = blog.seo?.description || blog.excerpt || `Read ${blog.title} published by Prajha Groups.`;
-  const image = blog.seo?.ogImage || blog.mainImage?.url || blog.coverImage?.url || blog.featuredImage?.url;
+  const title = blog.metaTitle || blog.seo?.title || `${blog.title} | Prajha Groups`;
+  const description = blog.metaDesc || blog.seo?.description || blog.excerpt || `Read ${blog.title} published by Prajha Groups.`;
+  const rawImage =
+    blog.seo?.ogImage ||
+    blog.images ||
+    extractImageUrl(blog.mainImage) ||
+    extractImageUrl(blog.coverImage) ||
+    extractImageUrl(blog.featuredImage);
+  const image = resolveAssetUrl(rawImage);
 
   return {
     title,
     description,
     keywords: blog.seo?.keywords || blog.tags || [],
     alternates: {
-      canonical: blog.seo?.canonicalUrl || `https://prajhagroups.com/blogs/${blog.slug}`
+      canonical: blog.seo?.canonicalUrl || `https://www.prajhagroup.com/blogs/${blog.slug}/`
     },
     openGraph: {
       title: blog.seo?.ogTitle || title,
       description: blog.seo?.ogDescription || description,
-      url: `https://prajhagroups.com/blogs/${blog.slug}`,
+      url: `https://www.prajhagroup.com/blogs/${blog.slug}/`,
       siteName: 'Prajha Groups',
       images: image ? [{ url: image }] : [],
       type: 'article',
@@ -95,25 +106,30 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
     }))
   } : null;
 
-  // Render Tiptap JSON nodes into clean React elements
-  const renderTiptapNode = (node: any, index: number): React.ReactNode => {
-    if (!node) return null;
+  // Render Tiptap JSON nodes or HTML strings into clean React elements
+  const renderTiptapNode = (rawNode: BlogContentValue, index: number): React.ReactNode => {
+    if (!rawNode) return null;
 
-    if (typeof node === 'string') {
+    const parsed = typeof rawNode === 'string' ? parseBlogContent(rawNode) : rawNode;
+    if (!parsed) return null;
+
+    if (typeof parsed === 'string') {
       return (
         <div 
           key={index} 
-          className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-slate-900 [&>h2]:mt-6 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-slate-900 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-5 [&>ol]:list-decimal [&>ol]:pl-5 [&>a]:text-[#166534] [&>a]:underline" 
-          dangerouslySetInnerHTML={{ __html: node }} 
+          className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4 [&>h1]:text-3xl [&>h1]:font-black [&>h1]:text-slate-900 [&>h1]:mt-8 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-slate-900 [&>h2]:mt-6 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-slate-900 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-5 [&>ol]:list-decimal [&>ol]:pl-5 [&>a]:text-[#166534] [&>a]:underline [&_img]:rounded-2xl [&_img]:my-6" 
+          dangerouslySetInnerHTML={{ __html: parsed }} 
         />
       );
     }
+
+    const node = parsed as ITiptapNode;
 
     if (node.type === 'text') {
       let textContent: React.ReactNode = node.text;
 
       if (node.marks) {
-        node.marks.forEach((mark: any) => {
+        node.marks.forEach((mark: ITiptapMark) => {
           if (mark.type === 'bold') textContent = <strong key={index}>{textContent}</strong>;
           if (mark.type === 'italic') textContent = <em key={index}>{textContent}</em>;
           if (mark.type === 'underline') textContent = <u key={index}>{textContent}</u>;
@@ -132,18 +148,19 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
       return textContent;
     }
 
-    const children = node.content ? node.content.map((child: any, i: number) => renderTiptapNode(child, i)) : null;
+    const children = node.content ? node.content.map((child: ITiptapNode, i: number) => renderTiptapNode(child, i)) : null;
     const alignClass = node.attrs?.textAlign ? `text-${node.attrs.textAlign}` : '';
 
     switch (node.type) {
       case 'doc':
         return <div key={index} className="space-y-4">{children}</div>;
-      case 'heading':
+      case 'heading': {
         const level = node.attrs?.level || 2;
         if (level === 1) return <h1 key={index} className={`text-2xl sm:text-4xl font-black text-slate-900 mt-8 mb-4 tracking-tight ${alignClass}`}>{children}</h1>;
         if (level === 2) return <h2 key={index} className={`text-xl sm:text-3xl font-extrabold text-slate-900 mt-7 mb-3 tracking-tight ${alignClass}`}>{children}</h2>;
         if (level === 3) return <h3 key={index} className={`text-lg sm:text-2xl font-bold text-slate-900 mt-6 mb-2.5 ${alignClass}`}>{children}</h3>;
         return <h4 key={index} className={`text-base sm:text-lg font-bold text-slate-800 mt-4 mb-2 ${alignClass}`}>{children}</h4>;
+      }
       case 'paragraph':
         return <p key={index} className={`text-slate-700 leading-relaxed text-base sm:text-lg mb-4 font-normal ${alignClass}`}>{children}</p>;
       case 'bulletList':
@@ -179,7 +196,7 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
         return (
           <img
             key={index}
-            src={node.attrs?.src}
+            src={resolveAssetUrl(node.attrs?.src) || node.attrs?.src}
             alt={node.attrs?.alt || ''}
             className="rounded-2xl max-w-full my-8 border border-slate-200 shadow-md mx-auto object-cover"
           />
@@ -203,8 +220,13 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
     }
   };
 
-  const rawImage = blog.images || blog.mainImage?.url || blog.coverImage?.url || blog.featuredImage?.url || (typeof blog.coverImage === 'string' ? blog.coverImage : '') || (typeof blog.featuredImage === 'string' ? blog.featuredImage : '') || '';
-  const articleImage = rawImage ? (rawImage.startsWith('http://') || rawImage.startsWith('https://') ? rawImage : `${(process.env.NEXT_PUBLIC_API_URL || 'https://api.prajhagroup.com').replace(/\/api\/?$/, '')}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`) : null;
+  const rawImage =
+    blog.images ||
+    extractImageUrl(blog.mainImage) ||
+    extractImageUrl(blog.coverImage) ||
+    extractImageUrl(blog.featuredImage) ||
+    '';
+  const articleImage = resolveAssetUrl(rawImage);
 
 
   return (

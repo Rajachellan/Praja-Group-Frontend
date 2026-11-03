@@ -24,25 +24,47 @@ export interface ISEO {
   ogImage?: string;
 }
 
+export interface ITiptapMark {
+  type: string;
+  attrs?: Record<string, string | undefined>;
+}
+
+export interface ITiptapNode {
+  type?: string;
+  text?: string;
+  marks?: ITiptapMark[];
+  attrs?: {
+    level?: number;
+    textAlign?: string | null;
+    checked?: boolean;
+    src?: string;
+    alt?: string;
+    href?: string;
+  };
+  content?: ITiptapNode[];
+}
+
+export type BlogContentValue = string | ITiptapNode | Record<string, unknown> | null | undefined;
+
 export interface IBlog {
   _id: string;
   title: string;
   slug: string;
   excerpt?: string;
-  featuredImage?: IBlogImage;
-  coverImage?: IBlogImage;
-  mainImage?: IBlogImage;
+  featuredImage?: IBlogImage | string;
+  coverImage?: IBlogImage | string;
+  mainImage?: IBlogImage | string;
   images?: string;
   metaTitle?: string;
   metaDesc?: string;
-  content: any; // Tiptap JSON Document
+  content: BlogContentValue; // Tiptap JSON Document or HTML string
 
   category: string;
   tags: string[];
   author: IAuthor;
   faqs: IFAQ[];
   seo: ISEO;
-  status: 'draft' | 'published' | 'scheduled';
+  status: 'draft' | 'published' | 'publish' | 'private' | 'scheduled';
   publishedAt?: string;
   scheduledAt?: string;
   createdAt: string;
