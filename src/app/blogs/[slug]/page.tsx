@@ -203,7 +203,9 @@ export default async function PublicBlogDetailPage({ params }: PublicBlogDetailP
     }
   };
 
-  const articleImage = blog.mainImage?.url || blog.coverImage?.url || blog.featuredImage?.url;
+  const rawImage = blog.images || blog.mainImage?.url || blog.coverImage?.url || blog.featuredImage?.url || (typeof blog.coverImage === 'string' ? blog.coverImage : '') || (typeof blog.featuredImage === 'string' ? blog.featuredImage : '') || '';
+  const articleImage = rawImage ? (rawImage.startsWith('http://') || rawImage.startsWith('https://') ? rawImage : `${(process.env.NEXT_PUBLIC_API_URL || 'https://api.prajhagroup.com').replace(/\/api\/?$/, '')}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`) : null;
+
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex flex-col text-slate-900 font-sans pb-20">

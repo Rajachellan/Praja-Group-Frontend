@@ -71,10 +71,19 @@ export default function BlogsListing() {
   );
 }
 
+function getBlogImageUrl(blog: any): string {
+  const raw = blog.images || blog.coverImage?.url || blog.featuredImage?.url || blog.mainImage?.url || (typeof blog.coverImage === 'string' ? blog.coverImage : '') || (typeof blog.featuredImage === 'string' ? blog.featuredImage : '') || '';
+  if (!raw) return 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=1200&q=80';
+  if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, '') : 'https://api.prajhagroup.com';
+  return `${baseUrl}${raw.startsWith('/') ? '' : '/'}${raw}`;
+}
+
 function BlogImage({ blog, featured = false }: { blog: IBlog; featured?: boolean }) {
-  const image = blog.coverImage?.url || blog.featuredImage?.url || blog.mainImage?.url || 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=1200&q=80';
+  const image = getBlogImageUrl(blog);
   return <div className={`${featured ? 'lg:col-span-7 h-72 sm:h-96 lg:h-auto' : 'h-48 sm:h-52'} relative overflow-hidden bg-slate-100`}><img src={image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /><span className="absolute top-3 left-3 px-2.5 py-1 bg-white/90 backdrop-blur-md text-slate-800 text-[10px] font-black rounded-full shadow-xs uppercase">{blog.category || 'General'}</span></div>;
 }
+
 
 function BlogFooter({ blog, featured = false }: { blog: IBlog; featured?: boolean }) {
   return <div className={`${featured ? 'pt-4' : 'p-6 pt-4 mt-4'} border-t border-slate-100 flex items-center justify-between`}><span className="flex items-center gap-2 text-xs font-bold text-slate-700 truncate"><User className="w-3.5 h-3.5 text-slate-400" />{blog.author?.name || 'Prajha Team'}</span><Link href={`/blogs/${blog.slug}`} className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#166534] text-white hover:bg-[#12542a] text-xs font-extrabold rounded-xl shadow-xs transition-all">Read Article <ArrowRight className="w-4 h-4" /></Link></div>;

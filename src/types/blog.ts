@@ -32,7 +32,11 @@ export interface IBlog {
   featuredImage?: IBlogImage;
   coverImage?: IBlogImage;
   mainImage?: IBlogImage;
+  images?: string;
+  metaTitle?: string;
+  metaDesc?: string;
   content: any; // Tiptap JSON Document
+
   category: string;
   tags: string[];
   author: IAuthor;
