@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   description:
     'Contact Us Home Contact Us Contact Details Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. +91 95001 20231 +91 9499933461 prajhaconnect@gmail.com Enquiry Now Address Prajha Groups Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu, India. Contact us +91 95001 20231',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/contact-us/',
+    canonical: 'https://prajhagroup.com/contact-us/',
   },
   openGraph: {
     title: 'Contact Prajha Group | Chennai Construction Company',

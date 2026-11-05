@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description:
     'Own land and exploring a joint venture? Submit your property details to Prajha Group to discuss potential land development opportunities.',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/landowners/',
+    canonical: 'https://prajhagroup.com/landowners/',
   },
   openGraph: {
     title: 'Joint Venture Opportunities for Landowners | Prajha Group',

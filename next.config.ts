@@ -1,3 +1,4 @@
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -9,6 +10,16 @@ const nextConfig: NextConfig = {
   },
 
   trailingSlash: true,
+
+  async redirects() {
+    return [
+      {
+        source: "/joint-venture-guide-for-landowners-chennai",
+        destination: "/blogs/joint-venture-guide-for-landowners-chennai/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

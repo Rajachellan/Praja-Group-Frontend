@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     'Explore high-return commercial property options and grow your real estate portfolio with strategic investments in Chennai and beyond.',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/investors/',
+    canonical: 'https://prajhagroup.com/investors/',
   },
   openGraph: {
     title: 'Best Commercial Property Investment in Chennai | Prajha Group',

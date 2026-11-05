@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Terms and Conditions | Prajha Group',
   description: 'Terms and Conditions for www.prajhagroup.com.',
-  alternates: { canonical: 'https://www.prajhagroup.com/terms-and-conditions/' },
+  alternates: { canonical: 'https://prajhagroup.com/terms-and-conditions/' },
 };
 
 const sections = [

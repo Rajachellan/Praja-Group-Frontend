@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description:
     'Join Prajha Group as an Associate Director in Tamil Nadu. Lead business development, construction, and facility management projects. Apply now for top leadership roles in real estate.',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/associate-directors/',
+    canonical: 'https://prajhagroup.com/associate-directors/',
   },
   openGraph: {
     title: 'Prajha Group Associates | Chennai Construction Partners',

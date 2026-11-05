@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Explore exciting career opportunities at Prajha Group in Chennai. Join our engineering, project management, site supervision, and architectural teams to build signature infrastructure.',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/careers/',
+    canonical: 'https://prajhagroup.com/careers/',
   },
   openGraph: {
     title: 'Careers at Prajha Group | Engineering & Real Estate Opportunities in Chennai',

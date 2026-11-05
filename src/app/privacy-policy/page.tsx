@@ -13,7 +13,7 @@ import {
 export const metadata: Metadata = {
   title: 'Privacy Policy | Prajha Group',
   description: 'Privacy Policy for www.prajhagroup.com.',
-  alternates: { canonical: 'https://www.prajhagroup.com/privacy-policy/' },
+  alternates: { canonical: 'https://prajhagroup.com/privacy-policy/' },
 };
 
 const sections = [

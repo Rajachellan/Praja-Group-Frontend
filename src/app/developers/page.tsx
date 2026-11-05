@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description:
     'Discover premier real estate development services in Chennai with Prajha Group. We specialize in residential flats, luxury villas, gated communities, and prime plots. Contact us today to turn your property dreams into reality.',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/developers/',
+    canonical: 'https://prajhagroup.com/developers/',
   },
   openGraph: {
     title: 'Top Real Estate Developers Chennai | Prajha Group',

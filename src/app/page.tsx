@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'residential development Chennai',
   ],
   alternates: {
-    canonical: 'https://www.prajhagroup.com/',
+    canonical: 'https://prajhagroup.com/',
   },
   openGraph: {
     title: 'Prajha Group – Top Construction & Real Estate Developers in Chennai',

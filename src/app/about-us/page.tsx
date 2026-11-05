@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     'Our Company Prajha Group of Company is a Chennai based firm that specializes in Engineering Procurement Contracting, construction : Infrastructure & Building, Building Maintenance , Empowering Challenged, academy for skill developments and having Prajha Trust for social responsibilities.Started in 2010 by Mr. P.R.BabuPrabakaran, an Engineering Graduate who has done',
   alternates: {
-    canonical: 'https://www.prajhagroup.com/about-us/',
+    canonical: 'https://prajhagroup.com/about-us/',
   },
   openGraph: {
     title: 'About Prajha Group | Chennai Construction & Real Estate Leaders',

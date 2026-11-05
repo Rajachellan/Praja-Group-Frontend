@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   //   'residential development Chennai',
   // ],
   alternates: {
-    canonical: 'https://www.prajhagroup.com/constructions/',
+    canonical: 'https://prajhagroup.com/constructions/',
   },
   openGraph: {
     title: 'Top Construction Company Chennai | Prajha Group Services',
