@@ -1,81 +1,32 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   ArrowRight,
-  Play,
-  Leaf,
-  HardHat,
   Building2,
-  Settings,
-  Handshake,
-  ChevronLeft,
-  ChevronRight,
-  Home,
   Clock,
   Award,
   Users,
 } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
 import HeroVisual from './HeroVisual';
 import StatsSection from './StatsSection';
-import { TypeAnimation } from "react-type-animation";
+
+const TypeAnimation = dynamic(
+  () => import('react-type-animation').then((mod) => mod.TypeAnimation),
+  { ssr: false }
+);
 
 export default function Herosection() {
-  const [mounted, setMounted] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [enableTyping, setEnableTyping] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setEnableTyping(true);
+    }, 1800);
+    return () => clearTimeout(timer);
   }, []);
-
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-      tl.fromTo(
-        '.hero-badge',
-        { opacity: 0, y: -10, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.3 }
-      )
-        .fromTo(
-          '.hero-title',
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.35 },
-          '-=0.15'
-        )
-        .fromTo(
-          '.hero-sub',
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.3 },
-          '-=0.2'
-        )
-        .fromTo(
-          '.hero-desc',
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.3 },
-          '-=0.2'
-        )
-        .fromTo(
-          '.hero-cta',
-          { opacity: 0, y: 10, scale: 0.97 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.3, stagger: 0.05 },
-          '-=0.2'
-        );
-    },
-    { scope: containerRef }
-  );
 
   const stats = [
     { icon: Clock, num: 17, suffix: '+', label: 'Years of Experience' },
@@ -85,7 +36,7 @@ export default function Herosection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[#FBFBFB] py-10 lg:py-20 overflow-hidden">
+    <section className="relative w-full bg-[#FBFBFB] py-10 lg:py-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch min-h-[640px]">
           {/* LEFT SIDE */}
@@ -102,28 +53,36 @@ export default function Herosection() {
                 </span>
               </div>
 
-              {/* Heading */}
+              {/* Heading — painted immediately in SSR without JS opacity delay */}
               <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-black leading-[1.12] mb-5 heading">
-                Leading Construction & Real Estate Developers in <span className="text-[#166534] relative inline-block">Tamilnadu</span>
+                Leading Construction & Real Estate Developers in{' '}
+                <span className="text-[#166534] relative inline-block">Tamilnadu</span>
               </h1>
 
-              <h2 className="hero-sub hero-heading italic text-[16px] font-bold mb-5" style={{ letterSpacing: "1px" }}>
-                We Deliver{" "}
-                <TypeAnimation
-                  sequence={[
-                    "Premium Real Estate Solutions.",
-                    2000,
-                    "Residential Property Experts.",
-                    2000,
-                    "Your Trusted Property Partner.",
-                    2000,
-                    "Turnkey Property Solutions.",
-                    2000,
-                  ]}
-                  speed={50}
-                  repeat={Infinity}
-                  className="animation-text"
-                />
+              <h2
+                className="hero-sub hero-heading italic text-[16px] font-bold mb-5 min-h-[26px]"
+                style={{ letterSpacing: '1px' }}
+              >
+                We Deliver{' '}
+                {enableTyping ? (
+                  <TypeAnimation
+                    sequence={[
+                      'Premium Real Estate Solutions.',
+                      2000,
+                      'Residential Property Experts.',
+                      2000,
+                      'Your Trusted Property Partner.',
+                      2000,
+                      'Turnkey Property Solutions.',
+                      2000,
+                    ]}
+                    speed={50}
+                    repeat={Infinity}
+                    className="animation-text"
+                  />
+                ) : (
+                  <span className="animation-text">Premium Real Estate Solutions.</span>
+                )}
               </h2>
 
               <div className="hero-desc flex flex-col gap-3 mb-8">

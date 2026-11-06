@@ -8,14 +8,10 @@ import {
   Phone,
   Mail,
   Clock,
-  ArrowRight,
-  ShieldCheck,
-  Send,
   ChevronRight,
   ArrowUp,
-  Sparkles,
 } from 'lucide-react';
-import { FaFacebookF, FaInstagram,FaLinkedinIn } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -30,12 +26,8 @@ export default function Footer() {
       <div className="absolute top-1/2 right-10 w-[300px] h-[300px] bg-[#22C55E]/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        
-      
-
         {/* Main Footer Links & Information Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
-          
           {/* Column 1: Brand Profile & Newsletter */}
           <div className="lg:col-span-4 flex flex-col justify-between gap-6">
             <div>
@@ -44,8 +36,11 @@ export default function Footer() {
                   <Image
                     src="/praja-logo.webp"
                     alt="Prajha Group Logo"
-                    width={240}
-                    height={80}
+                    width={128}
+                    height={84}
+                    loading="lazy"
+                    quality={70}
+                    sizes="(max-width: 640px) 98px, 128px"
                     className="h-16 sm:h-20 w-auto object-contain"
                   />
                 </div>
@@ -54,27 +49,6 @@ export default function Footer() {
                 Prajha Group is a trusted Chennai-based construction and property development company with 17+ years of experience in residential, commercial construction and joint venture projects.
               </p>
             </div>
-
-            {/* Newsletter / Quick Email Subscribe */}
-            {/* <div className="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-xs">
-              <h5 className="text-xs font-bold uppercase tracking-wider text-white mb-2 flex items-center gap-2">
-                <Send className="w-3.5 h-3.5 text-[#F37924]" />
-                <span>Stay Updated</span>
-              </h5>
-              <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-white/10 text-white text-xs px-3.5 py-2.5 rounded-xl border border-white/15 focus:outline-none focus:border-[#F37924] placeholder:text-white/40 transition-all"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#F37924] hover:bg-[#e06816] text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shrink-0 hover:scale-105 cursor-pointer"
-                >
-                  Join
-                </button>
-              </form>
-            </div> */}
 
             {/* Social Links using react-icons */}
             <div className="flex items-center gap-3">
@@ -97,14 +71,14 @@ export default function Footer() {
                 <FaInstagram className="w-4.5 h-4.5" />
               </a>
               <a
-  href="https://www.linkedin.com/company/prajhaindia/home/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#0A66C2] border border-white/10 hover:border-[#0A66C2] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-md"
-  aria-label="LinkedIn"
->
-  <FaLinkedinIn className="w-4.5 h-4.5" />
-</a>
+                href="https://www.linkedin.com/company/prajhaindia/home/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#0A66C2] border border-white/10 hover:border-[#0A66C2] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 shadow-md"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn className="w-4.5 h-4.5" />
+              </a>
             </div>
           </div>
 
@@ -175,7 +149,7 @@ export default function Footer() {
                   Plot No.18, First Avenue, Pallava Garden, Old Pallavaram, Chennai - 600 117, Tamil Nadu.
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#F37924] shrink-0">
                   <Phone className="w-4 h-4" />
@@ -202,20 +176,33 @@ export default function Footer() {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Bottom Copyright & Back to Top Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
           <p className="text-center sm:text-left text-[14px]">
-            © {new Date().getFullYear()} <span className="text-white font-semibold">Created and Designed By <u><a href="https://rankraze.com/" target='_blank'>Rankraze</a></u></span>. All Rights Reserved.
+            © {new Date().getFullYear()}{' '}
+            <span className="text-white font-semibold">
+              Created and Designed By{' '}
+              <u>
+                <a href="https://rankraze.com/" target="_blank" rel="noopener noreferrer">
+                  Rankraze
+                </a>
+              </u>
+            </span>
+            . All Rights Reserved.
           </p>
-          
+
           <div className="flex items-center gap-6">
-            <Link href="/privacy-policy/" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms-and-conditions/" className="hover:text-white transition-colors">Terms & Conditions</Link>
-            
+            <Link href="/privacy-policy/" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-and-conditions/" className="hover:text-white transition-colors">
+              Terms & Conditions
+            </Link>
+
             <button
+              type="button"
               onClick={scrollToTop}
               className="w-8 h-8 rounded-xl bg-white/10 hover:bg-[#F37924] text-white flex items-center justify-center transition-all duration-200 hover:scale-110 ml-2 cursor-pointer"
               aria-label="Back to top"
@@ -225,7 +212,6 @@ export default function Footer() {
             </button>
           </div>
         </div>
-
       </div>
     </footer>
   );

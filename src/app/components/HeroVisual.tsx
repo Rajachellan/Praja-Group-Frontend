@@ -2,21 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
+import dynamic from "next/dynamic";
 import { ChevronLeft, ChevronRight, ArrowUpRight, Leaf } from "lucide-react";
+import hero1img from "../../../public/hero-1.jpg";
 
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/pagination";
-import hero1img from '../../../public/hero-1.jpg';
-import hero2img from '../../../public/hero-2.jpg';
-import hero3img from '../../../public/hero-3.jpg';
-import hero4img from '../../../public/hero-4.jpg';
+const HeroCarousel = dynamic(() => import("./HeroCarousel"), {
+  ssr: false,
+});
 
-const heroImages = [
+const heroSlidesMeta = [
   {
-    src: hero1img,
     alt: "Master-planned residential plot layout in Chennai",
     leftTag: "Plotted Layouts",
     leftDesc: "Approved plots in growing locations",
@@ -24,7 +19,6 @@ const heroImages = [
     bottomLine2: "A foundation for your future",
   },
   {
-    src: hero2img,
     alt: "Quality ongoing residential construction site",
     leftTag: "Construction Experts",
     leftDesc: "Quality building & engineering standards",
@@ -32,7 +26,6 @@ const heroImages = [
     bottomLine2: "Built on trust and strength",
   },
   {
-    src: hero3img,
     alt: "Simple modern independent residential home",
     leftTag: "Independent Homes",
     leftDesc: "Comfortable family living spaces",
@@ -40,7 +33,6 @@ const heroImages = [
     bottomLine2: "Homes designed for everyday life",
   },
   {
-    src: hero4img,
     alt: "Modern residential apartment building complex",
     leftTag: "Apartments & Flats",
     leftDesc: "Quality residential communities in Chennai",
@@ -50,42 +42,60 @@ const heroImages = [
 ];
 
 export default function HeroVisual() {
-  const [mounted, setMounted] = useState(false);
+  const [enableCarousel, setEnableCarousel] = useState(false);
+  const [carouselReady, setCarouselReady] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 80);
-    return () => clearTimeout(t);
+    let activated = false;
+
+    const activate = () => {
+      if (activated) return;
+      activated = true;
+      cleanup();
+      setEnableCarousel(true);
+    };
+
+    const events: Array<keyof WindowEventMap> = [
+      "pointerdown",
+      "touchstart",
+      "scroll",
+      "keydown",
+    ];
+
+    const cleanup = () => {
+      events.forEach((evt) => window.removeEventListener(evt, activate));
+    };
+
+    events.forEach((evt) =>
+      window.addEventListener(evt, activate, { passive: true, once: true })
+    );
+
+    const timer = setTimeout(() => {
+      activate();
+    }, 3500);
+
+    return () => {
+      cleanup();
+      clearTimeout(timer);
+    };
   }, []);
 
-  const currentSlide = heroImages[activeIndex] || heroImages[0];
+  const currentSlide = heroSlidesMeta[activeIndex] || heroSlidesMeta[0];
+
+  const handleManualNav = (direction: "prev" | "next") => {
+    if (!enableCarousel) {
+      const nextIdx =
+        direction === "next"
+          ? (activeIndex + 1) % heroSlidesMeta.length
+          : (activeIndex - 1 + heroSlidesMeta.length) % heroSlidesMeta.length;
+      setActiveIndex(nextIdx);
+      setEnableCarousel(true);
+    }
+  };
 
   return (
     <div className="lg:col-span-6 relative flex items-center justify-center min-h-[600px] lg:min-h-full">
-      {/* Local keyframes for Motion */}
-      <style jsx global>{`
-        @keyframes heroKenBurns {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.12); }
-        }
-        .swiper-slide-active .hero-ken-burns {
-          animation: heroKenBurns 7s ease-out forwards;
-        }
-        @keyframes cardFadeIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-card-fade {
-          animation: cardFadeIn 0.4s ease-out forwards;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .hero-ken-burns,
-          .animate-card-fade {
-            animation: none !important;
-          }
-        }
-      `}</style>
-
       {/* Background depth layer */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div
@@ -102,58 +112,46 @@ export default function HeroVisual() {
         <div className="hidden sm:block absolute bottom-[6%] right-[8%] w-72 h-72 rounded-full bg-[#D4B573]/20 blur-3xl" />
       </div>
 
-      {/* Arch frame */}
-      <div
-        className={`relative w-full max-w-[580px] lg:max-w-[620px] h-[560px] sm:h-[660px] lg:h-[740px] transition-all duration-700 ease-out ${
-          mounted ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
-        }`}
-      >
+      {/* Arch frame — rendered immediately in SSR without opacity-0 delay */}
+      <div className="relative w-full max-w-[580px] lg:max-w-[620px] h-[560px] sm:h-[660px] lg:h-[740px]">
         <div className="relative w-full h-full rounded-t-[220px] sm:rounded-t-[280px] lg:rounded-t-[340px] rounded-b-3xl overflow-hidden shadow-[0_30px_60px_-20px_rgba(5,26,17,0.4)] border-[3px] border-white bg-gradient-to-br from-[#0F2D24] to-[#166534] z-10">
-          {mounted && (
-            <Swiper
-              modules={[Autoplay, EffectFade, Navigation, Pagination]}
-              effect="fade"
-              fadeEffect={{ crossFade: true }}
-              speed={900}
-              loop={true}
-              autoplay={{ delay: 4500, disableOnInteraction: false }}
-              pagination={{ clickable: true, dynamicBullets: true }}
-              navigation={{ nextEl: ".hero-next-btn", prevEl: ".hero-prev-btn" }}
-              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-              className="w-full h-full hero-swiper"
-              style={{ width: "100%", height: "100%" }}
-            >
-              {heroImages.map((img, index) => (
-                <SwiperSlide
-                  key={index}
-                  className="relative w-full h-full overflow-hidden"
-                  style={{ width: "100%", height: "100%" }}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    priority={index === 0}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="hero-ken-burns object-cover object-center"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#051A11]/70 via-transparent to-[#051A11]/10 pointer-events-none" />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          {/* Static SSR LCP image — visible immediately on initial load before Swiper mounts */}
+          {!carouselReady && (
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={hero1img}
+                alt={heroSlidesMeta[0].alt}
+                fill
+                priority
+                fetchPriority="high"
+                quality={60}
+                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 540px, 580px"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#051A11]/70 via-transparent to-[#051A11]/10 pointer-events-none" />
+            </div>
+          )}
+
+          {enableCarousel && (
+            <HeroCarousel
+              initialSlide={activeIndex}
+              onSlideChange={setActiveIndex}
+              onReady={() => setCarouselReady(true)}
+            />
           )}
 
           {/* Nav arrows */}
           <button
+            type="button"
+            onClick={() => handleManualNav("prev")}
             aria-label="Previous slide"
             className="hero-prev-btn group absolute top-1/2 left-3 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/50 bg-white/5 backdrop-blur-sm text-white flex items-center justify-center transition-all duration-300 hover:bg-[#D4B573] hover:border-[#D4B573] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4B573] focus-visible:outline-offset-2 cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4 transition-colors group-hover:text-[#0F2D24]" />
           </button>
           <button
+            type="button"
+            onClick={() => handleManualNav("next")}
             aria-label="Next slide"
             className="hero-next-btn group absolute top-1/2 right-3 -translate-y-1/2 z-30 w-10 h-10 rounded-full border border-white/50 bg-white/5 backdrop-blur-sm text-white flex items-center justify-center transition-all duration-300 hover:bg-[#D4B573] hover:border-[#D4B573] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D4B573] focus-visible:outline-offset-2 cursor-pointer"
           >
@@ -198,8 +196,8 @@ export default function HeroVisual() {
               </span>
             </div>
             <a
-              href="#projects"
-              aria-label="Explore our projects"
+              href="#services"
+              aria-label="Explore our services"
               className="w-10 h-10 shrink-0 rounded-full bg-[#D4B573] text-[#053B29] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
             >
               <ArrowUpRight className="w-4 h-4" />

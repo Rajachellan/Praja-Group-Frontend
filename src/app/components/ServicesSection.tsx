@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, HardHat, Building2, Settings } from 'lucide-react';
+import { ArrowRight, HardHat, Building2 } from 'lucide-react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -91,13 +91,16 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section ref={containerRef} id="services" className="relative w-full bg-[#FBFBFB] py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section
+      ref={containerRef}
+      id="services"
+      className="relative w-full bg-[#FBFBFB] py-16 sm:py-20 lg:py-24 overflow-hidden"
+    >
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#166534]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#F37924]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
-        
         {/* Section Header */}
         <div className="services-header flex flex-col gap-5 items-center text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm mx-auto">
@@ -106,12 +109,15 @@ export default function ServicesSection() {
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#166534] animate-bounce" />
             </span>
             <span className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.15em] text-[#0F2D24]">
-             Core Expertise
+              Core Expertise
             </span>
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold" style={{ letterSpacing: '1px', lineHeight: '58px' }}>
-            Our <span className='text-[#166534]'>Services</span>
+
+          <h2
+            className="text-3xl sm:text-4xl lg:text-[44px] font-bold"
+            style={{ letterSpacing: '1px', lineHeight: '58px' }}
+          >
+            Our <span className="text-[#166534]">Services</span>
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -119,7 +125,7 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* 3 Core Divisions Grid */}
+        {/* Core Divisions Grid */}
         <div className="services-grid grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {divisions.map((division, idx) => {
             const Icon = division.icon;
@@ -136,7 +142,9 @@ export default function ServicesSection() {
                       src={division.image}
                       alt={`Prajha Group ${division.title}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                      quality={60}
+                      sizes="(max-width: 767px) 92vw, (max-width: 1280px) 46vw, 620px"
                       className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
 
@@ -156,7 +164,10 @@ export default function ServicesSection() {
                       {division.title}
                     </h3>
 
-                    <p className="text-xs font-bold text-[#F37924] mb-3" style={{letterSpacing:"1px"}}>
+                    <p
+                      className="text-xs font-bold text-[#F37924] mb-3"
+                      style={{ letterSpacing: '1px' }}
+                    >
                       {division.subtitle}
                     </p>
 
@@ -180,7 +191,6 @@ export default function ServicesSection() {
             );
           })}
         </div>
-
       </div>
     </section>
   );

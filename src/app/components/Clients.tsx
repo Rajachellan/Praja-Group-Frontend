@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Building2, Sparkles, Award } from 'lucide-react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -74,13 +73,15 @@ export default function Clients() {
   const marqueeRow2 = [...clientLogos].reverse().concat([...clientLogos].reverse());
 
   return (
-    <section ref={containerRef} className="relative py-20 sm:py-28 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 overflow-hidden border-b border-slate-200/80">
+    <section
+      ref={containerRef}
+      className="relative py-20 sm:py-28 bg-gradient-to-b from-[#F4F8F6] via-white to-slate-50 overflow-hidden border-b border-slate-200/80"
+    >
       {/* Ambient background glows */}
       <div className="absolute top-1/2 left-0 -ml-24 w-96 h-96 bg-[#166534]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-1/2 right-0 -mr-24 w-96 h-96 bg-[#F37924]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
         {/* Header Block */}
         <div className="clients-header text-center max-w-3xl mx-auto mb-14 sm:mb-16 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-xs">
@@ -101,15 +102,13 @@ export default function Clients() {
             Delivering quality construction, property development and turnkey solutions across residential and commercial projects.
           </p>
         </div>
-
       </div>
 
       {/* Infinite Marquee Container */}
       <div className="clients-marquee relative w-full overflow-hidden space-y-6">
-        
         {/* Left Edge Dissolve Gradient Mask */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#F4F8F6] via-[#F4F8F6]/80 to-transparent z-20 pointer-events-none" />
-        
+
         {/* Right Edge Dissolve Gradient Mask */}
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
 
@@ -127,6 +126,9 @@ export default function Clients() {
                     alt={logo.name}
                     width={180}
                     height={80}
+                    loading="lazy"
+                    quality={60}
+                    sizes="(max-width: 640px) 144px, 184px"
                     className="max-h-full max-w-full object-contain transition-transform duration-300"
                   />
                 </div>
@@ -149,6 +151,9 @@ export default function Clients() {
                     alt={logo.name}
                     width={180}
                     height={80}
+                    loading="lazy"
+                    quality={60}
+                    sizes="(max-width: 640px) 144px, 184px"
                     className="max-h-full max-w-full object-contain transition-transform duration-300"
                   />
                 </div>
@@ -156,7 +161,6 @@ export default function Clients() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

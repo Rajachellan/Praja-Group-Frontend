@@ -2,12 +2,6 @@
 
 import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export default function GsapProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,7 +9,20 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const timer = setTimeout(() => {
+    let cancelled = false;
+
+    const initAnimations = async () => {
+      if (cancelled) return;
+      const hasDataGsap = document.querySelector('[data-gsap]');
+      if (!hasDataGsap) return;
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      if (cancelled) return;
+
+      gsap.registerPlugin(ScrollTrigger);
       ScrollTrigger.refresh();
 
       const fadeUpEls = document.querySelectorAll('[data-gsap="fade-up"]');
@@ -114,10 +121,10 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
 
       const staggerContainers = document.querySelectorAll('[data-gsap="stagger-children"]');
       staggerContainers.forEach((container) => {
-        const children = container.children;
-        if (children.length > 0) {
+        const containerChildren = container.children;
+        if (containerChildren.length > 0) {
           gsap.fromTo(
-            children,
+            containerChildren,
             { opacity: 0, y: 20 },
             {
               opacity: 1,
@@ -134,10 +141,20 @@ export default function GsapProvider({ children }: { children: React.ReactNode }
           );
         }
       });
-    }, 20);
+    };
+
+    const scheduleIdle =
+      typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(() => void initAnimations(), { timeout: 1500 })
+        : window.setTimeout(() => void initAnimations(), 200);
 
     return () => {
-      clearTimeout(timer);
+      cancelled = true;
+      if (typeof window.cancelIdleCallback === 'function' && typeof scheduleIdle === 'number') {
+        window.cancelIdleCallback(scheduleIdle);
+      } else {
+        clearTimeout(scheduleIdle as number);
+      }
     };
   }, [pathname]);
 

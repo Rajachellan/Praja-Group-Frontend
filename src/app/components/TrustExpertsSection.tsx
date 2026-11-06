@@ -6,10 +6,8 @@ import Link from 'next/link';
 import {
   Home,
   Building2,
-  HardHat,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
   ShieldCheck,
   Award,
 } from 'lucide-react';
@@ -70,14 +68,16 @@ export default function TrustExpertsSection() {
     {
       title: 'Residential Developments',
       subtitle: 'Luxurious & affordable homes',
-      description: 'Crafting thoughtful living spaces designed for modern comfort, sustainability, and everlasting family memories.',
+      description:
+        'Crafting thoughtful living spaces designed for modern comfort, sustainability, and everlasting family memories.',
       icon: Home,
       badge: 'Residential',
     },
     {
       title: 'Commercial Spaces',
       subtitle: 'High-end office buildings & retail centers',
-      description: 'Developing state-of-the-art commercial hubs engineered to foster business growth and corporate excellence. End-to-end turnkey construction and heavy infrastructure built with unwavering precision and superior materials.',
+      description:
+        'Developing state-of-the-art commercial hubs engineered to foster business growth and corporate excellence. End-to-end turnkey construction and heavy infrastructure built with unwavering precision and superior materials.',
       icon: Building2,
       badge: 'Commercial',
     },
@@ -91,14 +91,16 @@ export default function TrustExpertsSection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-10 lg:py-20 overflow-hidden">
+    <section
+      ref={containerRef}
+      className="relative w-full bg-gradient-to-b from-[#FBFBFB] via-white to-[#F0F7F4]/40 py-10 lg:py-20 overflow-hidden"
+    >
       {/* Ambient background blur elements */}
       <div className="absolute top-1/4 -left-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-[#F37924]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
           {/* ================= LEFT COLUMN: Visual Graphic ================= */}
           <div className="experts-visual lg:col-span-6 relative flex justify-center order-2 lg:order-1">
             <div className="relative w-full max-w-[580px] group">
@@ -110,10 +112,12 @@ export default function TrustExpertsSection() {
                 <Image
                   src={trustExpertsVisual}
                   alt="Prajha Group Engineering Experts and Construction Team"
-                  width={680}
+                  width={580}
                   height={580}
+                  loading="lazy"
+                  quality={60}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 540px, 580px"
                   className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                  priority
                 />
 
                 {/* Floating Badge 1: Quality Guarantee */}
@@ -151,10 +155,12 @@ export default function TrustExpertsSection() {
 
           {/* ================= RIGHT COLUMN: Content & Expertise List ================= */}
           <div className="lg:col-span-6 flex flex-col justify-center order-1 lg:order-2">
-            
             <div className="experts-header">
               {/* Tagline Pill */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm" style={{alignSelf:"flex-start"}}>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-[#166534]/20 bg-[#F0FDF4] shadow-sm"
+                style={{ alignSelf: 'flex-start' }}
+              >
                 {/* Animated Dot */}
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-60 animate-ping"></span>
@@ -168,7 +174,10 @@ export default function TrustExpertsSection() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-[1.18] mb-4" style={{letterSpacing:"2px"}}>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-[1.18] mb-4"
+                style={{ letterSpacing: '2px' }}
+              >
                 Trust Us – <span className="text-[#166534] relative inline-block">We’re Experts</span>
               </h2>
 
@@ -231,9 +240,7 @@ export default function TrustExpertsSection() {
                 </div>
               </Link>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

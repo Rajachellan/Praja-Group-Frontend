@@ -1,14 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { LucideIcon, Award, Building2, Clock, Users } from 'lucide-react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface StatItem {
   icon?: LucideIcon;
@@ -29,27 +22,44 @@ const DEFAULT_STATS: StatItem[] = [
 ];
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const numRef = useRef<HTMLSpanElement>(null);
 
-  useGSAP(() => {
-    if (!numRef.current) return;
+  useEffect(() => {
+    const el = numRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
 
-    const obj = { val: 0 };
-    gsap.to(obj, {
-      val: target,
-      duration: 0.7,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: numRef.current,
-        start: 'top 95%',
-        toggleActions: 'play none none none',
+    let rafId = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        observer.disconnect();
+
+        const duration = 650;
+        const start = performance.now();
+
+        const step = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 2);
+          setCount(Math.floor(eased * target));
+          if (progress < 1) {
+            rafId = requestAnimationFrame(step);
+          } else {
+            setCount(target);
+          }
+        };
+
+        rafId = requestAnimationFrame(step);
       },
-      onUpdate: () => {
-        setCount(Math.floor(obj.val));
-      },
-    });
-  }, { scope: numRef, dependencies: [target] });
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [target]);
 
   return (
     <span ref={numRef}>
@@ -62,46 +72,25 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 export default function StatsSection({
   stats = DEFAULT_STATS,
 }: StatsSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-
-      gsap.fromTo(
-        '.stat-card',
-        { opacity: 0, y: 15 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          stagger: 0.05,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
-
   const statsList = stats && stats.length > 0 ? stats : DEFAULT_STATS;
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full my-8 sm:my-10 rounded-[28px] sm:rounded-[36px] overflow-hidden bg-gradient-to-br from-[#0F2D24] to-[#166534] shadow-[0_30px_60px_-24px_rgba(5,26,17,0.45)]"
-    >
+    <div className="relative w-full my-8 sm:my-10 rounded-[28px] sm:rounded-[36px] overflow-hidden bg-gradient-to-br from-[#0F2D24] to-[#166534] shadow-[0_30px_60px_-24px_rgba(5,26,17,0.45)]">
       <svg
         className="hidden sm:block absolute -right-16 -top-24 w-72 h-72 text-white/5 pointer-events-none"
         viewBox="0 0 100 100"
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="50" cy="50" r="47" stroke="currentColor" strokeWidth="0.6" strokeDasharray="1 4" strokeLinecap="round" />
+        <circle
+          cx="50"
+          cy="50"
+          r="47"
+          stroke="currentColor"
+          strokeWidth="0.6"
+          strokeDasharray="1 4"
+          strokeLinecap="round"
+        />
       </svg>
 
       <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-y-7 sm:gap-y-0 px-6 sm:px-8 lg:px-10 py-8 sm:py-9">

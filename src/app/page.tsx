@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Herosection from './components/Herosection';
-import TrustExpertsSection from './components/TrustExpertsSection';
-import ServicesSection from './components/ServicesSection';
-import ProjectsShowcase from './components/ProjectsShowcase';
-import Values from './components/Values';
-import Clients from './components/Clients';
+
+const TrustExpertsSection = dynamic(() => import('./components/TrustExpertsSection'));
+const ServicesSection = dynamic(() => import('./components/ServicesSection'));
+const Values = dynamic(() => import('./components/Values'));
+const Clients = dynamic(() => import('./components/Clients'));
 
 export const metadata: Metadata = {
   title: 'Prajha Group – Top Construction & Real Estate Developers in Chennai',
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     url: 'https://www.prajhagroup.com/',
     siteName: 'Prajha Group',
     type: 'website',
-    },
+  },
   robots: {
     index: true,
     follow: true,

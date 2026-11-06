@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, ChevronDown, ArrowRight, Menu, X, Clock, Phone, Mail, Sparkles, MapPin, Building2 } from 'lucide-react';
+import { ChevronDown, Menu, X, Clock, Phone, Mail, MapPin } from 'lucide-react';
 
 interface SubLink {
   name: string;
@@ -61,7 +61,6 @@ export default function Navbar() {
       {/* Top Header Bar */}
       <div className="w-full  text-white text-[12px] font-medium py-2 select-none border-b border-white/10 shadow-xs bg-[#166534]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-4">
-          
           {/* Left Side: Welcome Badge, Location & Slogan */}
           <div className="flex items-center gap-3">
             {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 hover:bg-white/20 text-white text-[11px] font-bold tracking-wide border border-white/25 shadow-xs backdrop-blur-md transition-all group cursor-default">
@@ -73,7 +72,7 @@ export default function Navbar() {
                 <span className="text-[#166534] font-extrabold tracking-wider">Prajha Group</span>
               </span>
             </div> */}
-            
+
             <div className="hidden sm:flex items-center gap-1.5 text-white/95 font-medium">
               <MapPin className="w-3.5 h-3.5 text-white/90 shrink-0" />
               <span className="tracking-wide font-playfair">Chennai, TN</span>
@@ -113,23 +112,23 @@ export default function Navbar() {
               <span className="tracking-wider">prajhaconnect@gmail.com</span>
             </a>
           </div>
-
         </div>
       </div>
 
       {/* Main Navbar Bar */}
       <div className="w-full bg-white/95 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between">
-          
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image
               src="/praja-logo.webp"
               alt="Prajha Group Logo"
-              width={160}
-              height={80}
+              width={128}
+              height={84}
               priority
-               className="h-16 sm:h-20 lg:h-[84px] w-auto object-contain transform hover:scale-105 transition-transform duration-200"
+              quality={70}
+              sizes="(max-width: 640px) 98px, (max-width: 1024px) 122px, 128px"
+              className="h-16 sm:h-20 lg:h-[84px] w-auto object-contain transform hover:scale-105 transition-transform duration-200"
             />
           </Link>
 
@@ -178,20 +177,25 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Right Action Certificate Badge */}
+          {/* Right Action Certificate Badge — hidden on mobile so never preloaded with priority */}
           <div className="hidden sm:flex items-center">
             <Image
               src="/badge-new-year.png"
               alt="17 Years Certificate Badge"
-              width={1347}
-              height={1167}
-              priority
+              width={96}
+              height={83}
+              loading="lazy"
+              quality={65}
+              sizes="(max-width: 639px) 1px, 96px"
               className="h-16 sm:h-20 lg:h-[84px] w-auto object-contain transform hover:scale-105 transition-transform duration-200"
             />
           </div>
 
           {/* Mobile Hamburger Button */}
           <button
+            type="button"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-[#166534] focus:outline-none"
           >
@@ -222,6 +226,8 @@ export default function Navbar() {
                 </Link>
                 {link.hasDropdown && (
                   <button
+                    type="button"
+                    aria-label={`Toggle ${link.name} submenu`}
                     onClick={() => toggleMobileDropdown(link.name)}
                     className="p-1 text-gray-400 hover:text-[#166534]"
                   >
@@ -260,8 +266,11 @@ export default function Navbar() {
             <Image
               src="/badge-new-year.png"
               alt="17 Years Certificate Badge"
-              width={1347}
-              height={1167}
+              width={74}
+              height={64}
+              loading="lazy"
+              quality={65}
+              sizes="74px"
               className="h-16 w-auto object-contain"
             />
           </div>

@@ -8,6 +8,14 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "browserslist": [
+    "Chrome >= 111",
+    "Edge >= 111",
+    "Firefox >= 111",
+    "Safari >= 16.4",
+    "ios_saf >= 16.4",
+    "not dead"
+  ],
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "axios": "^1.20.0",
